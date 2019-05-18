@@ -11,7 +11,7 @@ Window {
     visible: true
     width: 1280
     height: 720
-    title: qsTr("Поиск дубликатов изображений")
+    title: qsTr("Поиск дубликатов изображений lll")
 
     InputFoldersComponent {
         id: inputFoldersComponent

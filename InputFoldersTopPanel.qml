@@ -78,6 +78,8 @@ Rectangle {
             text: "Добавить папку"
 
             textPointSize: 11
+
+            onClicked: DuplicateImagesListModelsManager.start()
         }
     }
 }
