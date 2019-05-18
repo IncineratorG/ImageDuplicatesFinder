@@ -14,7 +14,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-    Services/ImageDuplicatesFinderService/IDFService.cpp
+    Services/ImageDuplicatesFinderService/IDFService.cpp \
+    Services/ImageDuplicatesFinderService/Data/IDFServiceInputData.cpp \
+    Services/ImageDuplicatesFinderService/Data/IDFServiceOutputData.cpp \
+    Services/ImageDuplicatesFinderService/Data/IDFServiceInputDataItem.cpp \
+    Services/ImageDuplicatesFinderService/Data/Path.cpp \
+    Services/ImageDuplicatesFinderService/Data/Paths.cpp \
+    Services/ImageDuplicatesFinderService/Data/ImageDuplicatesGroup.cpp \
+    Services/ImageDuplicatesFinderService/Data/ImagesDuplicatesGroups.cpp \
+    Services/ImageDuplicatesFinderService/Data/ImageHistogram.cpp \
+    Services/ImageDuplicatesFinderService/Data/ImagePath.cpp \
+    Services/ImageDuplicatesFinderService/Data/ImagesPaths.cpp \
+    Services/ImageDuplicatesFinderService/Data/ImagesHistograms.cpp
 
 RESOURCES += qml.qrc
 
@@ -30,4 +41,15 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    Services/ImageDuplicatesFinderService/IDFService.h
+    Services/ImageDuplicatesFinderService/IDFService.h \
+    Services/ImageDuplicatesFinderService/Data/IDFServiceInputData.h \
+    Services/ImageDuplicatesFinderService/Data/IDFServiceOutputData.h \
+    Services/ImageDuplicatesFinderService/Data/IDFServiceInputDataItem.h \
+    Services/ImageDuplicatesFinderService/Data/Path.h \
+    Services/ImageDuplicatesFinderService/Data/Paths.h \
+    Services/ImageDuplicatesFinderService/Data/ImageDuplicatesGroup.h \
+    Services/ImageDuplicatesFinderService/Data/ImagesDuplicatesGroups.h \
+    Services/ImageDuplicatesFinderService/Data/ImageHistogram.h \
+    Services/ImageDuplicatesFinderService/Data/ImagePath.h \
+    Services/ImageDuplicatesFinderService/Data/ImagesPaths.h \
+    Services/ImageDuplicatesFinderService/Data/ImagesHistograms.h
