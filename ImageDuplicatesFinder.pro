@@ -25,7 +25,18 @@ SOURCES += \
     Services/ImageDuplicatesFinderService/Data/ImageHistogram.cpp \
     Services/ImageDuplicatesFinderService/Data/ImagePath.cpp \
     Services/ImageDuplicatesFinderService/Data/ImagesPaths.cpp \
-    Services/ImageDuplicatesFinderService/Data/ImagesHistograms.cpp
+    Services/ImageDuplicatesFinderService/Data/ImagesHistograms.cpp \
+    Services/ImageDuplicatesFinderService/Pipeline/IDFServiceProcessingPipeline.cpp \
+    Services/ImageDuplicatesFinderService/Pipeline/AbstractOperation.cpp \
+    Services/ImageDuplicatesFinderService/Pipeline/OperationSequence.cpp \
+    Services/ImageDuplicatesFinderService/Pipeline/OperationTransition.cpp \
+    Services/ImageDuplicatesFinderService/Pipeline/PipelineOperationsTransitions.cpp \
+    Services/ImageDuplicatesFinderService/HistogramsComparator/AbstractHistogramsComparator.cpp \
+    Services/ImageDuplicatesFinderService/HistogramsComparator/SequentialHistogramsComparator.cpp \
+    Services/ImageDuplicatesFinderService/ImagesHistogramsBuilder/AbstractImagesHistogramsBuilder.cpp \
+    Services/ImageDuplicatesFinderService/ImagesHistogramsBuilder/SequentialImagesHistogramsBuilder.cpp \
+    Services/ImageDuplicatesFinderService/ImagesPathsFinder/AbstractImagesPathsFinder.cpp \
+    Services/ImageDuplicatesFinderService/ImagesPathsFinder/SequentialImagesPathsFinder.cpp
 
 RESOURCES += qml.qrc
 
@@ -52,4 +63,15 @@ HEADERS += \
     Services/ImageDuplicatesFinderService/Data/ImageHistogram.h \
     Services/ImageDuplicatesFinderService/Data/ImagePath.h \
     Services/ImageDuplicatesFinderService/Data/ImagesPaths.h \
-    Services/ImageDuplicatesFinderService/Data/ImagesHistograms.h
+    Services/ImageDuplicatesFinderService/Data/ImagesHistograms.h \
+    Services/ImageDuplicatesFinderService/Pipeline/IDFServiceProcessingPipeline.h \
+    Services/ImageDuplicatesFinderService/Pipeline/AbstractOperation.h \
+    Services/ImageDuplicatesFinderService/Pipeline/OperationSequence.h \
+    Services/ImageDuplicatesFinderService/Pipeline/OperationTransition.h \
+    Services/ImageDuplicatesFinderService/Pipeline/PipelineOperationsTransitions.h \
+    Services/ImageDuplicatesFinderService/HistogramsComparator/AbstractHistogramsComparator.h \
+    Services/ImageDuplicatesFinderService/HistogramsComparator/SequentialHistogramsComparator.h \
+    Services/ImageDuplicatesFinderService/ImagesHistogramsBuilder/AbstractImagesHistogramsBuilder.h \
+    Services/ImageDuplicatesFinderService/ImagesHistogramsBuilder/SequentialImagesHistogramsBuilder.h \
+    Services/ImageDuplicatesFinderService/ImagesPathsFinder/AbstractImagesPathsFinder.h \
+    Services/ImageDuplicatesFinderService/ImagesPathsFinder/SequentialImagesPathsFinder.h
