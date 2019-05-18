@@ -2,7 +2,7 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>Style.qml</file>
-        <file>UIButton.qml</file>
+        <file>UIKit/UIButton.qml</file>
         <file>InputFoldersComponent.qml</file>
         <file>InputFoldersListView.qml</file>
         <file>InputFoldersTopPanel.qml</file>
