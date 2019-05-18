@@ -294,7 +294,7 @@ Rectangle {
                         anchors.fill: parent
 
                         onClicked: {
-                            console.log("CLICKED")
+                            console.log("DELETE_BUTTON_CLICKED")
                         }
                     }
                 }

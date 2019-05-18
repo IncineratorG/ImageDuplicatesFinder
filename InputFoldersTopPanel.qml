@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import "UIKit"
 
 
 
@@ -57,29 +58,29 @@ Rectangle {
 //        color: "#2979ff"
         color: "transparent"
 
-//        UIButton {
-//            id: addFolderButton
+        UIButton {
+            id: addFolderButton
 
-//            anchors.top: parent.top
-//            anchors.bottom: parent.bottom
-//            anchors.right: parent.right
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            anchors.right: parent.right
 
-//            width: parent.width < 150 ? parent.width : 150
+            width: parent.width < 150 ? parent.width : 150
 
-//            textColorDefault: "white"
-//            textColorPressed: "white"
+            textColorDefault: "white"
+            textColorPressed: "white"
 
-//            borderColorDefault: "#26A9F7"
-//            borderColorPressed: "#4FC3F7"
+            borderColorDefault: "#26A9F7"
+            borderColorPressed: "#4FC3F7"
 
-//            backgroundColorDefault: "#26A9F7"
-//            backgroundColorPressed: "#4FC3F7"
+            backgroundColorDefault: "#26A9F7"
+            backgroundColorPressed: "#4FC3F7"
 
-//            text: "Добавить папку"
+            text: "Добавить папку"
 
-//            textPointSize: 11
+            textPointSize: 11
 
-//            onClicked: DuplicateImagesListModelsManager.start()
-//        }
+            onClicked: console.log("BUTTON_CLICKED")
+        }
     }
 }
