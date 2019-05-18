@@ -36,7 +36,12 @@ SOURCES += \
     Services/ImageDuplicatesFinderService/ImagesHistogramsBuilder/AbstractImagesHistogramsBuilder.cpp \
     Services/ImageDuplicatesFinderService/ImagesHistogramsBuilder/SequentialImagesHistogramsBuilder.cpp \
     Services/ImageDuplicatesFinderService/ImagesPathsFinder/AbstractImagesPathsFinder.cpp \
-    Services/ImageDuplicatesFinderService/ImagesPathsFinder/SequentialImagesPathsFinder.cpp
+    Services/ImageDuplicatesFinderService/ImagesPathsFinder/SequentialImagesPathsFinder.cpp \
+    Modules/ImageDuplicatesFinder/ImageDuplicatesFinderModule.cpp \
+    Modules/ImageDuplicatesFinder/DuplicateImagesListModel.cpp \
+    Modules/ImageDuplicatesFinder/DuplicateImagesListModelManager.cpp \
+    Modules/ImageDuplicatesFinder/InputFoldersModel.cpp \
+    Modules/ImageDuplicatesFinder/InputFoldersModelManager.cpp
 
 RESOURCES += qml.qrc
 
@@ -74,4 +79,9 @@ HEADERS += \
     Services/ImageDuplicatesFinderService/ImagesHistogramsBuilder/AbstractImagesHistogramsBuilder.h \
     Services/ImageDuplicatesFinderService/ImagesHistogramsBuilder/SequentialImagesHistogramsBuilder.h \
     Services/ImageDuplicatesFinderService/ImagesPathsFinder/AbstractImagesPathsFinder.h \
-    Services/ImageDuplicatesFinderService/ImagesPathsFinder/SequentialImagesPathsFinder.h
+    Services/ImageDuplicatesFinderService/ImagesPathsFinder/SequentialImagesPathsFinder.h \
+    Modules/ImageDuplicatesFinder/ImageDuplicatesFinderModule.h \
+    Modules/ImageDuplicatesFinder/DuplicateImagesListModel.h \
+    Modules/ImageDuplicatesFinder/DuplicateImagesListModelManager.h \
+    Modules/ImageDuplicatesFinder/InputFoldersModel.h \
+    Modules/ImageDuplicatesFinder/InputFoldersModelManager.h
