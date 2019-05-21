@@ -15,7 +15,7 @@ class IDFServiceController : public QObject
 public:
     static IDFServiceController* getInstance();
 
-    void startService(const IDFServiceInputData& inputData);
+    void startService();
     void stopService();
 
     IDFServiceInputData getInputData() const;

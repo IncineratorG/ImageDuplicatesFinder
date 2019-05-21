@@ -18,8 +18,8 @@ IDFServiceController::IDFServiceController() {
     connect(&m_idfService, SIGNAL(finished()), this, SLOT(onServiceFinished()));
 }
 
-void IDFServiceController::startService(const IDFServiceInputData& inputData) {
-    m_idfService.start(inputData);
+void IDFServiceController::startService() {
+    m_idfService.start(m_dataWarehouse.getInputData());
 }
 
 void IDFServiceController::stopService() {

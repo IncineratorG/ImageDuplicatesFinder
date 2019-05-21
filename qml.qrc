@@ -9,5 +9,8 @@
         <file>UI/InputFoldersComponent/InputFoldersListView.qml</file>
         <file>UI/InputFoldersComponent/TopToolBar.qml</file>
         <file>UI/InputFoldersComponent/EmptyListViewComponent.qml</file>
+        <file>UI/DuplicateItemsListComponent/DuplicateItemsListComponent.qml</file>
+        <file>UI/DuplicateItemsListComponent/TopToolBar.qml</file>
+        <file>UI/DuplicateItemsListComponent/DuplicateItemsListView.qml</file>
     </qresource>
 </RCC>
