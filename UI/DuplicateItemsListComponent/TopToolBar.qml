@@ -8,5 +8,17 @@ Rectangle {
 
     height: Style.elementHeight
 
-    color: "grey"
+    color: "transparent"
+
+    Rectangle {
+        id: bottomBorderLine
+
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+
+        height: 1
+
+        color: "black"
+    }
 }

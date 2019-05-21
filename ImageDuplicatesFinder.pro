@@ -38,15 +38,14 @@ SOURCES += \
     Services/ImageDuplicatesFinderService/ImagesPathsFinder/AbstractImagesPathsFinder.cpp \
     Services/ImageDuplicatesFinderService/ImagesPathsFinder/SequentialImagesPathsFinder.cpp \
     Modules/ImageDuplicatesFinder/ImageDuplicatesFinderModule.cpp \
-    Modules/ImageDuplicatesFinder/DuplicateImagesListModel.cpp \
-    Modules/ImageDuplicatesFinder/DuplicateImagesListModelManager.cpp \
     Modules/ImageDuplicatesFinder/ServiceMediatorLayer/IDFServiceController.cpp \
     Modules/ImageDuplicatesFinder/ServiceMediatorLayer/IDFServiceDataWarehouse.cpp \
     Modules/ImageDuplicatesFinder/InputFoldersComponent/InputFoldersModel.cpp \
     Modules/ImageDuplicatesFinder/InputFoldersComponent/InputFoldersModelManager.cpp \
     Modules/ImageDuplicatesFinder/InputFoldersComponent/InputFoldersModelItem.cpp \
     Modules/ImageDuplicatesFinder/DuplicateItemsListComponent/DuplicateItemsListModel.cpp \
-    Modules/ImageDuplicatesFinder/DuplicateItemsListComponent/DuplicateItemsListModelManager.cpp
+    Modules/ImageDuplicatesFinder/DuplicateItemsListComponent/DuplicateItemsListModelManager.cpp \
+    Modules/ImageDuplicatesFinder/DuplicateItemsListComponent/DuplicateItem.cpp
 
 RESOURCES += qml.qrc
 
@@ -86,12 +85,11 @@ HEADERS += \
     Services/ImageDuplicatesFinderService/ImagesPathsFinder/AbstractImagesPathsFinder.h \
     Services/ImageDuplicatesFinderService/ImagesPathsFinder/SequentialImagesPathsFinder.h \
     Modules/ImageDuplicatesFinder/ImageDuplicatesFinderModule.h \
-    Modules/ImageDuplicatesFinder/DuplicateImagesListModel.h \
-    Modules/ImageDuplicatesFinder/DuplicateImagesListModelManager.h \
     Modules/ImageDuplicatesFinder/ServiceMediatorLayer/IDFServiceController.h \
     Modules/ImageDuplicatesFinder/ServiceMediatorLayer/IDFServiceDataWarehouse.h \
     Modules/ImageDuplicatesFinder/InputFoldersComponent/InputFoldersModel.h \
     Modules/ImageDuplicatesFinder/InputFoldersComponent/InputFoldersModelManager.h \
     Modules/ImageDuplicatesFinder/InputFoldersComponent/InputFoldersModelItem.h \
     Modules/ImageDuplicatesFinder/DuplicateItemsListComponent/DuplicateItemsListModel.h \
-    Modules/ImageDuplicatesFinder/DuplicateItemsListComponent/DuplicateItemsListModelManager.h
+    Modules/ImageDuplicatesFinder/DuplicateItemsListComponent/DuplicateItemsListModelManager.h \
+    Modules/ImageDuplicatesFinder/DuplicateItemsListComponent/DuplicateItem.h

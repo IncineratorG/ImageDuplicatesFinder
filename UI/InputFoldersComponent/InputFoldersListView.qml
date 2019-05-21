@@ -73,7 +73,7 @@ Rectangle {
 
                 anchors.rightMargin: 4
 
-                width: 100
+                width: 120
                 height: Style.elementHeightWithMargins
 
                 textColorDefault: "white"
@@ -85,7 +85,7 @@ Rectangle {
                 backgroundColorDefault: "#26A9F7"
                 backgroundColorPressed: "#4FC3F7"
 
-                text: "Add folder"
+                text: "Добавить папку"
 
                 onClicked: {
                     addFolderButtonClicked()

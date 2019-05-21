@@ -18,6 +18,13 @@ Item {
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
+
+        visible: inputFoldersListView.visible
+
+        toolBarText: "Выбор папок с изображениями"
+
+        leftButtonVisible: false
+        rightButtonVisible: DuplicatesListModel.size > 0
     }
 
     Item {
@@ -73,10 +80,8 @@ Item {
         anchors.right: parent.right
 
         anchors.bottomMargin: InputFoldersModel.size > 0 ? 4 : 0
-//        anchors.bottomMargin: 4
 
         height: InputFoldersModel.size > 0 ? Style.elementHeightWithMargins : 0
-//        height: Style.elementHeightWithMargins
 
         UIButton {
             id: startButton
@@ -96,7 +101,7 @@ Item {
             backgroundColorDefault: "#26A9F7"
             backgroundColorPressed: "#4FC3F7"
 
-            text: "Start"
+            text: "Начать"
 
             onClicked: {
                 InputFoldersModelManager.startProcessing()
@@ -113,7 +118,7 @@ Item {
 
         selectFolder: true
 
-        title: "Please choose a folder"
+        title: "Выберите папку"
 
         onAccepted: {
             InputFoldersModelManager.addFolder(fileDialog.fileUrls)

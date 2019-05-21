@@ -2,6 +2,7 @@
 #define IDFSERVICEDATAWAREHOUSE_H
 
 #include "Services/ImageDuplicatesFinderService/Data/IDFServiceInputData.h"
+#include "Services/ImageDuplicatesFinderService/Data/IDFServiceOutputData.h"
 
 
 
@@ -15,6 +16,7 @@ public:
 
 private:
     IDFServiceInputData m_serviceInputData;
+    IDFServiceOutputData m_serviceOutputData;
 };
 
 #endif // IDFSERVICEDATAWAREHOUSE_H

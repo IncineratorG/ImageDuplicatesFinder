@@ -4,6 +4,8 @@
         <file>Style.qml</file>
         <file>UI/UIKit/UIButton.qml</file>
         <file>UI/Assets/remove.png</file>
+	<file>UI/Assets/left_arrow.png</file>
+	<file>UI/Assets/right_arrow.png</file>
         <file>UI/MainCoordinator.qml</file>
         <file>UI/InputFoldersComponent/InputFoldersComponent.qml</file>
         <file>UI/InputFoldersComponent/InputFoldersListView.qml</file>

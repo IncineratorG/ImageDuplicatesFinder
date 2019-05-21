@@ -15,7 +15,7 @@ Rectangle {
         id: addButtonWrapper
 
         height: Style.elementHeightWithMargins
-        width: 100
+        width: 120
 
         anchors.verticalCenter: parent.verticalCenter
         anchors.horizontalCenter: parent.horizontalCenter
@@ -34,7 +34,7 @@ Rectangle {
             backgroundColorDefault: "#26A9F7"
             backgroundColorPressed: "#4FC3F7"
 
-            text: "Add folder"
+            text: "Добавить папку"
 
             onClicked: {
                 addFolderButtonClicked()

@@ -19,6 +19,8 @@ void InputFoldersModel::fillModel() {
 
 void InputFoldersModel::clear() {
     modelData.clear();
+
+    emit sizeChanged(getSize());
 }
 
 void InputFoldersModel::addFolder(const InputFoldersModelItem& modelItem) {
