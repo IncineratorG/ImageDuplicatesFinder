@@ -20,8 +20,8 @@ Item {
         anchors.right: parent.right
     }
 
-    InputFoldersListView {
-        id: inputFoldersListView
+    Item {
+        id: inputFoldersListViewComponentWrapper
 
         anchors.top: topToolBarWrapper.bottom
         anchors.bottom: bottomButtonsWrapper.top
@@ -30,14 +30,38 @@ Item {
 
         anchors.margins: 4
 
-        onAddFolderButtonClicked: {
-            fileDialog.open()
+        InputFoldersListView {
+            id: inputFoldersListView
 
-            inputFoldersComponent.addFolderButtonClicked()
+            anchors.fill: parent
+
+            visible: InputFoldersModel.size > 0
+
+            onAddFolderButtonClicked: {
+                fileDialog.open()
+
+                inputFoldersComponent.addFolderButtonClicked()
+            }
+
+            onRemoveFolderButtonClicked: {
+                InputFoldersModelManager.removeFolder(index)
+
+                inputFoldersComponent.removeFolderButtonClicked(index)
+            }
         }
 
-        onRemoveFolderButtonClicked: {
-            inputFoldersComponent.removeFolderButtonClicked(index)
+        EmptyListViewComponent {
+            id: emptyFoldersListViewComponent
+
+            anchors.fill: parent
+
+            visible: InputFoldersModel.size <= 0
+
+            onAddFolderButtonClicked: {
+                fileDialog.open()
+
+                inputFoldersComponent.addFolderButtonClicked()
+            }
         }
     }
 
@@ -48,9 +72,11 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
 
-        anchors.bottomMargin: 4
+        anchors.bottomMargin: InputFoldersModel.size > 0 ? 4 : 0
+//        anchors.bottomMargin: 4
 
-        height: Style.elementHeight
+        height: InputFoldersModel.size > 0 ? Style.elementHeightWithMargins : 0
+//        height: Style.elementHeightWithMargins
 
         UIButton {
             id: startButton
@@ -73,6 +99,8 @@ Item {
             text: "Start"
 
             onClicked: {
+                InputFoldersModelManager.startProcessing()
+
                 inputFoldersComponent.startButtonClicked()
             }
         }
@@ -88,7 +116,7 @@ Item {
         title: "Please choose a folder"
 
         onAccepted: {
-            console.log("You chose: " + fileDialog.fileUrls)
+            InputFoldersModelManager.addFolder(fileDialog.fileUrls)
         }
     }
 }

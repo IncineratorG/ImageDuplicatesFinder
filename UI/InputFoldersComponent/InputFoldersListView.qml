@@ -27,7 +27,7 @@ Rectangle {
         anchors.left: parent.left
         anchors.right: parent.right
 
-        height: Style.elementHeightWithMargins
+        height: Style.elementHeightWithMargins + 8
 
         Item {
             id: headerTextWrapper
@@ -74,7 +74,7 @@ Rectangle {
                 anchors.rightMargin: 4
 
                 width: 100
-                height: Style.elementHeight
+                height: Style.elementHeightWithMargins
 
                 textColorDefault: "white"
                 textColorPressed: "white"
@@ -339,6 +339,14 @@ Rectangle {
                     anchors.verticalCenter: parent.verticalCenter
 
                     anchors.leftMargin: 16
+
+                    checked: model.processSubpaths
+
+                    onCheckedChanged: {
+                        listView.currentIndex = model.index
+
+                        InputFoldersModelManager.setProcessSubfolders(listView.currentIndex, checked)
+                    }
                 }
             }
 

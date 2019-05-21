@@ -2,6 +2,7 @@
 #define IDFSERVICECONTROLLER_H
 
 #include <QObject>
+#include "IDFServiceDataWarehouse.h"
 #include "Services/ImageDuplicatesFinderService/IDFService.h"
 #include "Services/ImageDuplicatesFinderService/Data/IDFServiceInputData.h"
 
@@ -17,6 +18,10 @@ public:
     void startService(const IDFServiceInputData& inputData);
     void stopService();
 
+    void addInputFolder(const QString& folderPath, const bool processSubpath);
+    bool updateInputFolder(const int folderRow, const QString& folderPath, const bool processSubpath);
+    bool removeInputFolder(const int folderRow);
+
 signals:
     void serviceStarted();
     void serviceInterrupted();
@@ -31,6 +36,7 @@ private:
     static IDFServiceController* m_instance;
 
     IDFService m_idfService;
+    IDFServiceDataWarehouse m_dataWarehouse;
 
     IDFServiceController();
 };

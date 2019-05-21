@@ -40,10 +40,11 @@ SOURCES += \
     Modules/ImageDuplicatesFinder/ImageDuplicatesFinderModule.cpp \
     Modules/ImageDuplicatesFinder/DuplicateImagesListModel.cpp \
     Modules/ImageDuplicatesFinder/DuplicateImagesListModelManager.cpp \
-    Modules/ImageDuplicatesFinder/InputFoldersModel.cpp \
-    Modules/ImageDuplicatesFinder/InputFoldersModelManager.cpp \
     Modules/ImageDuplicatesFinder/ServiceMediatorLayer/IDFServiceController.cpp \
-    Modules/ImageDuplicatesFinder/ServiceMediatorLayer/IDFServiceDataWarehouse.cpp
+    Modules/ImageDuplicatesFinder/ServiceMediatorLayer/IDFServiceDataWarehouse.cpp \
+    Modules/ImageDuplicatesFinder/InputFoldersComponent/InputFoldersModel.cpp \
+    Modules/ImageDuplicatesFinder/InputFoldersComponent/InputFoldersModelManager.cpp \
+    Modules/ImageDuplicatesFinder/InputFoldersComponent/InputFoldersModelItem.cpp
 
 RESOURCES += qml.qrc
 
@@ -85,7 +86,8 @@ HEADERS += \
     Modules/ImageDuplicatesFinder/ImageDuplicatesFinderModule.h \
     Modules/ImageDuplicatesFinder/DuplicateImagesListModel.h \
     Modules/ImageDuplicatesFinder/DuplicateImagesListModelManager.h \
-    Modules/ImageDuplicatesFinder/InputFoldersModel.h \
-    Modules/ImageDuplicatesFinder/InputFoldersModelManager.h \
     Modules/ImageDuplicatesFinder/ServiceMediatorLayer/IDFServiceController.h \
-    Modules/ImageDuplicatesFinder/ServiceMediatorLayer/IDFServiceDataWarehouse.h
+    Modules/ImageDuplicatesFinder/ServiceMediatorLayer/IDFServiceDataWarehouse.h \
+    Modules/ImageDuplicatesFinder/InputFoldersComponent/InputFoldersModel.h \
+    Modules/ImageDuplicatesFinder/InputFoldersComponent/InputFoldersModelManager.h \
+    Modules/ImageDuplicatesFinder/InputFoldersComponent/InputFoldersModelItem.h

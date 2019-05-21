@@ -8,5 +8,6 @@
         <file>UI/InputFoldersComponent/InputFoldersComponent.qml</file>
         <file>UI/InputFoldersComponent/InputFoldersListView.qml</file>
         <file>UI/InputFoldersComponent/TopToolBar.qml</file>
+        <file>UI/InputFoldersComponent/EmptyListViewComponent.qml</file>
     </qresource>
 </RCC>

@@ -9,7 +9,7 @@ StackView {
 
     property Component inputFoldersComponent: InputFoldersComponent {
         onRemoveFolderButtonClicked: {
-            console.log("ON_REMOVE_FOLDER_BUTTON_CLICKED")
+
         }
 
         onStartButtonClicked: {
