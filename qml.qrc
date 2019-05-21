@@ -2,11 +2,11 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>Style.qml</file>
-        <file>InputFoldersComponent.qml</file>
-        <file>InputFoldersListView.qml</file>
-        <file>InputFoldersTopPanel.qml</file>
         <file>UI/UIKit/UIButton.qml</file>
         <file>UI/Assets/remove.png</file>
         <file>UI/MainCoordinator.qml</file>
+        <file>UI/InputFoldersComponent/InputFoldersComponent.qml</file>
+        <file>UI/InputFoldersComponent/InputFoldersListView.qml</file>
+        <file>UI/InputFoldersComponent/TopToolBar.qml</file>
     </qresource>
 </RCC>

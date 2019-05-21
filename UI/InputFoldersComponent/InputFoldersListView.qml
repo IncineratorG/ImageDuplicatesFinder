@@ -1,8 +1,9 @@
 import QtQuick 2.0
 import QtQuick 2.12
 import QtQuick.Controls 1.4
-
 import Style 1.0
+import "../Assets"
+import "../UIKit"
 
 
 
@@ -14,14 +15,93 @@ Rectangle {
     property real subfolderColumnWidthFactor: 0.1
     property real actionButtonsColumnWidthFactor: -1.0
 
+    signal addFolderButtonClicked()
+    signal removeFolderButtonClicked(var index)
+
     color: "#F4F8FA"
 
-    Rectangle {
-        id: listViewTitle
+    Item {
+        id: headerWrapper
 
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
+
+        height: Style.elementHeightWithMargins
+
+        Item {
+            id: headerTextWrapper
+
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            anchors.left: parent.left
+
+            width: parent.width * 0.3
+
+            Text {
+                id: headerText
+
+                anchors.left: parent.left
+                anchors.verticalCenter: parent.verticalCenter
+
+                anchors.leftMargin: 4
+
+                width: parent.width
+
+                text: "Выбранные папки"
+                elide: Text.ElideRight
+                font.pointSize: 15
+
+                color: "#448Aff"
+            }
+        }
+
+        Item {
+            id: addButtonWrapper
+
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            anchors.right: parent.right
+
+            width: parent.width * 0.4
+
+            UIButton {
+                id: addFolderButton
+
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.right: parent.right
+
+                anchors.rightMargin: 4
+
+                width: 100
+                height: Style.elementHeight
+
+                textColorDefault: "white"
+                textColorPressed: "white"
+
+                borderColorDefault: "#26A9F7"
+                borderColorPressed: "#4FC3F7"
+
+                backgroundColorDefault: "#26A9F7"
+                backgroundColorPressed: "#4FC3F7"
+
+                text: "Add folder"
+
+                onClicked: {
+                    addFolderButtonClicked()
+                }
+            }
+        }
+    }
+
+    Rectangle {
+        id: listViewTitle
+
+        anchors.top: headerWrapper.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+
+        anchors.topMargin: 8
 
         height: Style.elementHeightWithMargins
 
@@ -286,7 +366,7 @@ Rectangle {
                     width: Style.elementHeight
                     height: Style.elementHeight
 
-                    source: "Assets/remove.png"
+                    source: "../Assets/remove.png"
 
                     visible: listView.currentIndex == model.index
 
@@ -294,7 +374,7 @@ Rectangle {
                         anchors.fill: parent
 
                         onClicked: {
-                            console.log("DELETE_BUTTON_CLICKED")
+                            removeFolderButtonClicked(listView.currentIndex)
                         }
                     }
                 }
