@@ -1,9 +1,9 @@
 import QtQuick 2.11
 import QtQuick.Window 2.11
-
 import QtQuick.Controls 2.5
-
 import Style 1.0
+import "UI"
+
 
 
 
@@ -15,7 +15,9 @@ ApplicationWindow {
     height: 720
     title: qsTr("Поиск дубликатов изображений")
 
-
+    MainCoordinator {
+        anchors.fill: parent
+    }
 }
 
 
