@@ -49,4 +49,14 @@ void InputFoldersModelManager::removeFolder(const int folderRow) {
 
 void InputFoldersModelManager::startProcessing() {
     qDebug() << __PRETTY_FUNCTION__;
+
+    IDFServiceInputData inputData = m_idfServiceController->getInputData();
+
+    QList<IDFServiceInputDataItem> inputDataItemsList = inputData.getInputDataList();
+
+    for (int i = 0; i < inputDataItemsList.size(); ++i) {
+        IDFServiceInputDataItem inputDataItem = inputDataItemsList.at(i);
+
+        qDebug() << inputDataItem.getProcessSubpath() << " - " << inputDataItem.getPath();
+    }
 }

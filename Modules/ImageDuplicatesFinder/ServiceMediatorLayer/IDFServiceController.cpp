@@ -26,6 +26,10 @@ void IDFServiceController::stopService() {
     m_idfService.stop();
 }
 
+IDFServiceInputData IDFServiceController::getInputData() const {
+    return m_dataWarehouse.getInputData();
+}
+
 void IDFServiceController::addInputFolder(const QString& folderPath, const bool processSubpath) {
     IDFServiceInputData currentInputData = m_dataWarehouse.getInputData();
 

@@ -18,6 +18,8 @@ public:
     void startService(const IDFServiceInputData& inputData);
     void stopService();
 
+    IDFServiceInputData getInputData() const;
+
     void addInputFolder(const QString& folderPath, const bool processSubpath);
     bool updateInputFolder(const int folderRow, const QString& folderPath, const bool processSubpath);
     bool removeInputFolder(const int folderRow);
