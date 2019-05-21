@@ -4,13 +4,19 @@
 
 
 InputFoldersModelManager::InputFoldersModelManager(InputFoldersModel* inputFoldersModel)
-    : m_inputFoldersModel(inputFoldersModel)
+    : m_inputFoldersModel(inputFoldersModel),
+      QML_FOLDER_PREFIX("file:///")
 {
     m_idfServiceController = IDFServiceController::getInstance();
 }
 
 void InputFoldersModelManager::addFolder(const QString& folderPath) {
-    InputFoldersModelItem modelItem(folderPath, false);
+    QString validFolderPath = folderPath;
+    if (validFolderPath.contains(QML_FOLDER_PREFIX)) {
+        validFolderPath.remove(0, QML_FOLDER_PREFIX.length());
+    }
+
+    InputFoldersModelItem modelItem(validFolderPath, false);
 
     // Добавляем новые данные для обработки в контроллер сервиса.
     m_idfServiceController->addInputFolder(modelItem.getPath(), modelItem.getProcessSubpath());

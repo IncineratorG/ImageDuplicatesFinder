@@ -24,6 +24,8 @@ public slots:
 private:
     InputFoldersModel* m_inputFoldersModel;
     IDFServiceController* m_idfServiceController;
+
+    const QString QML_FOLDER_PREFIX;
 };
 
 #endif // INPUTFOLDERSMODELMANAGER_H

@@ -11,6 +11,7 @@ Item {
     signal addFolderButtonClicked()
     signal removeFolderButtonClicked(var index)
     signal startButtonClicked()
+    signal toolbarRightButtonClicked()
 
     TopToolBar {
         id: topToolBarWrapper
@@ -25,6 +26,10 @@ Item {
 
         leftButtonVisible: false
         rightButtonVisible: DuplicatesListModel.size > 0
+
+        onRightButtonClicked: {
+            inputFoldersComponent.toolbarRightButtonClicked()
+        }
     }
 
     Item {

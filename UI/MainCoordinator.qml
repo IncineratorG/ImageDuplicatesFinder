@@ -10,19 +10,23 @@ StackView {
 
 
     property Component inputFoldersComponent: InputFoldersComponent {
+        onToolbarRightButtonClicked: {
+            coordinator.push(duplicateItemsListComponent, StackView.Immediate)
+        }
+
         onRemoveFolderButtonClicked: {
 
         }
 
         onStartButtonClicked: {
-            console.log("ON_START_BUTTON_CLICKED")
-
             coordinator.push(duplicateItemsListComponent, StackView.Immediate)
         }
     }
 
     property Component duplicateItemsListComponent: DuplicateItemsListComponent {
-
+        onToolbarLeftButtonClicked: {
+            coordinator.pop(StackView.Immediate)
+        }
     }
 
 
