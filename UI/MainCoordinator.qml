@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.5
 import "InputFoldersComponent"
-import "DuplicateItemsListComponent"
+import "DuplicateItemsGroupsComponent"
 
 
 
@@ -11,7 +11,7 @@ StackView {
 
     property Component inputFoldersComponent: InputFoldersComponent {
         onToolbarRightButtonClicked: {
-            coordinator.push(duplicateItemsListComponent, StackView.Immediate)
+            coordinator.push(duplicateItemsGroupsComponent, StackView.Immediate)
         }
 
         onRemoveFolderButtonClicked: {
@@ -19,14 +19,12 @@ StackView {
         }
 
         onStartButtonClicked: {
-            coordinator.push(duplicateItemsListComponent, StackView.Immediate)
+            coordinator.push(duplicateItemsGroupsComponent, StackView.Immediate)
         }
     }
 
-    property Component duplicateItemsListComponent: DuplicateItemsListComponent {
-        onToolbarLeftButtonClicked: {
-            coordinator.pop(StackView.Immediate)
-        }
+    property Component duplicateItemsGroupsComponent: DuplicateItemsGroupsComponent {
+
     }
 
 

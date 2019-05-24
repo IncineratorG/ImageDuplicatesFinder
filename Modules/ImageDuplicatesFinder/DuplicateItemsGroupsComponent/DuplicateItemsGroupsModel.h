@@ -1,33 +1,29 @@
-#ifndef INPUTFOLDERSMODEL_H
-#define INPUTFOLDERSMODEL_H
+#ifndef DUPLICATEITEMSGROUPSMODEL_H
+#define DUPLICATEITEMSGROUPSMODEL_H
 
 #include <QAbstractListModel>
-#include "../Data/InputFolderItem.h"
+#include "../Data/DuplicateItemsGroup.h"
 
 
 
-class InputFoldersModel : public QAbstractListModel
+class DuplicateItemsGroupsModel : public QAbstractListModel
 {
     Q_OBJECT
 
     Q_PROPERTY(int size READ getSize NOTIFY sizeChanged)
 
 public:
-    enum InputFoldersModelRoles {
+    enum DuplicateItemsGroupsModelRoles {
         IDRole = Qt::UserRole + 1,
-        FolderPathRole,
-        ProcessSubpathsRole
+        DuplicateImagePathRole,
+        DuplicatesGroupSizeRole
     };
 
-    InputFoldersModel();
+    DuplicateItemsGroupsModel();
 
     void fillModel();
 
     void clear();
-
-    void addFolder(const InputFolderItem& modelItem);
-    void updateFolder(const int folderRow, const InputFolderItem& modelItem);
-    void removeFolder(const int folderRow);
 
     int getSize() const;
 
@@ -41,7 +37,7 @@ signals:
     void sizeChanged(int value);
 
 private:
-    QList<InputFolderItem> modelData;
+    QList<DuplicateItemsGroup> modelData;
 };
 
-#endif // INPUTFOLDERSMODEL_H
+#endif // DUPLICATEITEMSGROUPSMODEL_H

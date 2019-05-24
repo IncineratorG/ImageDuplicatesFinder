@@ -3,7 +3,7 @@
 
 #include <QList>
 #include "Services/ImageDuplicatesFinderService/Data/IDFServiceOutputData.h"
-//#include "Modules/ImageDuplicatesFinder/DuplicateItemsListComponent/DuplicateItem.h"
+#include "Modules/ImageDuplicatesFinder/Data/DuplicateItemsGroup.h"
 
 
 
@@ -12,7 +12,7 @@ class IDFServiceDataConvertor
 public:
     IDFServiceDataConvertor();
 
-//    QList<DuplicateItem> toDuplicateItemsList(const IDFServiceOutputData& serviceOutput);
+    QList<DuplicateItemsGroup> toDuplicateItemsGroupsList(const IDFServiceOutputData& serviceOutput) const;
 };
 
 #endif // IDFSERVICEDATACONVERTOR_H

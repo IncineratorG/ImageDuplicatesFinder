@@ -16,7 +16,7 @@ void InputFoldersModelManager::addFolder(const QString& folderPath) {
         validFolderPath.remove(0, QML_FOLDER_PREFIX.length());
     }
 
-    InputFoldersModelItem modelItem(validFolderPath, false);
+    InputFolderItem modelItem(validFolderPath, false);
 
     // Добавляем новые данные для обработки в контроллер сервиса.
     m_idfServiceController->addInputFolder(modelItem.getPath(), modelItem.getProcessSubpath());
@@ -28,7 +28,7 @@ void InputFoldersModelManager::addFolder(const QString& folderPath) {
 void InputFoldersModelManager::setProcessSubfolders(const int folderRow, const bool process) {
     QString folderPath = m_inputFoldersModel->data(m_inputFoldersModel->index(folderRow, 0), InputFoldersModel::FolderPathRole).toString();
 
-    InputFoldersModelItem modelItem(folderPath, process);
+    InputFolderItem modelItem(folderPath, process);
 
     // Обновляем данные в контроллере сервиса.
     bool updatedSuccessfully = m_idfServiceController->updateInputFolder(folderRow, modelItem.getPath(), modelItem.getProcessSubpath());

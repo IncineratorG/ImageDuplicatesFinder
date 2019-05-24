@@ -23,7 +23,7 @@ void InputFoldersModel::clear() {
     emit sizeChanged(getSize());
 }
 
-void InputFoldersModel::addFolder(const InputFoldersModelItem& modelItem) {
+void InputFoldersModel::addFolder(const InputFolderItem& modelItem) {
     beginInsertRows(QModelIndex(), modelData.size(), modelData.size());
     modelData.append(modelItem);
     endInsertRows();
@@ -31,7 +31,7 @@ void InputFoldersModel::addFolder(const InputFoldersModelItem& modelItem) {
     emit sizeChanged(getSize());
 }
 
-void InputFoldersModel::updateFolder(const int folderRow, const InputFoldersModelItem& modelItem) {
+void InputFoldersModel::updateFolder(const int folderRow, const InputFolderItem& modelItem) {
     if (folderRow < 0 || folderRow >= modelData.size()) {
         return;
     }

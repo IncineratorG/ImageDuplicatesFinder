@@ -6,8 +6,8 @@ IDFServiceDataConvertor::IDFServiceDataConvertor() {
 
 }
 
-//QList<DuplicateItem> IDFServiceDataConvertor::toDuplicateItemsList(const IDFServiceOutputData& serviceOutput) {
+QList<DuplicateItemsGroup> IDFServiceDataConvertor::toDuplicateItemsGroupsList(const IDFServiceOutputData& serviceOutput) const {
 
 
-//    return QList<DuplicateItem>();
-//}
+    return QList<DuplicateItemsGroup>();
+}

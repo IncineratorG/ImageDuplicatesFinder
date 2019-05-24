@@ -4,15 +4,14 @@
         <file>Style.qml</file>
         <file>UI/UIKit/UIButton.qml</file>
         <file>UI/Assets/remove.png</file>
-	<file>UI/Assets/left_arrow.png</file>
-	<file>UI/Assets/right_arrow.png</file>
+        <file>UI/Assets/left_arrow.png</file>
+        <file>UI/Assets/right_arrow.png</file>
         <file>UI/MainCoordinator.qml</file>
         <file>UI/InputFoldersComponent/InputFoldersComponent.qml</file>
         <file>UI/InputFoldersComponent/InputFoldersListView.qml</file>
         <file>UI/InputFoldersComponent/TopToolBar.qml</file>
         <file>UI/InputFoldersComponent/EmptyListViewComponent.qml</file>
-        <file>UI/DuplicateItemsListComponent/DuplicateItemsListComponent.qml</file>
-        <file>UI/DuplicateItemsListComponent/TopToolBar.qml</file>
-        <file>UI/DuplicateItemsListComponent/DuplicateItemsListView.qml</file>
+        <file>UI/DuplicateItemsGroupsComponent/DuplicateItemsGroupsComponent.qml</file>
+        <file>UI/DuplicateItemsGroupsComponent/TopToolBar.qml</file>
     </qresource>
 </RCC>

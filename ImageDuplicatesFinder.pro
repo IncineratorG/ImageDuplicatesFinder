@@ -42,8 +42,12 @@ SOURCES += \
     Modules/ImageDuplicatesFinder/ServiceMediatorLayer/IDFServiceDataWarehouse.cpp \
     Modules/ImageDuplicatesFinder/InputFoldersComponent/InputFoldersModel.cpp \
     Modules/ImageDuplicatesFinder/InputFoldersComponent/InputFoldersModelManager.cpp \
-    Modules/ImageDuplicatesFinder/InputFoldersComponent/InputFoldersModelItem.cpp \
-    Modules/ImageDuplicatesFinder/ServiceMediatorLayer/IDFServiceDataConvertor.cpp
+    Modules/ImageDuplicatesFinder/ServiceMediatorLayer/IDFServiceDataConvertor.cpp \
+    Modules/ImageDuplicatesFinder/Data/DuplicateItem.cpp \
+    Modules/ImageDuplicatesFinder/Data/DuplicateItemsGroup.cpp \
+    Modules/ImageDuplicatesFinder/Data/InputFolderItem.cpp \
+    Modules/ImageDuplicatesFinder/DuplicateItemsGroupsComponent/DuplicateItemsGroupsModel.cpp \
+    Modules/ImageDuplicatesFinder/DuplicateItemsGroupsComponent/DuplicateItemsGroupsModelManager.cpp
 
 RESOURCES += qml.qrc
 
@@ -87,5 +91,9 @@ HEADERS += \
     Modules/ImageDuplicatesFinder/ServiceMediatorLayer/IDFServiceDataWarehouse.h \
     Modules/ImageDuplicatesFinder/InputFoldersComponent/InputFoldersModel.h \
     Modules/ImageDuplicatesFinder/InputFoldersComponent/InputFoldersModelManager.h \
-    Modules/ImageDuplicatesFinder/InputFoldersComponent/InputFoldersModelItem.h \
-    Modules/ImageDuplicatesFinder/ServiceMediatorLayer/IDFServiceDataConvertor.h
+    Modules/ImageDuplicatesFinder/ServiceMediatorLayer/IDFServiceDataConvertor.h \
+    Modules/ImageDuplicatesFinder/Data/DuplicateItem.h \
+    Modules/ImageDuplicatesFinder/Data/DuplicateItemsGroup.h \
+    Modules/ImageDuplicatesFinder/Data/InputFolderItem.h \
+    Modules/ImageDuplicatesFinder/DuplicateItemsGroupsComponent/DuplicateItemsGroupsModel.h \
+    Modules/ImageDuplicatesFinder/DuplicateItemsGroupsComponent/DuplicateItemsGroupsModelManager.h
