@@ -14,7 +14,7 @@ Item {
     signal toolbarRightButtonClicked()
 
     TopToolBar {
-        id: topToolBarWrapper
+        id: topToolBar
 
         anchors.top: parent.top
         anchors.left: parent.left
@@ -25,7 +25,8 @@ Item {
         toolBarText: "Выбор папок с изображениями"
 
         leftButtonVisible: false
-        rightButtonVisible: DuplicatesListModel.size > 0
+        rightButtonVisible: false
+//        rightButtonVisible: DuplicatesListModel.size > 0
 
         onRightButtonClicked: {
             inputFoldersComponent.toolbarRightButtonClicked()
@@ -35,7 +36,7 @@ Item {
     Item {
         id: inputFoldersListViewComponentWrapper
 
-        anchors.top: topToolBarWrapper.bottom
+        anchors.top: topToolBar.bottom
         anchors.bottom: bottomButtonsWrapper.top
         anchors.left: parent.left
         anchors.right: parent.right

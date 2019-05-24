@@ -18,6 +18,18 @@ Rectangle {
     color: "transparent"
 
     Rectangle {
+        id: topBorderLine
+
+        anchors.bottom: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+
+        height: 1
+
+        color: "#F4F8FA"
+    }
+
+    Rectangle {
         id: leftButtonWrapper
 
         anchors.top: parent.top

@@ -11,8 +11,8 @@ ApplicationWindow {
     id: mainWindow
 
     visible: true
-    width: 1280
-    height: 720
+    width: 800
+    height: 600
     title: qsTr("Поиск дубликатов изображений")
 
     MainCoordinator {

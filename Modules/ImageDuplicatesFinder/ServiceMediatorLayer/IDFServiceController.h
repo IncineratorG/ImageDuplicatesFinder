@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include "IDFServiceDataWarehouse.h"
+#include "IDFServiceDataConvertor.h"
 #include "Services/ImageDuplicatesFinderService/IDFService.h"
 #include "Services/ImageDuplicatesFinderService/Data/IDFServiceInputData.h"
 
@@ -39,6 +40,7 @@ private:
 
     IDFService m_idfService;
     IDFServiceDataWarehouse m_dataWarehouse;
+    IDFServiceDataConvertor m_dataConvertor;
 
     IDFServiceController();
 };
