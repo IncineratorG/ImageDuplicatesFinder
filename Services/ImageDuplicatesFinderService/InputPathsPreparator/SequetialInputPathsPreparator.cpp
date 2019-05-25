@@ -2,7 +2,9 @@
 
 
 
-SequetialInputPathsPreparator::SequetialInputPathsPreparator() {
+SequetialInputPathsPreparator::SequetialInputPathsPreparator()
+    : OPERATION_NAME("Подготовка данных")
+{
 
 }
 
@@ -12,6 +14,10 @@ void SequetialInputPathsPreparator::setInputData(IDFServiceInputData inputData) 
 
 Paths SequetialInputPathsPreparator::getPaths() {
     return m_inputPaths;
+}
+
+QString SequetialInputPathsPreparator::getOperationName() {
+    return OPERATION_NAME;
 }
 
 void SequetialInputPathsPreparator::run() {

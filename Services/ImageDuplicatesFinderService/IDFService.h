@@ -14,7 +14,8 @@ class IDFService : public QObject
 {
     Q_OBJECT
 
-    Q_PROPERTY(QString status READ getStatus NOTIFY statusChanged)
+    Q_PROPERTY(QString status               READ getStatus               NOTIFY statusChanged)
+    Q_PROPERTY(QString currentOperationName READ getCurrentOperationName NOTIFY currentOperationNameChanged)
 
 public:
     IDFService();
@@ -24,6 +25,7 @@ public:
     void stop();
 
     QString getStatus() const;
+    QString getCurrentOperationName() const;
 
     IDFServiceOutputData getOutputData() const;
 
@@ -36,6 +38,7 @@ signals:
     void interruptPipeline();
 
     void statusChanged(QString value);
+    void currentOperationNameChanged(QString value);
 
 private slots:
     void onPipelineStarted();

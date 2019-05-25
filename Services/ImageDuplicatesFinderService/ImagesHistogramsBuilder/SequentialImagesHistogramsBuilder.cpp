@@ -4,7 +4,9 @@
 
 
 
-SequentialImagesHistogramsBuilder::SequentialImagesHistogramsBuilder() {
+SequentialImagesHistogramsBuilder::SequentialImagesHistogramsBuilder()
+    : OPERATION_NAME("Построение гистограмм")
+{
 
 }
 
@@ -18,6 +20,10 @@ std::shared_ptr<ImagesHistograms> SequentialImagesHistogramsBuilder::getImagesHi
     }
 
     return m_histograms;
+}
+
+QString SequentialImagesHistogramsBuilder::getOperationName() {
+    return OPERATION_NAME;
 }
 
 void SequentialImagesHistogramsBuilder::run() {

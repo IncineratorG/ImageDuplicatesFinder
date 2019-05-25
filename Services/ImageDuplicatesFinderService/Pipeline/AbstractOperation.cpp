@@ -17,3 +17,7 @@ void AbstractOperation::setNextOperation(AbstractOperation* op) {
 AbstractOperation* AbstractOperation::getNextOperation() {
     return m_nextOperation;
 }
+
+QString AbstractOperation::getOperationName() {
+    return "";
+}

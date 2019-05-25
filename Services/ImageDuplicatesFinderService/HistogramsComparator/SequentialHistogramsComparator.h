@@ -13,6 +13,8 @@ public:
     void setImagesHistograms(std::shared_ptr<ImagesHistograms> histograms);
     std::shared_ptr<ImagesDuplicatesGroups> getImagesDuplicates();
 
+    QString getOperationName();
+
     void run();
 
 private:
@@ -20,6 +22,8 @@ private:
     std::shared_ptr<ImagesDuplicatesGroups> m_duplicatesGroups;
 
     const float CRITICAL_SIMILARITY_SCORE;
+
+    const QString OPERATION_NAME;
 
     void doWork();
 };

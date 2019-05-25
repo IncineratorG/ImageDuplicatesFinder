@@ -13,11 +13,15 @@ public:
     void setInputData(IDFServiceInputData inputData);
     Paths getPaths();
 
+    QString getOperationName();
+
     void run();
 
 private:
     IDFServiceInputData m_serviceInputData;
     Paths m_inputPaths;
+
+    const QString OPERATION_NAME;
 
     void doWork();
 };

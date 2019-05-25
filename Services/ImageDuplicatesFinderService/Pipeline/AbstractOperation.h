@@ -16,6 +16,8 @@ public:
     virtual void setNextOperation(AbstractOperation* op);
     virtual AbstractOperation* getNextOperation();
 
+    virtual QString getOperationName();
+
 private:
     AbstractOperation* m_nextOperation;
 };

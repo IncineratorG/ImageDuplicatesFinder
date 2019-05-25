@@ -12,6 +12,7 @@ IDFService::IDFService() {
     connect(&m_pipeline, SIGNAL(pipelineInterrupted()), this, SLOT(onPipelineInterrupted()));
     connect(&m_pipeline, SIGNAL(pipelineFinished(IDFServiceOutputData)), this, SLOT(onPipelineFinished(IDFServiceOutputData)));
     connect(&m_pipeline, SIGNAL(statusChanged(QString)), this, SIGNAL(statusChanged(QString)));
+    connect(&m_pipeline, SIGNAL(currentOperationNameChanged(QString)), this, SIGNAL(currentOperationNameChanged(QString)));
 
     m_pipelineThread.start();
 }
@@ -48,6 +49,10 @@ void IDFService::stop() {
 
 QString IDFService::getStatus() const {
     return m_pipeline.getStatus();
+}
+
+QString IDFService::getCurrentOperationName() const {
+    return m_pipeline.getCurrentOperationName();
 }
 
 IDFServiceOutputData IDFService::getOutputData() const {

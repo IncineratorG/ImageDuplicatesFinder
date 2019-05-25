@@ -5,7 +5,9 @@
 
 
 
-SequentialImagesPathsFinder::SequentialImagesPathsFinder() {
+SequentialImagesPathsFinder::SequentialImagesPathsFinder()
+    : OPERATION_NAME("Поиск путей до изображений")
+{
 
 }
 
@@ -19,6 +21,10 @@ std::shared_ptr<ImagesPaths> SequentialImagesPathsFinder::getImagesPaths() {
     }
 
     return m_imagesPaths;
+}
+
+QString SequentialImagesPathsFinder::getOperationName() {
+    return OPERATION_NAME;
 }
 
 void SequentialImagesPathsFinder::run() {

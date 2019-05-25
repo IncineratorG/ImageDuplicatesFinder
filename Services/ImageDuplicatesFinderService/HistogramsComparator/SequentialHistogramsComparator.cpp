@@ -5,7 +5,8 @@
 
 
 SequentialHistogramsComparator::SequentialHistogramsComparator()
-    : CRITICAL_SIMILARITY_SCORE(0.8f)
+    : CRITICAL_SIMILARITY_SCORE(0.8f),
+      OPERATION_NAME("Сопоставление гистограмм")
 {
 
 }
@@ -20,6 +21,10 @@ std::shared_ptr<ImagesDuplicatesGroups> SequentialHistogramsComparator::getImage
     }
 
     return m_duplicatesGroups;
+}
+
+QString SequentialHistogramsComparator::getOperationName() {
+    return OPERATION_NAME;
 }
 
 void SequentialHistogramsComparator::run() {
