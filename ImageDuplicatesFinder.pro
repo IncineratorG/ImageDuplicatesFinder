@@ -47,7 +47,8 @@ SOURCES += \
     Modules/ImageDuplicatesFinder/Data/DuplicateItemsGroup.cpp \
     Modules/ImageDuplicatesFinder/Data/InputFolderItem.cpp \
     Modules/ImageDuplicatesFinder/DuplicateItemsGroupsComponent/DuplicateItemsGroupsModel.cpp \
-    Modules/ImageDuplicatesFinder/DuplicateItemsGroupsComponent/DuplicateItemsGroupsModelManager.cpp
+    Modules/ImageDuplicatesFinder/DuplicateItemsGroupsComponent/DuplicateItemsGroupsModelManager.cpp \
+    Modules/ImageDuplicatesFinder/Data/DuplicateItemsGroups.cpp
 
 RESOURCES += qml.qrc
 
@@ -96,4 +97,5 @@ HEADERS += \
     Modules/ImageDuplicatesFinder/Data/DuplicateItemsGroup.h \
     Modules/ImageDuplicatesFinder/Data/InputFolderItem.h \
     Modules/ImageDuplicatesFinder/DuplicateItemsGroupsComponent/DuplicateItemsGroupsModel.h \
-    Modules/ImageDuplicatesFinder/DuplicateItemsGroupsComponent/DuplicateItemsGroupsModelManager.h
+    Modules/ImageDuplicatesFinder/DuplicateItemsGroupsComponent/DuplicateItemsGroupsModelManager.h \
+    Modules/ImageDuplicatesFinder/Data/DuplicateItemsGroups.h

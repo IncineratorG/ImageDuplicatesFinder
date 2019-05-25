@@ -17,6 +17,10 @@ public:
 
     void clear();
 
+    void appendDuplicate(const DuplicateItem& item);
+    void removeDuplicate(const DuplicateItem& item);
+    void removeDuplicateAtPosition(const int position);
+
     int getGroupSize() const;
 
     QList<DuplicateItem> getDuplicateItemsList() const;

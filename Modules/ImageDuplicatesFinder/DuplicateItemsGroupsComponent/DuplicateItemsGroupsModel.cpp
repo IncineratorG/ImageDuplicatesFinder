@@ -6,7 +6,11 @@ DuplicateItemsGroupsModel::DuplicateItemsGroupsModel() {
 
 }
 
-void DuplicateItemsGroupsModel::fillModel() {
+void DuplicateItemsGroupsModel::fillModel(const DuplicateItemsGroups& groups) {
+    beginResetModel();
+    modelData = groups.getGroupsList();
+    endResetModel();
+
     emit sizeChanged(getSize());
 }
 

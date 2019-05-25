@@ -83,29 +83,23 @@ void IDFServiceController::onServiceInterrupted() {
 }
 
 void IDFServiceController::onServiceFinished() {
-//    // ===
-//    auto serviceOutputData = m_idfService.getOutputData();
-//    auto duplicatesGroups = serviceOutputData.getDuplicatesGroups();
-//    auto duplicatesGroupsList = duplicatesGroups->getGroupsList();
+    auto modelDuplicatesGroups = m_dataConvertor.toDuplicateItemsGroups(m_idfService.getOutputData());
+    auto modelDuplicatesGroupsList = modelDuplicatesGroups.getGroupsList();
 
-//    qDebug() << __PRETTY_FUNCTION__ << "->GROUPS_SIZE: " << duplicatesGroupsList.size();
+    for (int i = 0; i < modelDuplicatesGroupsList.size(); ++i) {
+        auto group = modelDuplicatesGroupsList.at(i);
+        auto groupDuplicatesList = group.getDuplicateItemsList();
 
-//    for (int i = 0; i < duplicatesGroupsList.size(); ++i) {
-//        auto duplicateGroup = duplicatesGroupsList.at(i);
-//        auto duplicateImagesList = duplicateGroup.getImagesList();
+        for (int j = 0; j < groupDuplicatesList.size(); ++j) {
+            auto duplicate = groupDuplicatesList.at(j);
 
-//        for (int j = 0; j < duplicateImagesList.size(); ++j) {
-//            qDebug() << duplicateImagesList.at(j);
-//        }
-//        qDebug() << "";
-//    }
-//    // ===
+            qDebug() << duplicate.getImagePath();
+        }
 
+        qDebug() << "";
+    }
 
-    // ===
-//    QList<DuplicateItem> duplicateItemsList = m_dataConvertor.toDuplicateItemsList(m_idfService.getOutputData());
-    // ===
-
+    m_dataWarehouse.setModelDuplicatesGroups(modelDuplicatesGroups);
 
     emit serviceFinished();
 }

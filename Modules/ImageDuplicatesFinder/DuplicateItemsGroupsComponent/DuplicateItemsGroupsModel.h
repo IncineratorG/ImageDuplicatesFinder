@@ -2,7 +2,7 @@
 #define DUPLICATEITEMSGROUPSMODEL_H
 
 #include <QAbstractListModel>
-#include "../Data/DuplicateItemsGroup.h"
+#include "../Data/DuplicateItemsGroups.h"
 
 
 
@@ -21,7 +21,7 @@ public:
 
     DuplicateItemsGroupsModel();
 
-    void fillModel();
+    void fillModel(const DuplicateItemsGroups& groups);
 
     void clear();
 

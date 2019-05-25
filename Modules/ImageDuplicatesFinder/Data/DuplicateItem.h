@@ -14,6 +14,10 @@ public:
 
     QString getImagePath() const;
 
+    bool operator==(const DuplicateItem& other) {
+        return this->m_imagePath == other.m_imagePath;
+    }
+
 private:
     QString m_imagePath;
 };
