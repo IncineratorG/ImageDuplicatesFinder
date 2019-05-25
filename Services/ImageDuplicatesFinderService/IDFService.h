@@ -14,12 +14,16 @@ class IDFService : public QObject
 {
     Q_OBJECT
 
+    Q_PROPERTY(QString status READ getStatus NOTIFY statusChanged)
+
 public:
     IDFService();
     ~IDFService();
 
     void start(const IDFServiceInputData& input);
     void stop();
+
+    QString getStatus() const;
 
     IDFServiceOutputData getOutputData() const;
 
@@ -31,12 +35,12 @@ signals:
     void startPipeline();
     void interruptPipeline();
 
+    void statusChanged(QString value);
+
 private slots:
     void onPipelineStarted();
     void onPipelineInterrupted();
     void onPipelineFinished(IDFServiceOutputData outputData);
-
-    void onStatusChanged(QString value);
 
 private:
     QThread m_pipelineThread;

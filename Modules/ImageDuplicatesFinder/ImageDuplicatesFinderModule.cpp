@@ -3,10 +3,14 @@
 #include "InputFoldersComponent/InputFoldersModelManager.h"
 #include "DuplicateItemsGroupsComponent/DuplicateItemsGroupsModel.h"
 #include "DuplicateItemsGroupsComponent/DuplicateItemsGroupsModelManager.h"
+#include "ServiceMediatorLayer/IDFServiceController.h"
 
 
 
 void ImageDuplicatesFinderModule::init(QQmlContext* ctxt) {
+    ctxt->setContextProperty("IDFServiceController", IDFServiceController::getInstance());
+
+
     auto inputFoldersModel = new InputFoldersModel();
     ctxt->setContextProperty("InputFoldersModel", inputFoldersModel);
 

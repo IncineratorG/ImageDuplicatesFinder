@@ -13,11 +13,15 @@ class IDFServiceController : public QObject
 {
     Q_OBJECT
 
+    Q_PROPERTY(QString serviceStatus READ getServiceStatus NOTIFY serviceStatusChanged)
+
 public:
     static IDFServiceController* getInstance();
 
     void startService();
     void stopService();
+
+    QString getServiceStatus() const;
 
     IDFServiceInputData getInputData() const;
 
@@ -31,6 +35,8 @@ signals:
     void serviceStarted();
     void serviceInterrupted();
     void serviceFinished();
+
+    void serviceStatusChanged(QString value);
 
 private slots:
     void onServiceStarted();

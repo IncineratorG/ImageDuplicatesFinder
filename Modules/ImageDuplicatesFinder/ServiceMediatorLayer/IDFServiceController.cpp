@@ -16,6 +16,7 @@ IDFServiceController::IDFServiceController() {
     connect(&m_idfService, SIGNAL(started()), this, SLOT(onServiceStarted()));
     connect(&m_idfService, SIGNAL(interrupted()), this, SLOT(onServiceInterrupted()));
     connect(&m_idfService, SIGNAL(finished()), this, SLOT(onServiceFinished()));
+    connect(&m_idfService, SIGNAL(statusChanged(QString)), this, SIGNAL(serviceStatusChanged(QString)));
 }
 
 void IDFServiceController::startService() {
@@ -24,6 +25,10 @@ void IDFServiceController::startService() {
 
 void IDFServiceController::stopService() {
     m_idfService.stop();
+}
+
+QString IDFServiceController::getServiceStatus() const {
+    return m_idfService.getStatus();
 }
 
 IDFServiceInputData IDFServiceController::getInputData() const {

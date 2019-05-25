@@ -5,30 +5,71 @@ import "DuplicateItemsGroupsComponent"
 
 
 
-StackView {
-    id: coordinator
+Item {
+    id: coordinatorWrapper
 
+    WaitComponent {
+        id: waitComponent
 
-    property Component inputFoldersComponent: InputFoldersComponent {
-        onToolbarRightButtonClicked: {
-            coordinator.push(duplicateItemsGroupsComponent, StackView.Immediate)
-        }
+        anchors.fill: parent
 
-        onRemoveFolderButtonClicked: {
-
-        }
-
-        onStartButtonClicked: {
-            coordinator.push(duplicateItemsGroupsComponent, StackView.Immediate)
-        }
+        visible: IDFServiceController.serviceStatus != "idle"
     }
 
-    property Component duplicateItemsGroupsComponent: DuplicateItemsGroupsComponent {
-        onToolbarLeftButtonClicked: {
-            coordinator.pop(StackView.Immediate)
+    StackView {
+        id: coordinator
+
+        anchors.fill: parent
+
+        property Component inputFoldersComponent: InputFoldersComponent {
+            onToolbarRightButtonClicked: {
+                coordinator.push(duplicateItemsGroupsComponent, StackView.Immediate)
+            }
+
+            onRemoveFolderButtonClicked: {
+
+            }
+
+            onStartButtonClicked: {
+                coordinator.push(duplicateItemsGroupsComponent, StackView.Immediate)
+            }
         }
+
+        property Component duplicateItemsGroupsComponent: DuplicateItemsGroupsComponent {
+            onToolbarLeftButtonClicked: {
+                coordinator.pop(StackView.Immediate)
+            }
+        }
+
+
+        initialItem: inputFoldersComponent
     }
-
-
-    initialItem: inputFoldersComponent
 }
+
+
+//StackView {
+//    id: coordinator
+
+//    property Component inputFoldersComponent: InputFoldersComponent {
+//        onToolbarRightButtonClicked: {
+//            coordinator.push(duplicateItemsGroupsComponent, StackView.Immediate)
+//        }
+
+//        onRemoveFolderButtonClicked: {
+
+//        }
+
+//        onStartButtonClicked: {
+//            coordinator.push(duplicateItemsGroupsComponent, StackView.Immediate)
+//        }
+//    }
+
+//    property Component duplicateItemsGroupsComponent: DuplicateItemsGroupsComponent {
+//        onToolbarLeftButtonClicked: {
+//            coordinator.pop(StackView.Immediate)
+//        }
+//    }
+
+
+//    initialItem: inputFoldersComponent
+//}
