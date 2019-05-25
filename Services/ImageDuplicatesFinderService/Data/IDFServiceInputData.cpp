@@ -39,8 +39,9 @@ Paths IDFServiceInputData::toPaths() {
         const QString pathString = item.getPath();
         const bool processSubpaths = item.getProcessSubpath();
 
-        if (!processSubpaths)
+        if (!processSubpaths) {
             paths.appendPath(Path(pathString));
+        }
 
         toPaths_r(QDir(pathString), paths);
     }
