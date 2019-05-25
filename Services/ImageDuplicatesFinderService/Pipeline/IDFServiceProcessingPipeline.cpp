@@ -1,4 +1,5 @@
 #include "IDFServiceProcessingPipeline.h"
+#include "../InputPathsPreparator/SequetialInputPathsPreparator.h"
 #include "../ImagesPathsFinder/SequentialImagesPathsFinder.h"
 #include "../ImagesHistogramsBuilder/SequentialImagesHistogramsBuilder.h"
 #include "../HistogramsComparator/SequentialHistogramsComparator.h"
@@ -18,14 +19,20 @@ IDFServiceProcessingPipeline::IDFServiceProcessingPipeline()
     setStatus("idle");
 
     // Инициализируем операции конвейера.
+    m_inputPathsPreparatorOperation = new SequetialInputPathsPreparator();
     m_imagesPathsFinderOperation = new SequentialImagesPathsFinder();
     m_histogramsBuilderOperation = new SequentialImagesHistogramsBuilder();
     m_histogramsComparatorOperation = new SequentialHistogramsComparator();
 
     // Создаём последовательность операций.
+    m_inputPathsPreparatorOperation->setNextOperation(m_imagesPathsFinderOperation);
     m_imagesPathsFinderOperation->setNextOperation(m_histogramsBuilderOperation);
     m_histogramsBuilderOperation->setNextOperation(m_histogramsComparatorOperation);
     m_histogramsComparatorOperation->setNextOperation(nullptr);
+
+//    m_imagesPathsFinderOperation->setNextOperation(m_histogramsBuilderOperation);
+//    m_histogramsBuilderOperation->setNextOperation(m_histogramsComparatorOperation);
+//    m_histogramsComparatorOperation->setNextOperation(nullptr);
 
     // Устанавливаем действия, которые необходимо
     // выполнять при переходе от одной операции к другой.
@@ -92,7 +99,7 @@ void IDFServiceProcessingPipeline::setInputData(const IDFServiceInputData& input
     qDebug() << __PRETTY_FUNCTION__;
 
     m_inputData = inputData;
-    m_inputPaths = m_inputData.toPaths();
+//    m_inputPaths = m_inputData.toPaths();
 }
 
 void IDFServiceProcessingPipeline::startPipeline() {
@@ -125,7 +132,7 @@ void IDFServiceProcessingPipeline::doWork() {
 void IDFServiceProcessingPipeline::runNextOperation() {
     // Определяем следующую последовательность операций.
     if (m_currentOperation == nullptr) {
-        OperationSequence nextSequence(m_currentOperation, m_imagesPathsFinderOperation);
+        OperationSequence nextSequence(m_currentOperation, m_inputPathsPreparatorOperation);
         if (!m_operationsTransitions.containSequence(nextSequence)) {
             qDebug() << __PRETTY_FUNCTION__ << "->BAD_SEQUENCE";
             emit pipelineFinished(IDFServiceOutputData());
@@ -179,8 +186,27 @@ void IDFServiceProcessingPipeline::setOperationsTransitions() {
     m_operationsTransitions.clear();
 
 
-    OperationSequence startSeq(nullptr, m_imagesPathsFinderOperation);
-    OperationTransition startSeqTransition([this] () {
+    OperationSequence inputPathsPreparatorSeq(nullptr, m_inputPathsPreparatorOperation);
+    OperationTransition inputPathsPreparatorSeqTransition([this] () {
+        m_inputPathsPreparatorOperation->setInputData(m_inputData);
+
+        m_currentOperation = m_inputPathsPreparatorOperation;
+
+        connect(m_currentOperation, SIGNAL(finished()), this, SLOT(onOperationFinished()));
+
+        // ===
+        qDebug() << "IDFServiceProcessingPipeline::setOperationsTransitions() -> PREPARE_INPUT_PATHS";
+        // ===
+    });
+
+    m_operationsTransitions.setTransition(inputPathsPreparatorSeq, inputPathsPreparatorSeqTransition);
+
+    OperationSequence imagesPathsFinderSeq(m_inputPathsPreparatorOperation, m_imagesPathsFinderOperation);
+    OperationTransition imagesPathsFinderSeqTransition([this] () {
+        disconnect(m_currentOperation, nullptr, nullptr, nullptr);
+        disconnect(this, nullptr, m_currentOperation, nullptr);
+
+        m_inputPaths = m_inputPathsPreparatorOperation->getPaths();
         std::shared_ptr<Paths> inputPathsPtr(new Paths(m_inputPaths));
         m_imagesPathsFinderOperation->setPaths(inputPathsPtr);
 
@@ -193,7 +219,7 @@ void IDFServiceProcessingPipeline::setOperationsTransitions() {
         // ===
     });
 
-    m_operationsTransitions.setTransition(startSeq, startSeqTransition);
+    m_operationsTransitions.setTransition(imagesPathsFinderSeq, imagesPathsFinderSeqTransition);
 
 
     OperationSequence histogramBuilderSeq(m_imagesPathsFinderOperation, m_histogramsBuilderOperation);
@@ -252,3 +278,80 @@ void IDFServiceProcessingPipeline::setOperationsTransitions() {
 
     m_operationsTransitions.setTransition(finishSeq, finishSeqTransition);
 }
+//void IDFServiceProcessingPipeline::setOperationsTransitions() {
+//    m_operationsTransitions.clear();
+
+
+//    OperationSequence startSeq(nullptr, m_imagesPathsFinderOperation);
+//    OperationTransition startSeqTransition([this] () {
+//        std::shared_ptr<Paths> inputPathsPtr(new Paths(m_inputPaths));
+//        m_imagesPathsFinderOperation->setPaths(inputPathsPtr);
+
+//        m_currentOperation = m_imagesPathsFinderOperation;
+
+//        connect(m_currentOperation, SIGNAL(finished()), this, SLOT(onOperationFinished()));
+
+//        // ===
+//        qDebug() << "IDFServiceProcessingPipeline::setOperationsTransitions() -> FINDING_IMAGES_PATHS";
+//        // ===
+//    });
+
+//    m_operationsTransitions.setTransition(startSeq, startSeqTransition);
+
+
+//    OperationSequence histogramBuilderSeq(m_imagesPathsFinderOperation, m_histogramsBuilderOperation);
+//    OperationTransition histogramBuilderSeqTransition([this] () {
+//        disconnect(m_currentOperation, nullptr, nullptr, nullptr);
+//        disconnect(this, nullptr, m_currentOperation, nullptr);
+
+//        std::shared_ptr<ImagesPaths> imagesPathsPtr = m_imagesPathsFinderOperation->getImagesPaths();
+//        m_histogramsBuilderOperation->setImagesPaths(imagesPathsPtr);
+
+//        m_currentOperation = m_histogramsBuilderOperation;
+
+//        connect(m_currentOperation, SIGNAL(finished()), this, SLOT(onOperationFinished()));
+
+//        // ===
+//        qDebug() << "IDFServiceProcessingPipeline::setOperationsTransitions() -> BUILDING_HISTOGRAMS";
+//        // ===
+//    });
+
+//    m_operationsTransitions.setTransition(histogramBuilderSeq, histogramBuilderSeqTransition);
+
+
+//    OperationSequence histogramsComparatorSeq(m_histogramsBuilderOperation, m_histogramsComparatorOperation);
+//    OperationTransition histogramsComparatorSeqTransition([this] () {
+//        disconnect(m_currentOperation, nullptr, nullptr, nullptr);
+//        disconnect(this, nullptr, m_currentOperation, nullptr);
+
+//        std::shared_ptr<ImagesHistograms> histograms = m_histogramsBuilderOperation->getImagesHistograms();
+//        m_histogramsComparatorOperation->setImagesHistograms(histograms);
+
+//        m_currentOperation = m_histogramsComparatorOperation;
+
+//        connect(m_currentOperation, SIGNAL(finished()), this, SLOT(onOperationFinished()));
+
+//        // ===
+//        qDebug() << "IDFServiceProcessingPipeline::setOperationsTransitions() -> COMPARE_HISTOGRAMS";
+//        // ===
+//    });
+
+//    m_operationsTransitions.setTransition(histogramsComparatorSeq, histogramsComparatorSeqTransition);
+
+
+//    OperationSequence finishSeq(m_histogramsComparatorOperation, nullptr);
+//    OperationTransition finishSeqTransition([this] () {
+//        disconnect(m_currentOperation, nullptr, nullptr, nullptr);
+//        disconnect(this, nullptr, m_currentOperation, nullptr);
+
+//        IDFServiceOutputData pipelineOutputData(m_histogramsComparatorOperation->getImagesDuplicates());
+
+//        m_currentOperation = nullptr;
+
+//        emit pipelineFinished(pipelineOutputData);
+
+//        setStatus(IDLE);
+//    });
+
+//    m_operationsTransitions.setTransition(finishSeq, finishSeqTransition);
+//}

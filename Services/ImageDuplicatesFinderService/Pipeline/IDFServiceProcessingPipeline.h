@@ -7,6 +7,7 @@
 #include <functional>
 #include "../Data/IDFServiceInputData.h"
 #include "../Data/IDFServiceOutputData.h"
+#include "../InputPathsPreparator/AbstractInputPathsPreparator.h"
 #include "../ImagesPathsFinder/AbstractImagesPathsFinder.h"
 #include "../ImagesHistogramsBuilder/AbstractImagesHistogramsBuilder.h"
 #include "../HistogramsComparator/AbstractHistogramsComparator.h"
@@ -66,6 +67,7 @@ private:
     Paths m_inputPaths;
 
     AbstractOperation* m_currentOperation;
+    AbstractInputPathsPreparator* m_inputPathsPreparatorOperation;
     AbstractImagesPathsFinder* m_imagesPathsFinderOperation;
     AbstractImagesHistogramsBuilder* m_histogramsBuilderOperation;
     AbstractHistogramsComparator* m_histogramsComparatorOperation;
