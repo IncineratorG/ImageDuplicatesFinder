@@ -38,6 +38,8 @@ signals:
 
 private:
     QList<DuplicateItemsGroup> modelData;
+
+    const QString QML_FOLDER_PREFIX;
 };
 
 #endif // DUPLICATEITEMSGROUPSMODEL_H

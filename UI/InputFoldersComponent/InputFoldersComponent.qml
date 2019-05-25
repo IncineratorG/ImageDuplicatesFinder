@@ -25,8 +25,7 @@ Item {
         toolBarText: "Выбор папок с изображениями"
 
         leftButtonVisible: false
-        rightButtonVisible: false
-//        rightButtonVisible: DuplicatesListModel.size > 0
+        rightButtonVisible: DuplicatesGroupsModel.size > 0
 
         onRightButtonClicked: {
             inputFoldersComponent.toolbarRightButtonClicked()

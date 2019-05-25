@@ -24,7 +24,9 @@ StackView {
     }
 
     property Component duplicateItemsGroupsComponent: DuplicateItemsGroupsComponent {
-
+        onToolbarLeftButtonClicked: {
+            coordinator.pop(StackView.Immediate)
+        }
     }
 
 

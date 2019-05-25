@@ -13,5 +13,6 @@
         <file>UI/InputFoldersComponent/EmptyListViewComponent.qml</file>
         <file>UI/DuplicateItemsGroupsComponent/DuplicateItemsGroupsComponent.qml</file>
         <file>UI/DuplicateItemsGroupsComponent/TopToolBar.qml</file>
+        <file>UI/DuplicateItemsGroupsComponent/DuplicateItemsGroupsGridView.qml</file>
     </qresource>
 </RCC>

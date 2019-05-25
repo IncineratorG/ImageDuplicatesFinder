@@ -2,8 +2,25 @@
 
 
 
-DuplicateItemsGroupsModel::DuplicateItemsGroupsModel() {
-
+DuplicateItemsGroupsModel::DuplicateItemsGroupsModel()
+    : QML_FOLDER_PREFIX("file:///")
+{
+//    modelData.append(DuplicateItemsGroup());
+//    modelData.append(DuplicateItemsGroup());
+//    modelData.append(DuplicateItemsGroup());
+//    modelData.append(DuplicateItemsGroup());
+//    modelData.append(DuplicateItemsGroup());
+//    modelData.append(DuplicateItemsGroup());
+//    modelData.append(DuplicateItemsGroup());
+//    modelData.append(DuplicateItemsGroup());
+//    modelData.append(DuplicateItemsGroup());
+//    modelData.append(DuplicateItemsGroup());
+//    modelData.append(DuplicateItemsGroup());
+//    modelData.append(DuplicateItemsGroup());
+//    modelData.append(DuplicateItemsGroup());
+//    modelData.append(DuplicateItemsGroup());
+//    modelData.append(DuplicateItemsGroup());
+//    modelData.append(DuplicateItemsGroup());
 }
 
 void DuplicateItemsGroupsModel::fillModel(const DuplicateItemsGroups& groups) {
@@ -34,19 +51,26 @@ QVariant DuplicateItemsGroupsModel::data(const QModelIndex& index, int role) con
         return QVariant();
     }
 
-//    switch (role) {
-//        case IDRole: {
-//            return index.row();
-//        }
+    auto duplicateGroup = modelData.at(index.row());
 
-//        case FolderPathRole: {
-//            return modelData.at(index.row()).getPath();
-//        }
+    switch (role) {
+        case IDRole: {
+            return index.row();
+        }
 
-//        case ProcessSubpathsRole: {
-//            return modelData.at(index.row()).getProcessSubpath();
-//        }
-//    }
+        case DuplicateImagePathRole: {
+            auto duplicateGroupItemsList = duplicateGroup.getDuplicateItemsList();
+            if (duplicateGroupItemsList.size() <= 0) {
+                return "";
+            }
+
+            return QML_FOLDER_PREFIX + duplicateGroupItemsList.at(0).getImagePath();
+        }
+
+        case DuplicatesGroupSizeRole: {
+            return duplicateGroup.getGroupSize();
+        }
+    }
 
     return QVariant();
 }

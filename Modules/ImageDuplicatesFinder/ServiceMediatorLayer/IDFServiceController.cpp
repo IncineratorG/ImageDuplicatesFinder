@@ -74,6 +74,10 @@ bool IDFServiceController::removeInputFolder(const int folderRow) {
     return true;
 }
 
+DuplicateItemsGroups IDFServiceController::getDuplicateItemsGroups() const {
+    return m_dataWarehouse.getModelDuplicatesGroups();
+}
+
 void IDFServiceController::onServiceStarted() {
     emit serviceStarted();
 }

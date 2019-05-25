@@ -311,7 +311,7 @@ Rectangle {
                     width: parent.width
 
                     text: model.folderPath
-                    elide: Text.ElideRight
+                    elide: Text.ElideMiddle
                     font.pointSize: Style.elementTextSize + 1
 
                     color: "black"

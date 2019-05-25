@@ -14,6 +14,9 @@ class DuplicateItemsGroupsModelManager : public QObject
 public:
     DuplicateItemsGroupsModelManager(DuplicateItemsGroupsModel* duplicateGroupsModel);
 
+private slots:
+    void onServiceFinished();
+
 private:
     DuplicateItemsGroupsModel* m_duplicateGroupsModel;
     IDFServiceController* m_idfServiceController;

@@ -25,6 +25,8 @@ public:
     bool updateInputFolder(const int folderRow, const QString& folderPath, const bool processSubpath);
     bool removeInputFolder(const int folderRow);
 
+    DuplicateItemsGroups getDuplicateItemsGroups() const;
+
 signals:
     void serviceStarted();
     void serviceInterrupted();
