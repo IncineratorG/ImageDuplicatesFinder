@@ -12,7 +12,7 @@ IDFService::IDFService() {
     connect(&m_pipeline, SIGNAL(pipelineInterrupted()), this, SLOT(onPipelineInterrupted()));
     connect(&m_pipeline, SIGNAL(pipelineFinished(IDFServiceOutputData)), this, SLOT(onPipelineFinished(IDFServiceOutputData)));
     connect(&m_pipeline, SIGNAL(statusChanged(QString)), this, SIGNAL(statusChanged(QString)));
-    connect(&m_pipeline, SIGNAL(currentOperationNameChanged(QString)), this, SIGNAL(currentOperationNameChanged(QString)));
+    connect(&m_pipeline, SIGNAL(publishProgress(OperationProgress)), this, SIGNAL(publishProgress(OperationProgress)));
 
     m_pipelineThread.start();
 }
@@ -51,10 +51,6 @@ QString IDFService::getStatus() const {
     return m_pipeline.getStatus();
 }
 
-QString IDFService::getCurrentOperationName() const {
-    return m_pipeline.getCurrentOperationName();
-}
-
 IDFServiceOutputData IDFService::getOutputData() const {
     return  m_serviceOutputData;
 }
@@ -79,6 +75,6 @@ void IDFService::onPipelineFinished(IDFServiceOutputData outputData) {
     emit finished();
 }
 
-//void IDFService::onStatusChanged(QString value) {
-//    qDebug() << __PRETTY_FUNCTION__ << value;
+//void IDFService::onPublishProgress(OperationProgress value) {
+//    qDebug() << __PRETTY_FUNCTION__ << "->" << value.getOperationName() << " - " << value.getProgressLevel();
 //}

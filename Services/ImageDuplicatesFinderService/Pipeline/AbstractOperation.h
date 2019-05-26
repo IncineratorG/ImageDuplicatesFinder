@@ -2,6 +2,7 @@
 #define ABSTRACTOPERATION_H
 
 #include <QThread>
+#include "Services/ImageDuplicatesFinderService/Data/OperationProgress.h"
 
 
 
@@ -16,7 +17,8 @@ public:
     virtual void setNextOperation(AbstractOperation* op);
     virtual AbstractOperation* getNextOperation();
 
-    virtual QString getOperationName();
+signals:
+    void publishProgress(OperationProgress value);
 
 private:
     AbstractOperation* m_nextOperation;

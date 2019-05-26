@@ -71,9 +71,9 @@ IDFServiceProcessingPipeline::Status IDFServiceProcessingPipeline::getStatusEnum
     return m_statusEnum;
 }
 
-QString IDFServiceProcessingPipeline::getCurrentOperationName() const {
-    return m_currentOperationName;
-}
+//QString IDFServiceProcessingPipeline::getCurrentOperationName() const {
+//    return m_currentOperationName;
+//}
 
 void IDFServiceProcessingPipeline::setStatus(QString value) {
     if (!m_statusesMap.contains(value)) {
@@ -99,11 +99,11 @@ void IDFServiceProcessingPipeline::setStatus(const IDFServiceProcessingPipeline:
     emit statusChanged(getStatus());
 }
 
-void IDFServiceProcessingPipeline::setCurrentOperationName(QString value) {
-    m_currentOperationName = value;
+//void IDFServiceProcessingPipeline::setCurrentOperationName(QString value) {
+//    m_currentOperationName = value;
 
-    emit currentOperationNameChanged(getCurrentOperationName());
-}
+//    emit currentOperationNameChanged(getCurrentOperationName());
+//}
 
 void IDFServiceProcessingPipeline::setInputData(const IDFServiceInputData& inputData) {
     qDebug() << __PRETTY_FUNCTION__;
@@ -204,12 +204,11 @@ void IDFServiceProcessingPipeline::setOperationsTransitions() {
         m_currentOperation = m_inputPathsPreparatorOperation;
 
         connect(m_currentOperation, SIGNAL(finished()), this, SLOT(onOperationFinished()));
+        connect(m_currentOperation, SIGNAL(publishProgress(OperationProgress)), this, SIGNAL(publishProgress(OperationProgress)));
 
         // ===
         qDebug() << "IDFServiceProcessingPipeline::setOperationsTransitions() -> PREPARE_INPUT_PATHS";
         // ===
-
-        setCurrentOperationName(m_currentOperation->getOperationName());
     });
 
     m_operationsTransitions.setTransition(inputPathsPreparatorSeq, inputPathsPreparatorSeqTransition);
@@ -227,12 +226,11 @@ void IDFServiceProcessingPipeline::setOperationsTransitions() {
         m_currentOperation = m_imagesPathsFinderOperation;
 
         connect(m_currentOperation, SIGNAL(finished()), this, SLOT(onOperationFinished()));
+        connect(m_currentOperation, SIGNAL(publishProgress(OperationProgress)), this, SIGNAL(publishProgress(OperationProgress)));
 
         // ===
         qDebug() << "IDFServiceProcessingPipeline::setOperationsTransitions() -> FINDING_IMAGES_PATHS";
         // ===
-
-        setCurrentOperationName(m_currentOperation->getOperationName());
     });
 
     m_operationsTransitions.setTransition(imagesPathsFinderSeq, imagesPathsFinderSeqTransition);
@@ -249,12 +247,11 @@ void IDFServiceProcessingPipeline::setOperationsTransitions() {
         m_currentOperation = m_histogramsBuilderOperation;
 
         connect(m_currentOperation, SIGNAL(finished()), this, SLOT(onOperationFinished()));
+        connect(m_currentOperation, SIGNAL(publishProgress(OperationProgress)), this, SIGNAL(publishProgress(OperationProgress)));
 
         // ===
         qDebug() << "IDFServiceProcessingPipeline::setOperationsTransitions() -> BUILDING_HISTOGRAMS";
         // ===
-
-        setCurrentOperationName(m_currentOperation->getOperationName());
     });
 
     m_operationsTransitions.setTransition(histogramBuilderSeq, histogramBuilderSeqTransition);
@@ -271,12 +268,11 @@ void IDFServiceProcessingPipeline::setOperationsTransitions() {
         m_currentOperation = m_histogramsComparatorOperation;
 
         connect(m_currentOperation, SIGNAL(finished()), this, SLOT(onOperationFinished()));
+        connect(m_currentOperation, SIGNAL(publishProgress(OperationProgress)), this, SIGNAL(publishProgress(OperationProgress)));
 
         // ===
         qDebug() << "IDFServiceProcessingPipeline::setOperationsTransitions() -> COMPARE_HISTOGRAMS";
         // ===
-
-        setCurrentOperationName(m_currentOperation->getOperationName());
     });
 
     m_operationsTransitions.setTransition(histogramsComparatorSeq, histogramsComparatorSeqTransition);
@@ -294,8 +290,6 @@ void IDFServiceProcessingPipeline::setOperationsTransitions() {
         emit pipelineFinished(pipelineOutputData);
 
         setStatus(IDLE);
-
-        setCurrentOperationName("");
     });
 
     m_operationsTransitions.setTransition(finishSeq, finishSeqTransition);

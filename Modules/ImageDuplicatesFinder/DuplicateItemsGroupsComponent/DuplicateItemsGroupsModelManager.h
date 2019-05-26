@@ -14,6 +14,9 @@ class DuplicateItemsGroupsModelManager : public QObject
 public:
     DuplicateItemsGroupsModelManager(DuplicateItemsGroupsModel* duplicateGroupsModel);
 
+public slots:
+    void clearModel();
+
 private slots:
     void onServiceFinished();
 

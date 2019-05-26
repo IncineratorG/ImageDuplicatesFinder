@@ -23,10 +23,6 @@ std::shared_ptr<ImagesPaths> SequentialImagesPathsFinder::getImagesPaths() {
     return m_imagesPaths;
 }
 
-QString SequentialImagesPathsFinder::getOperationName() {
-    return OPERATION_NAME;
-}
-
 void SequentialImagesPathsFinder::run() {
     if (m_imagesPaths == nullptr) {
         m_imagesPaths = std::shared_ptr<ImagesPaths>(new ImagesPaths());
@@ -41,6 +37,10 @@ void SequentialImagesPathsFinder::run() {
 }
 
 void SequentialImagesPathsFinder::doWork() {
+    // ===
+    emit publishProgress(OperationProgress(OPERATION_NAME, 0));
+    // ===
+
     const QList<Path>& pathsList = m_paths->getPaths();
     for (int i = 0; i < pathsList.size(); ++i) {
         if (QThread::currentThread()->isInterruptionRequested()) {
@@ -65,7 +65,16 @@ void SequentialImagesPathsFinder::doWork() {
                 }
             }
         }
+
+        // ===
+        int progress = ((float) i / pathsList.size()) * 100;
+        emit publishProgress(OperationProgress(OPERATION_NAME, progress));
+        // ===
     }
+
+    // ===
+    emit publishProgress(OperationProgress(OPERATION_NAME, 100));
+    // ===
 }
 
 bool SequentialImagesPathsFinder::isImage(const Path& path) const {

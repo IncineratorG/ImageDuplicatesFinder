@@ -14,6 +14,13 @@ Item {
         anchors.fill: parent
 
         visible: IDFServiceController.serviceStatus != "idle"
+
+        progressText: IDFServiceController.currentServiceOperationName
+        progressValue: IDFServiceController.currentServiceOperationProgress
+
+        onCancelButtonClicked: {
+            InputFoldersModelManager.stopProcessing()
+        }
     }
 
     StackView {

@@ -13,8 +13,6 @@ public:
     void setImagesHistograms(std::shared_ptr<ImagesHistograms> histograms);
     std::shared_ptr<ImagesDuplicatesGroups> getImagesDuplicates();
 
-    QString getOperationName();
-
     void run();
 
 private:

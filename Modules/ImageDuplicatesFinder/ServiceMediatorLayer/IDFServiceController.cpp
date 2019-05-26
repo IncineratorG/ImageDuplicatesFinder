@@ -17,6 +17,7 @@ IDFServiceController::IDFServiceController() {
     connect(&m_idfService, SIGNAL(interrupted()), this, SLOT(onServiceInterrupted()));
     connect(&m_idfService, SIGNAL(finished()), this, SLOT(onServiceFinished()));
     connect(&m_idfService, SIGNAL(statusChanged(QString)), this, SIGNAL(serviceStatusChanged(QString)));
+    connect(&m_idfService, SIGNAL(publishProgress(OperationProgress)), this, SLOT(onPublishProgress(OperationProgress)));
 }
 
 void IDFServiceController::startService() {
@@ -29,6 +30,14 @@ void IDFServiceController::stopService() {
 
 QString IDFServiceController::getServiceStatus() const {
     return m_idfService.getStatus();
+}
+
+QString IDFServiceController::getCurrentServiceOperationName() const {
+    return m_currentOperationProgress.getOperationName();
+}
+
+QString IDFServiceController::getCurrentServiceOperationProgress() const {
+    return QString::number(m_currentOperationProgress.getProgressLevel()) + " %";
 }
 
 IDFServiceInputData IDFServiceController::getInputData() const {
@@ -93,22 +102,37 @@ void IDFServiceController::onServiceInterrupted() {
 
 void IDFServiceController::onServiceFinished() {
     auto modelDuplicatesGroups = m_dataConvertor.toDuplicateItemsGroups(m_idfService.getOutputData());
-    auto modelDuplicatesGroupsList = modelDuplicatesGroups.getGroupsList();
-
-    for (int i = 0; i < modelDuplicatesGroupsList.size(); ++i) {
-        auto group = modelDuplicatesGroupsList.at(i);
-        auto groupDuplicatesList = group.getDuplicateItemsList();
-
-        for (int j = 0; j < groupDuplicatesList.size(); ++j) {
-            auto duplicate = groupDuplicatesList.at(j);
-
-            qDebug() << duplicate.getImagePath();
-        }
-
-        qDebug() << "";
-    }
 
     m_dataWarehouse.setModelDuplicatesGroups(modelDuplicatesGroups);
 
     emit serviceFinished();
 }
+
+void IDFServiceController::onPublishProgress(OperationProgress value) {
+    m_currentOperationProgress = value;
+
+    emit currentServiceOperationNameChanged(getCurrentServiceOperationName());
+    emit currentServiceOperationProgressChanged(getCurrentServiceOperationProgress());
+}
+
+//void IDFServiceController::onServiceFinished() {
+//    auto modelDuplicatesGroups = m_dataConvertor.toDuplicateItemsGroups(m_idfService.getOutputData());
+//    auto modelDuplicatesGroupsList = modelDuplicatesGroups.getGroupsList();
+
+//    for (int i = 0; i < modelDuplicatesGroupsList.size(); ++i) {
+//        auto group = modelDuplicatesGroupsList.at(i);
+//        auto groupDuplicatesList = group.getDuplicateItemsList();
+
+//        for (int j = 0; j < groupDuplicatesList.size(); ++j) {
+//            auto duplicate = groupDuplicatesList.at(j);
+
+//            qDebug() << duplicate.getImagePath();
+//        }
+
+//        qDebug() << "";
+//    }
+
+//    m_dataWarehouse.setModelDuplicatesGroups(modelDuplicatesGroups);
+
+//    emit serviceFinished();
+//}

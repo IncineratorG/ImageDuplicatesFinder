@@ -20,6 +20,7 @@ public slots:
     void removeFolder(const int folderRow);
 
     void startProcessing();
+    void stopProcessing();
 
 private:
     InputFoldersModel* m_inputFoldersModel;

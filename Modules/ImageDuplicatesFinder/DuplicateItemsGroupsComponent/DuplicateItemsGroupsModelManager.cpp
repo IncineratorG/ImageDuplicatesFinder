@@ -10,6 +10,10 @@ DuplicateItemsGroupsModelManager::DuplicateItemsGroupsModelManager(DuplicateItem
     connect(m_idfServiceController, SIGNAL(serviceFinished()), this, SLOT(onServiceFinished()));
 }
 
+void DuplicateItemsGroupsModelManager::clearModel() {
+    m_duplicateGroupsModel->clear();
+}
+
 void DuplicateItemsGroupsModelManager::onServiceFinished() {
     m_duplicateGroupsModel->fillModel(m_idfServiceController->getDuplicateItemsGroups());
 }

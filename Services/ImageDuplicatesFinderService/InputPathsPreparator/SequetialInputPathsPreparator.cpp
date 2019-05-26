@@ -16,14 +16,18 @@ Paths SequetialInputPathsPreparator::getPaths() {
     return m_inputPaths;
 }
 
-QString SequetialInputPathsPreparator::getOperationName() {
-    return OPERATION_NAME;
-}
-
 void SequetialInputPathsPreparator::run() {
     doWork();
 }
 
 void SequetialInputPathsPreparator::doWork() {
+    // ===
+    emit publishProgress(OperationProgress(OPERATION_NAME, 0));
+    // ===
+
     m_inputPaths = m_serviceInputData.toPaths();
+
+    // ===
+    emit publishProgress(OperationProgress(OPERATION_NAME, 100));
+    // ===
 }

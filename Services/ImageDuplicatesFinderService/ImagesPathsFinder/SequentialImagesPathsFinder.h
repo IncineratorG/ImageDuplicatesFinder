@@ -13,8 +13,6 @@ public:
     void setPaths(std::shared_ptr<Paths> paths);
     std::shared_ptr<ImagesPaths> getImagesPaths();
 
-    QString getOperationName();
-
     void run();
 
 private:

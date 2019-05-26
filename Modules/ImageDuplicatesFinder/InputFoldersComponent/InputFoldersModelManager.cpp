@@ -58,3 +58,9 @@ void InputFoldersModelManager::startProcessing() {
 
     m_idfServiceController->startService();
 }
+
+void InputFoldersModelManager::stopProcessing() {
+    qDebug() << __PRETTY_FUNCTION__;
+
+    m_idfServiceController->stopService();
+}

@@ -8,6 +8,11 @@ import "UIKit"
 Rectangle {
     id: waitComponent
 
+    property string progressText: ""
+    property string progressValue: ""
+
+    signal cancelButtonClicked()
+
     color: "#cc000000"
 
     z: 100
@@ -66,11 +71,9 @@ Rectangle {
             Rectangle {
                 id: statusTextWrapper
 
-                anchors.bottom: parent.bottom
+                anchors.bottom: statusValueWrapper.top
                 anchors.left: parent.left
                 anchors.right: parent.right
-
-                anchors.bottomMargin: 4
 
                 height: Style.elementHeight
 
@@ -87,7 +90,38 @@ Rectangle {
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
 
-                    text: "model.groupSize adjsfhaksdhfl;klkjasdf"
+                    text: progressText
+                    font.pointSize: Style.elementTextSize
+                    color: "white"
+                    elide: Text.ElideRight
+                }
+            }
+
+            Rectangle {
+                id: statusValueWrapper
+
+                anchors.bottom: parent.bottom
+                anchors.left: parent.left
+                anchors.right: parent.right
+
+                anchors.bottomMargin: 4
+
+                height: Style.elementHeight
+
+                color: "transparent"
+
+                Text {
+                    id: statusvalue
+
+                    anchors.left: parent.left
+
+                    width: parent.width
+                    height: parent.height
+
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+
+                    text: progressValue
                     font.pointSize: Style.elementTextSize
                     color: "white"
                     elide: Text.ElideRight
@@ -123,6 +157,10 @@ Rectangle {
                 backgroundColorPressed: "#E53935"
 
                 text: "Отмена"
+
+                onClicked: {
+                    cancelButtonClicked()
+                }
             }
         }
     }

@@ -32,7 +32,9 @@ void DuplicateItemsGroupsModel::fillModel(const DuplicateItemsGroups& groups) {
 }
 
 void DuplicateItemsGroupsModel::clear() {
+    beginResetModel();
     modelData.clear();
+    endResetModel();
 
     emit sizeChanged(getSize());
 }

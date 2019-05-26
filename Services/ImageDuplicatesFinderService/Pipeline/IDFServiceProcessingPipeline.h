@@ -21,7 +21,7 @@ class IDFServiceProcessingPipeline : public QObject
     Q_OBJECT
 
     Q_PROPERTY(QString status               READ getStatus               WRITE setStatus               NOTIFY statusChanged)
-    Q_PROPERTY(QString currentOperationName READ getCurrentOperationName WRITE setCurrentOperationName NOTIFY currentOperationNameChanged)
+//    Q_PROPERTY(QString currentOperationName READ getCurrentOperationName WRITE setCurrentOperationName NOTIFY currentOperationNameChanged)
 
 public:
     enum Status {
@@ -34,12 +34,12 @@ public:
     QString getStatus() const;
     Status getStatusEnum() const;
 
-    QString getCurrentOperationName() const;
+//    QString getCurrentOperationName() const;
 
     void setStatus(QString value);
     void setStatus(const Status status);
 
-    void setCurrentOperationName(QString value);
+//    void setCurrentOperationName(QString value);
 
 public slots:
     // Устанавливаем входные данные конвейера.
@@ -57,7 +57,8 @@ signals:
 
     void statusChanged(QString value);
 
-    void currentOperationNameChanged(QString value);
+//    void currentOperationNameChanged(QString value);
+    void publishProgress(OperationProgress value);
 
 private slots:
     // Действия, выполняемые при завершении работы каждой операции конвейера.

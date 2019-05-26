@@ -50,7 +50,8 @@ SOURCES += \
     Modules/ImageDuplicatesFinder/DuplicateItemsGroupsComponent/DuplicateItemsGroupsModelManager.cpp \
     Modules/ImageDuplicatesFinder/Data/DuplicateItemsGroups.cpp \
     Services/ImageDuplicatesFinderService/InputPathsPreparator/AbstractInputPathsPreparator.cpp \
-    Services/ImageDuplicatesFinderService/InputPathsPreparator/SequetialInputPathsPreparator.cpp
+    Services/ImageDuplicatesFinderService/InputPathsPreparator/SequetialInputPathsPreparator.cpp \
+    Services/ImageDuplicatesFinderService/Data/OperationProgress.cpp
 
 RESOURCES += qml.qrc
 
@@ -102,4 +103,5 @@ HEADERS += \
     Modules/ImageDuplicatesFinder/DuplicateItemsGroupsComponent/DuplicateItemsGroupsModelManager.h \
     Modules/ImageDuplicatesFinder/Data/DuplicateItemsGroups.h \
     Services/ImageDuplicatesFinderService/InputPathsPreparator/AbstractInputPathsPreparator.h \
-    Services/ImageDuplicatesFinderService/InputPathsPreparator/SequetialInputPathsPreparator.h
+    Services/ImageDuplicatesFinderService/InputPathsPreparator/SequetialInputPathsPreparator.h \
+    Services/ImageDuplicatesFinderService/Data/OperationProgress.h

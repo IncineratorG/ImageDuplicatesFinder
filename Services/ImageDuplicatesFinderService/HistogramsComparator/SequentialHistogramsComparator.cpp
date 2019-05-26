@@ -23,10 +23,6 @@ std::shared_ptr<ImagesDuplicatesGroups> SequentialHistogramsComparator::getImage
     return m_duplicatesGroups;
 }
 
-QString SequentialHistogramsComparator::getOperationName() {
-    return OPERATION_NAME;
-}
-
 void SequentialHistogramsComparator::run() {
     if (m_duplicatesGroups == nullptr) {
         m_duplicatesGroups = std::shared_ptr<ImagesDuplicatesGroups>(new ImagesDuplicatesGroups());
@@ -45,6 +41,10 @@ void SequentialHistogramsComparator::doWork() {
     QSet<QString> processedImagesPathsSet;
 
     float currentCriticalSimilarityScore = CRITICAL_SIMILARITY_SCORE;
+
+    // ===
+    emit publishProgress(OperationProgress(OPERATION_NAME, 0));
+    // ===
 
     const QList<ImageHistogram>& histogramsList = m_histograms->getHistograms();
     for (int i = 0; i < histogramsList.size(); ++i) {
@@ -79,7 +79,16 @@ void SequentialHistogramsComparator::doWork() {
         if (currentImageDuplicatesGroup.getDuplicatesListSise() > 1) {
             m_duplicatesGroups->appendGroup(currentImageDuplicatesGroup);
         }
+
+        // ===
+        int progress = ((float) i / histogramsList.size()) * 100;
+        emit publishProgress(OperationProgress(OPERATION_NAME, progress));
+        // ===
     }
+
+    // ===
+    emit publishProgress(OperationProgress(OPERATION_NAME, 100));
+    // ===
 }
 
 

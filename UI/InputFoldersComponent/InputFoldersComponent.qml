@@ -109,6 +109,8 @@ Item {
             text: "Начать"
 
             onClicked: {
+                DuplicatesGroupsModelManager.clearModel()
+
                 InputFoldersModelManager.startProcessing()
 
                 inputFoldersComponent.startButtonClicked()

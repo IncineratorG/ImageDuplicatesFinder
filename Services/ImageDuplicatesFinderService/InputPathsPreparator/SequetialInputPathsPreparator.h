@@ -13,8 +13,6 @@ public:
     void setInputData(IDFServiceInputData inputData);
     Paths getPaths();
 
-    QString getOperationName();
-
     void run();
 
 private:
