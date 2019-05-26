@@ -23,6 +23,25 @@ DuplicateItemsGroupsModel::DuplicateItemsGroupsModel()
 //    modelData.append(DuplicateItemsGroup());
 }
 
+//void DuplicateItemsGroupsModel::fillModel(const DuplicateItemsGroups& groups) {
+//    beginResetModel();
+//    for (int i = 0; i < 10000; ++i) {
+//        DuplicateItemsGroup group;
+//        group.appendDuplicate(DuplicateItem("C:/Users/Alexander/Downloads/TEST_IMAGES/Photos/DSC01935.JPG"));
+
+//        modelData.append(group);
+//    }
+////    modelData = groups.getGroupsList();
+////    modelData.append(groups.getGroupsList());
+////    modelData.append(groups.getGroupsList());
+////    modelData.append(groups.getGroupsList());
+////    modelData.append(groups.getGroupsList());
+////    modelData.append(groups.getGroupsList());
+////    modelData.append(groups.getGroupsList());
+//    endResetModel();
+
+//    emit sizeChanged(getSize());
+//}
 void DuplicateItemsGroupsModel::fillModel(const DuplicateItemsGroups& groups) {
     beginResetModel();
     modelData = groups.getGroupsList();

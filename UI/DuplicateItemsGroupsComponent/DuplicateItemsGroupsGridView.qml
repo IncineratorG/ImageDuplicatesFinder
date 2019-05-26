@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import QtQuick.Controls 2.5
 import Style 1.0
 import "../UIKit"
 
@@ -22,6 +23,19 @@ Rectangle {
 
         clip: true
 
+        highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
+        highlightFollowsCurrentItem: true
+
+        ScrollBar.vertical: ScrollBar {
+            parent: gridView.parent
+
+            anchors.top: gridView.top
+            anchors.right: gridView.right
+            anchors.bottom: gridView.bottom
+
+            policy: ScrollBar.AsNeeded
+        }
+
         delegate: Rectangle {
             id: gvDelegate
 
@@ -29,6 +43,16 @@ Rectangle {
             width: gridView.cellWidth
 
             color: "transparent"
+
+            MouseArea {
+                anchors.fill: parent
+
+                onClicked: {
+                    console.log("CLICKED: " + model.imagePath)
+
+                    gridView.currentIndex = model.index
+                }
+            }
 
             Rectangle {
                 id: innerRect
@@ -41,6 +65,8 @@ Rectangle {
 
                 border.width: 1
                 border.color: "grey"
+
+                radius: 2
 
                 Rectangle {
                     id: imageWrapper
@@ -58,6 +84,11 @@ Rectangle {
                         anchors.fill: parent
 
                         source: model.imagePath
+
+                        sourceSize.width: duplicateImage.width
+                        sourceSize.height: duplicateImage.height
+
+                        asynchronous: true
                     }
                 }
 
