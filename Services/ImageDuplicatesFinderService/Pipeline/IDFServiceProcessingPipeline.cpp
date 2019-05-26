@@ -30,10 +30,6 @@ IDFServiceProcessingPipeline::IDFServiceProcessingPipeline()
     m_histogramsBuilderOperation->setNextOperation(m_histogramsComparatorOperation);
     m_histogramsComparatorOperation->setNextOperation(nullptr);
 
-//    m_imagesPathsFinderOperation->setNextOperation(m_histogramsBuilderOperation);
-//    m_histogramsBuilderOperation->setNextOperation(m_histogramsComparatorOperation);
-//    m_histogramsComparatorOperation->setNextOperation(nullptr);
-
     // Устанавливаем действия, которые необходимо
     // выполнять при переходе от одной операции к другой.
     setOperationsTransitions();
@@ -71,10 +67,6 @@ IDFServiceProcessingPipeline::Status IDFServiceProcessingPipeline::getStatusEnum
     return m_statusEnum;
 }
 
-//QString IDFServiceProcessingPipeline::getCurrentOperationName() const {
-//    return m_currentOperationName;
-//}
-
 void IDFServiceProcessingPipeline::setStatus(QString value) {
     if (!m_statusesMap.contains(value)) {
         qDebug() << __PRETTY_FUNCTION__ << "->BAD_STATUS: " << value << "; CURRENT_STATUS: " << getStatus();
@@ -99,17 +91,10 @@ void IDFServiceProcessingPipeline::setStatus(const IDFServiceProcessingPipeline:
     emit statusChanged(getStatus());
 }
 
-//void IDFServiceProcessingPipeline::setCurrentOperationName(QString value) {
-//    m_currentOperationName = value;
-
-//    emit currentOperationNameChanged(getCurrentOperationName());
-//}
-
 void IDFServiceProcessingPipeline::setInputData(const IDFServiceInputData& inputData) {
     qDebug() << __PRETTY_FUNCTION__;
 
     m_inputData = inputData;
-//    m_inputPaths = m_inputData.toPaths();
 }
 
 void IDFServiceProcessingPipeline::startPipeline() {

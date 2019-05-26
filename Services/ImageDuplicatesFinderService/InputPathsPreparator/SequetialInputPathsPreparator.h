@@ -22,6 +22,8 @@ private:
     const QString OPERATION_NAME;
 
     void doWork();
+
+    void toPaths_r(const QDir& directory, Paths& paths);
 };
 
 #endif // SEQUETIALINPUTPATHSPREPARATOR_H
