@@ -12,6 +12,7 @@ public:
     DuplicateItem(const QString& imagePath);
     DuplicateItem(const DuplicateItem& other);
 
+    qint64 getId() const;
     QString getImagePath() const;
 
     bool operator==(const DuplicateItem& other) {
@@ -20,6 +21,8 @@ public:
 
 private:
     QString m_imagePath;
+
+    qint64 id;
 };
 
 #endif // DUPLICATEITEM_H

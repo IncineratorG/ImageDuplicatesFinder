@@ -8,6 +8,7 @@ Item {
     id: duplicateItemsGroupsComponent
 
     signal toolbarLeftButtonClicked()
+    signal duplicateItemGroupDoubleClicked(var groupId)
 
     TopToolBar {
         id: topToolBar
@@ -43,6 +44,10 @@ Item {
 
         DuplicateItemsGroupsGridView {
             anchors.fill: parent
+
+            onDuplicateGroupDoubleClicked: {
+                duplicateItemsGroupsComponent.duplicateItemGroupDoubleClicked(groupId)
+            }
         }
     }
 }

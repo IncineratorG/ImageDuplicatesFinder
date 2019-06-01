@@ -6,8 +6,9 @@
 IDFServiceController* IDFServiceController::m_instance = nullptr;
 
 IDFServiceController* IDFServiceController::getInstance() {
-    if (!m_instance)
+    if (!m_instance) {
         m_instance = new IDFServiceController();
+    }
 
     return m_instance;
 }

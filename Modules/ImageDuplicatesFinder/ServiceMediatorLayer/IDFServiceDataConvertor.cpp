@@ -3,7 +3,7 @@
 
 
 IDFServiceDataConvertor::IDFServiceDataConvertor() {
-
+    m_idGenerator = IdGenerator::getInstance();
 }
 
 DuplicateItemsGroups IDFServiceDataConvertor::toDuplicateItemsGroups(const IDFServiceOutputData& serviceOutput) const {

@@ -6,7 +6,7 @@
         <file>UI/Assets/remove.png</file>
         <file>UI/Assets/left_arrow.png</file>
         <file>UI/Assets/right_arrow.png</file>
-	<file>UI/Assets/wait.png</file>
+        <file>UI/Assets/wait.png</file>
         <file>UI/MainCoordinator.qml</file>
         <file>UI/InputFoldersComponent/InputFoldersComponent.qml</file>
         <file>UI/InputFoldersComponent/InputFoldersListView.qml</file>
@@ -16,5 +16,7 @@
         <file>UI/DuplicateItemsGroupsComponent/TopToolBar.qml</file>
         <file>UI/DuplicateItemsGroupsComponent/DuplicateItemsGroupsGridView.qml</file>
         <file>UI/WaitComponent.qml</file>
+        <file>UI/DuplicateItemGroupComponent/DuplicateItemGroupComponent.qml</file>
+        <file>UI/DuplicateItemGroupComponent/TopToolBar.qml</file>
     </qresource>
 </RCC>

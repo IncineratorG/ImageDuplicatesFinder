@@ -21,12 +21,16 @@ public:
     void removeDuplicate(const DuplicateItem& item);
     void removeDuplicateAtPosition(const int position);
 
+    qint64 getId() const;
+
     int getGroupSize() const;
 
     QList<DuplicateItem> getDuplicateItemsList() const;
 
 private:
     QList<DuplicateItem> m_duplicatesList;
+
+    qint64 id;
 };
 
 #endif // DUPLICATEITEMSGROUP_H

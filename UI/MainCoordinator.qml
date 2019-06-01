@@ -2,6 +2,7 @@ import QtQuick 2.0
 import QtQuick.Controls 2.5
 import "InputFoldersComponent"
 import "DuplicateItemsGroupsComponent"
+import "DuplicateItemGroupComponent"
 
 
 
@@ -24,13 +25,13 @@ Item {
     }
 
     StackView {
-        id: coordinator
+        id: coordinatorStack
 
         anchors.fill: parent
 
         property Component inputFoldersComponent: InputFoldersComponent {
             onToolbarRightButtonClicked: {
-                coordinator.push(duplicateItemsGroupsComponent, StackView.Immediate)
+                coordinatorStack.push(duplicateItemsGroupsComponent, StackView.Immediate)
             }
 
             onRemoveFolderButtonClicked: {
@@ -38,13 +39,23 @@ Item {
             }
 
             onStartButtonClicked: {
-                coordinator.push(duplicateItemsGroupsComponent, StackView.Immediate)
+                coordinatorStack.push(duplicateItemsGroupsComponent, StackView.Immediate)
             }
         }
 
         property Component duplicateItemsGroupsComponent: DuplicateItemsGroupsComponent {
             onToolbarLeftButtonClicked: {
-                coordinator.pop(StackView.Immediate)
+                coordinatorStack.pop(StackView.Immediate)
+            }
+
+            onDuplicateItemGroupDoubleClicked: {
+                coordinatorStack.push(duplicateItemGroupComponent, StackView.Immediate)
+            }
+        }
+
+        property Component duplicateItemGroupComponent: DuplicateItemGroupComponent {
+            onToolbarLeftButtonClicked: {
+                coordinatorStack.pop(StackView.Immediate)
             }
         }
 
@@ -52,31 +63,3 @@ Item {
         initialItem: inputFoldersComponent
     }
 }
-
-
-//StackView {
-//    id: coordinator
-
-//    property Component inputFoldersComponent: InputFoldersComponent {
-//        onToolbarRightButtonClicked: {
-//            coordinator.push(duplicateItemsGroupsComponent, StackView.Immediate)
-//        }
-
-//        onRemoveFolderButtonClicked: {
-
-//        }
-
-//        onStartButtonClicked: {
-//            coordinator.push(duplicateItemsGroupsComponent, StackView.Immediate)
-//        }
-//    }
-
-//    property Component duplicateItemsGroupsComponent: DuplicateItemsGroupsComponent {
-//        onToolbarLeftButtonClicked: {
-//            coordinator.pop(StackView.Immediate)
-//        }
-//    }
-
-
-//    initialItem: inputFoldersComponent
-//}

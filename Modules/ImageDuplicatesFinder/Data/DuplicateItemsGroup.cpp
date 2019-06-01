@@ -1,21 +1,22 @@
 #include "DuplicateItemsGroup.h"
+#include "IdGenerator.h"
 
 
 
 DuplicateItemsGroup::DuplicateItemsGroup() {
-
+    id = IdGenerator::getInstance()->getNextId();
 }
 
 DuplicateItemsGroup::DuplicateItemsGroup(const QList<DuplicateItem>& itemsList)
     : m_duplicatesList(itemsList)
 {
-
+    id = IdGenerator::getInstance()->getNextId();
 }
 
 DuplicateItemsGroup::DuplicateItemsGroup(const DuplicateItemsGroup& other)
     : m_duplicatesList(other.m_duplicatesList)
 {
-
+    id = IdGenerator::getInstance()->getNextId();
 }
 
 bool DuplicateItemsGroup::isEmpty() const {
@@ -40,6 +41,10 @@ void DuplicateItemsGroup::removeDuplicateAtPosition(const int position) {
     }
 
     m_duplicatesList.removeAt(position);
+}
+
+qint64 DuplicateItemsGroup::getId() const {
+    return id;
 }
 
 int DuplicateItemsGroup::getGroupSize() const {

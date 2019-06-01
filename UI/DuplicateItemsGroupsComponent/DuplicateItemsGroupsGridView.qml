@@ -9,6 +9,8 @@ import "../UIKit"
 Rectangle {
     id: gridViewWrapper
 
+    signal duplicateGroupDoubleClicked(var groupId)
+
     color: "#F4F8FA"
 
     GridView {
@@ -48,9 +50,11 @@ Rectangle {
                 anchors.fill: parent
 
                 onClicked: {
-                    console.log("CLICKED: " + model.imagePath)
-
                     gridView.currentIndex = model.index
+                }
+
+                onDoubleClicked: {
+                    duplicateGroupDoubleClicked(model.groupId)
                 }
             }
 
