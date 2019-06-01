@@ -1,4 +1,3 @@
-import QtQuick 2.0
 import QtQuick 2.12
 import QtQuick.Controls 1.4
 import Style 1.0
@@ -304,9 +303,9 @@ Rectangle {
 
                     anchors.left: parent.left
 
-                    anchors.leftMargin: 4
-
                     anchors.verticalCenter: parent.verticalCenter
+
+                    anchors.leftMargin: 4
 
                     width: parent.width
 

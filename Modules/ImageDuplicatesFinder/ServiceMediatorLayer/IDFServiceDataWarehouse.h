@@ -18,6 +18,8 @@ public:
     void setModelDuplicatesGroups(const DuplicateItemsGroups& modelDuplicatesGroups);
     DuplicateItemsGroups getModelDuplicatesGroups() const;
 
+    DuplicateItemsGroup getModelDuplicateItemGroup(const qint64 groupId) const;
+
 private:
     IDFServiceInputData m_serviceInputData;
     IDFServiceOutputData m_serviceOutputData;

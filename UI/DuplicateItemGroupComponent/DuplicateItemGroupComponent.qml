@@ -25,4 +25,24 @@ Item {
             toolbarLeftButtonClicked()
         }
     }
+
+    Rectangle {
+        id: duplicatesListViewWrapper
+
+        anchors.top: topToolBar.bottom
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+
+        anchors.margins: 4
+
+        color: "transparent"
+
+        border.width: 1
+        border.color: "black"
+
+        DuplicateItemsListView {
+            anchors.fill: parent
+        }
+    }
 }

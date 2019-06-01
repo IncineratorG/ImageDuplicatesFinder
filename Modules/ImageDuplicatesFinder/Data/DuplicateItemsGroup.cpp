@@ -14,9 +14,10 @@ DuplicateItemsGroup::DuplicateItemsGroup(const QList<DuplicateItem>& itemsList)
 }
 
 DuplicateItemsGroup::DuplicateItemsGroup(const DuplicateItemsGroup& other)
-    : m_duplicatesList(other.m_duplicatesList)
+    : m_duplicatesList(other.m_duplicatesList),
+      id(other.id)
 {
-    id = IdGenerator::getInstance()->getNextId();
+
 }
 
 bool DuplicateItemsGroup::isEmpty() const {

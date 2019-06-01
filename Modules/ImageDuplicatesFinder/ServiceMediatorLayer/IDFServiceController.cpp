@@ -93,6 +93,10 @@ DuplicateItemsGroups IDFServiceController::getDuplicateItemsGroups() const {
     return m_dataWarehouse.getModelDuplicatesGroups();
 }
 
+DuplicateItemsGroup IDFServiceController::getDuplicateItemGroup(const qint64 groupId) const {
+    return m_dataWarehouse.getModelDuplicateItemGroup(groupId);
+}
+
 void IDFServiceController::onServiceStarted() {
     emit serviceStarted();
 }

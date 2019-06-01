@@ -18,5 +18,6 @@
         <file>UI/WaitComponent.qml</file>
         <file>UI/DuplicateItemGroupComponent/DuplicateItemGroupComponent.qml</file>
         <file>UI/DuplicateItemGroupComponent/TopToolBar.qml</file>
+        <file>UI/DuplicateItemGroupComponent/DuplicateItemsListView.qml</file>
     </qresource>
 </RCC>

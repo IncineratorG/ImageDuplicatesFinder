@@ -76,7 +76,7 @@ QVariant DuplicateItemsGroupsModel::data(const QModelIndex& index, int role) con
 
     switch (role) {
         case IDRole: {
-            return index.row();
+            return duplicateGroup.getId();
         }
 
         case DuplicateImagePathRole: {

@@ -54,6 +54,10 @@ Rectangle {
                 }
 
                 onDoubleClicked: {
+                    gridView.currentIndex = model.index
+
+                    DuplicateGroupModelManager.loadDuplicateGroup(model.groupId)
+
                     duplicateGroupDoubleClicked(model.groupId)
                 }
             }

@@ -16,9 +16,10 @@ DuplicateItem::DuplicateItem(const QString& imagePath)
 }
 
 DuplicateItem::DuplicateItem(const DuplicateItem& other)
-    : m_imagePath(other.m_imagePath)
+    : m_imagePath(other.m_imagePath),
+      id(other.id)
 {
-    id = IdGenerator::getInstance()->getNextId();
+
 }
 
 qint64 DuplicateItem::getId() const {

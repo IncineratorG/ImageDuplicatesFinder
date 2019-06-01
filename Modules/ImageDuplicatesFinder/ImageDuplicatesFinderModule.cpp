@@ -3,6 +3,8 @@
 #include "InputFoldersComponent/InputFoldersModelManager.h"
 #include "DuplicateItemsGroupsComponent/DuplicateItemsGroupsModel.h"
 #include "DuplicateItemsGroupsComponent/DuplicateItemsGroupsModelManager.h"
+#include "DuplicateItemGroupComponent/DuplicateItemGroupModel.h"
+#include "DuplicateItemGroupComponent/DuplicateItemGroupModelManager.h"
 #include "ServiceMediatorLayer/IDFServiceController.h"
 
 
@@ -17,10 +19,16 @@ void ImageDuplicatesFinderModule::init(QQmlContext* ctxt) {
     auto duplicatesGroupsModel = new DuplicateItemsGroupsModel();
     ctxt->setContextProperty("DuplicatesGroupsModel", duplicatesGroupsModel);
 
+    auto duplicateGroupModel = new DuplicateItemGroupModel();
+    ctxt->setContextProperty("DuplicateGroupModel", duplicateGroupModel);
+
 
     auto inputFoldersModelManager = new InputFoldersModelManager(inputFoldersModel);
     ctxt->setContextProperty("InputFoldersModelManager", inputFoldersModelManager);
 
     auto duplicatesGroupsModelManager = new DuplicateItemsGroupsModelManager(duplicatesGroupsModel);
     ctxt->setContextProperty("DuplicatesGroupsModelManager", duplicatesGroupsModelManager);
+
+    auto duplicateGroupModelManager = new DuplicateItemGroupModelManager(duplicateGroupModel);
+    ctxt->setContextProperty("DuplicateGroupModelManager", duplicateGroupModelManager);
 }

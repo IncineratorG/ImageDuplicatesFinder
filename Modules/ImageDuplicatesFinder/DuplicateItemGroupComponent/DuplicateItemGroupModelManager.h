@@ -17,6 +17,8 @@ public:
 public slots:
     void loadDuplicateGroup(const int groupId);
 
+    void openItemPath(const qint64 itemId);
+
 private:
     DuplicateItemGroupModel* m_duplicateGroupModel;
     IDFServiceController* m_idfServiceController;

@@ -35,6 +35,8 @@ public:
 
     DuplicateItemsGroups getDuplicateItemsGroups() const;
 
+    DuplicateItemsGroup getDuplicateItemGroup(const qint64 groupId) const;
+
 signals:
     void serviceStarted();
     void serviceInterrupted();
