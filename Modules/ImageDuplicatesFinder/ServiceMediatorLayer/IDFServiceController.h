@@ -37,6 +37,8 @@ public:
 
     DuplicateItemsGroup getDuplicateItemGroup(const qint64 groupId) const;
 
+    bool removeDuplicateItem(const qint64 itemId);
+
 signals:
     void serviceStarted();
     void serviceInterrupted();
@@ -45,6 +47,8 @@ signals:
     void serviceStatusChanged(QString value);
     void currentServiceOperationNameChanged(QString value);
     void currentServiceOperationProgressChanged(QString value);
+
+    void duplciateItemRemoved(qint64 itemId);
 
 private slots:
     void onServiceStarted();

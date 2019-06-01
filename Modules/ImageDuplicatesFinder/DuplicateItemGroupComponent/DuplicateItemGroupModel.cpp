@@ -38,6 +38,31 @@ QString DuplicateItemGroupModel::getGeneralImage() const {
     return "";
 }
 
+qint64 DuplicateItemGroupModel::getItemIdByImagePath(const QString& imagePath) const {
+    for (int i = 0; i < modelData.size(); ++i) {
+        const QString& currentImagePath = modelData.at(i).getImagePath();
+        if (currentImagePath == imagePath) {
+            return modelData.at(i).getId();
+        }
+    }
+
+    return -1;
+}
+
+void DuplicateItemGroupModel::removeItem(const qint64 itemId) {
+    beginResetModel();
+    for (int i = 0; i < modelData.size(); ++i) {
+        if (modelData.at(i).getId() == itemId) {
+            modelData.removeAt(i);
+            break;
+        }
+    }
+    endResetModel();
+
+    emit sizeChanged(getSize());
+    emit generalImageChanged(getGeneralImage());
+}
+
 // ============== Функции, наследуемые от QAbstractListModel ================
 int DuplicateItemGroupModel::rowCount(const QModelIndex& parent) const {
     return modelData.size();

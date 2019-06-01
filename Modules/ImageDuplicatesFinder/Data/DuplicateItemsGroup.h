@@ -15,11 +15,14 @@ public:
 
     bool isEmpty() const;
 
+    bool contains(const qint64 itemId) const;
+
     void clear();
 
     void appendDuplicate(const DuplicateItem& item);
     void removeDuplicate(const DuplicateItem& item);
     void removeDuplicateAtPosition(const int position);
+    void removeDuplicateById(const qint64 itemId);
 
     qint64 getId() const;
 

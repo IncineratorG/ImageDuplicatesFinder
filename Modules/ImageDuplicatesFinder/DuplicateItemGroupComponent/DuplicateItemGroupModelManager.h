@@ -2,6 +2,7 @@
 #define DUPLICATEITEMGROUPMODELMANAGER_H
 
 #include <QObject>
+#include <QFileSystemWatcher>
 #include "DuplicateItemGroupModel.h"
 #include "../ServiceMediatorLayer/IDFServiceController.h"
 
@@ -19,9 +20,16 @@ public slots:
 
     void openItemPath(const qint64 itemId);
 
+    void stopListenToFileChangies();
+
+private slots:
+    void onFileChanged(const QString& path);
+
 private:
     DuplicateItemGroupModel* m_duplicateGroupModel;
     IDFServiceController* m_idfServiceController;
+
+    QFileSystemWatcher m_fileSystemWatcher;
 };
 
 #endif // DUPLICATEITEMGROUPMODELMANAGER_H

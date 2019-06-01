@@ -97,6 +97,28 @@ DuplicateItemsGroup IDFServiceController::getDuplicateItemGroup(const qint64 gro
     return m_dataWarehouse.getModelDuplicateItemGroup(groupId);
 }
 
+bool IDFServiceController::removeDuplicateItem(const qint64 itemId) {
+    auto duplicatesGroups = m_dataWarehouse.getModelDuplicatesGroups();
+    QList<DuplicateItemsGroup> groupsList = duplicatesGroups.getGroupsList();
+
+    for (int i = 0; i < groupsList.size(); ++i) {
+        const DuplicateItemsGroup& group = groupsList.at(i);
+
+        if (group.contains(itemId)) {
+            groupsList.removeAt(i);
+            break;
+        }
+    }
+
+    DuplicateItemsGroups editedGroups(groupsList);
+
+    m_dataWarehouse.setModelDuplicatesGroups(editedGroups);
+
+    emit duplciateItemRemoved(itemId);
+
+    return true;
+}
+
 void IDFServiceController::onServiceStarted() {
     emit serviceStarted();
 }

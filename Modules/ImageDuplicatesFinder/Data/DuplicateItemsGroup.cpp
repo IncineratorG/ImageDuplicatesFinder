@@ -24,6 +24,16 @@ bool DuplicateItemsGroup::isEmpty() const {
     return m_duplicatesList.isEmpty();
 }
 
+bool DuplicateItemsGroup::contains(const qint64 itemId) const {
+    for (int i = 0; i < m_duplicatesList.size(); ++i) {
+        if (m_duplicatesList.at(i).getId() == itemId) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 void DuplicateItemsGroup::clear() {
     m_duplicatesList.clear();
 }
@@ -42,6 +52,15 @@ void DuplicateItemsGroup::removeDuplicateAtPosition(const int position) {
     }
 
     m_duplicatesList.removeAt(position);
+}
+
+void DuplicateItemsGroup::removeDuplicateById(const qint64 itemId) {
+    for (int i = 0; i < m_duplicatesList.size(); ++i) {
+        if (m_duplicatesList.at(i).getId() == itemId) {
+            m_duplicatesList.removeAt(i);
+            return;
+        }
+    }
 }
 
 qint64 DuplicateItemsGroup::getId() const {

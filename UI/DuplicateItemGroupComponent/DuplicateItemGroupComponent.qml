@@ -22,6 +22,8 @@ Item {
         rightButtonVisible: false
 
         onLeftButtonClicked: {
+            DuplicateGroupModelManager.stopListenToFileChangies()
+
             toolbarLeftButtonClicked()
         }
     }
