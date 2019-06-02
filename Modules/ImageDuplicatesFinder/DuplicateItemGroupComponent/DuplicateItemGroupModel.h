@@ -30,7 +30,7 @@ public:
 
     qint64 getItemIdByImagePath(const QString& imagePath) const;
 
-    void removeItem(const qint64 itemId);
+    bool removeItem(const qint64 itemId);
 
     // ============== Функции, наследуемые от QAbstractListModel ================
     int rowCount(const QModelIndex& parent = QModelIndex()) const;

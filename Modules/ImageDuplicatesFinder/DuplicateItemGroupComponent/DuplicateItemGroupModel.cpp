@@ -49,18 +49,21 @@ qint64 DuplicateItemGroupModel::getItemIdByImagePath(const QString& imagePath) c
     return -1;
 }
 
-void DuplicateItemGroupModel::removeItem(const qint64 itemId) {
-    beginResetModel();
+bool DuplicateItemGroupModel::removeItem(const qint64 itemId) {
     for (int i = 0; i < modelData.size(); ++i) {
         if (modelData.at(i).getId() == itemId) {
+            beginRemoveRows(QModelIndex(), i, i);
             modelData.removeAt(i);
-            break;
+            endRemoveRows();
+
+            emit sizeChanged(getSize());
+            emit generalImageChanged(getGeneralImage());
+
+            return true;
         }
     }
-    endResetModel();
 
-    emit sizeChanged(getSize());
-    emit generalImageChanged(getGeneralImage());
+    return false;
 }
 
 // ============== Функции, наследуемые от QAbstractListModel ================

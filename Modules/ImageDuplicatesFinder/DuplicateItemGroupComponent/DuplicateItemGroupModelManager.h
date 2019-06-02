@@ -24,12 +24,15 @@ public slots:
 
 private slots:
     void onFileChanged(const QString& path);
+    void onDuplicateItemRemoved(qint64 itemId);
 
 private:
     DuplicateItemGroupModel* m_duplicateGroupModel;
     IDFServiceController* m_idfServiceController;
 
     QFileSystemWatcher m_fileSystemWatcher;
+
+    void disconnectFileWatcher();
 };
 
 #endif // DUPLICATEITEMGROUPMODELMANAGER_H

@@ -112,6 +112,10 @@ bool IDFServiceController::removeDuplicateItem(const qint64 itemId) {
 
     DuplicateItemsGroups editedGroups(groupsList);
 
+    // ===
+    qDebug() << __PRETTY_FUNCTION__ << "->SIZE: " << editedGroups.getGroupsList().size();
+    // ===
+
     m_dataWarehouse.setModelDuplicatesGroups(editedGroups);
 
     emit duplciateItemRemoved(itemId);

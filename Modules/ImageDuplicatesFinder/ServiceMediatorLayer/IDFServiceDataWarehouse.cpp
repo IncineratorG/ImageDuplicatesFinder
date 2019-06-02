@@ -1,4 +1,5 @@
 #include "IDFServiceDataWarehouse.h"
+#include <QDebug>
 
 
 
@@ -16,6 +17,10 @@ IDFServiceInputData IDFServiceDataWarehouse::getInputData() const {
 
 void IDFServiceDataWarehouse::setModelDuplicatesGroups(const DuplicateItemsGroups& modelDuplicatesGroups) {
     m_modelDuplicatesGroups = modelDuplicatesGroups;
+
+    // ===
+    qDebug() << __PRETTY_FUNCTION__ << "->SIZE: " << m_modelDuplicatesGroups.getGroupsList().size();
+    // ===
 }
 
 DuplicateItemsGroups IDFServiceDataWarehouse::getModelDuplicatesGroups() const {
