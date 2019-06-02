@@ -9,6 +9,20 @@ Item {
 
     signal toolbarLeftButtonClicked()
 
+    MouseArea {
+        anchors.fill: parent
+
+        acceptedButtons: Qt.AllButtons
+
+        onClicked: {
+            if (mouse.button == Qt.BackButton) {
+                toolbarLeftButtonClicked()
+            } else if (mouse.button == Qt.ForwardButton) {
+//                console.log("Forward button")
+            }
+        }
+    }
+
     TopToolBar {
         id: topToolBar
 

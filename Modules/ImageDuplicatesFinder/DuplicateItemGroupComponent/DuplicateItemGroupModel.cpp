@@ -18,6 +18,7 @@ void DuplicateItemGroupModel::fillModel(const DuplicateItemsGroup& group) {
 
     emit sizeChanged(getSize());
     emit generalImageChanged(getGeneralImage());
+    emit generalImagePathTextChanged(getGeneralImagePathText());
 }
 
 void DuplicateItemGroupModel::clear() {
@@ -29,6 +30,7 @@ void DuplicateItemGroupModel::clear() {
 
     emit sizeChanged(getSize());
     emit generalImageChanged(getGeneralImage());
+    emit generalImagePathTextChanged(getGeneralImagePathText());
 }
 
 int DuplicateItemGroupModel::getSize() const {
@@ -45,10 +47,21 @@ QString DuplicateItemGroupModel::getGeneralImage() const {
     }
 }
 
+QString DuplicateItemGroupModel::getGeneralImagePathText() const {
+    if (!generalImagePath.isEmpty()) {
+        return generalImagePath;
+    } else if (modelData.size() > 0) {
+        return modelData.at(0).getImagePath();
+    } else {
+        return "";
+    }
+}
+
 void DuplicateItemGroupModel::setGeneralImagePath(const QString& imagePath) {
     generalImagePath = imagePath;
 
     emit generalImageChanged(getGeneralImage());
+    emit generalImagePathTextChanged(getGeneralImagePathText());
 }
 
 qint64 DuplicateItemGroupModel::getItemIdByImagePath(const QString& imagePath) const {
@@ -71,6 +84,7 @@ bool DuplicateItemGroupModel::removeItem(const qint64 itemId) {
 
             emit sizeChanged(getSize());
             emit generalImageChanged(getGeneralImage());
+            emit generalImagePathTextChanged(getGeneralImagePathText());
 
             return true;
         }

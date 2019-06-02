@@ -11,7 +11,23 @@ Rectangle {
 
     signal duplicateItemDoubleClicked(var itemId)
 
+//    property real image
+
     color: "#F4F8FA"
+
+//    MouseArea {
+//        anchors.fill: parent
+
+//        acceptedButtons: Qt.AllButtons
+
+//        onClicked: {
+//            if (mouse.button == Qt.BackButton) {
+//                console.log("Back button");
+//            } else if (mouse.button == Qt.ForwardButton) {
+//                console.log("Forward button")
+//            }
+//        }
+//    }
 
     Rectangle {
         id: generalDuplicateImageWrapper
@@ -27,14 +43,47 @@ Rectangle {
         Image {
             id: generalDuplicateImage
 
-            anchors.fill: parent
+            anchors.top: parent.top
+            anchors.left: parent.left
+            anchors.right: parent.right
+
+            height: parent.height - Style.elementHeight
 
             source: DuplicateGroupModel.generalImage
 
-            sourceSize.width: parent.width
-            sourceSize.height: parent.height
+            sourceSize.width: generalDuplicateImage.width
+            sourceSize.height: generalDuplicateImage.height
 
             asynchronous: true
+        }
+
+        Rectangle {
+            id: imagePathNameWrapper
+
+            anchors.top: generalDuplicateImage.bottom
+            anchors.bottom: parent.bottom
+            anchors.left: parent.left
+            anchors.right: parent.right
+
+            color: "transparent"
+
+            Text {
+                id: imagePathNameText
+
+                anchors.left: parent.left
+
+                anchors.verticalCenter: parent.verticalCenter
+
+                anchors.leftMargin: 4
+
+                width: parent.width - 6
+
+                text: DuplicateGroupModel.generalImagePathText
+                elide: Text.ElideMiddle
+                font.pointSize: Style.elementTextSize - 1
+
+                color: "grey"
+            }
         }
     }
 
@@ -69,6 +118,8 @@ Rectangle {
 
                 MouseArea {
                     anchors.fill: parent
+
+                    propagateComposedEvents: true
 
                     onClicked: {
                         listView.currentIndex = model.index

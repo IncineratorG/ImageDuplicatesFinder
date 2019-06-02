@@ -13,6 +13,20 @@ Item {
     signal startButtonClicked()
     signal toolbarRightButtonClicked()
 
+    MouseArea {
+        anchors.fill: parent
+
+        acceptedButtons: Qt.AllButtons
+
+        onClicked: {
+            if (mouse.button == Qt.BackButton) {
+
+            } else if (mouse.button == Qt.ForwardButton) {
+                toolbarRightButtonClicked()
+            }
+        }
+    }
+
     TopToolBar {
         id: topToolBar
 

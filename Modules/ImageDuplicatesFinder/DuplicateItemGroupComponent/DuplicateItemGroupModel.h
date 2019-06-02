@@ -10,8 +10,9 @@ class DuplicateItemGroupModel : public QAbstractListModel
 {
     Q_OBJECT
 
-    Q_PROPERTY(int size             READ getSize         NOTIFY sizeChanged)
-    Q_PROPERTY(QString generalImage READ getGeneralImage NOTIFY generalImageChanged)
+    Q_PROPERTY(int size                     READ getSize                 NOTIFY sizeChanged)
+    Q_PROPERTY(QString generalImage         READ getGeneralImage         NOTIFY generalImageChanged)
+    Q_PROPERTY(QString generalImagePathText READ getGeneralImagePathText NOTIFY generalImagePathTextChanged)
 
 public:
     enum DuplicateItemGroupModelRoles {
@@ -27,6 +28,7 @@ public:
 
     int getSize() const;
     QString getGeneralImage() const;
+    QString getGeneralImagePathText() const;
 
     void setGeneralImagePath(const QString& imagePath);
 
@@ -43,6 +45,7 @@ public:
 signals:
     void sizeChanged(int value);
     void generalImageChanged(QString value);
+    void generalImagePathTextChanged(QString value);
 
 private:
     QList<DuplicateItem> modelData;

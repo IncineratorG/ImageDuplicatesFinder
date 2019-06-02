@@ -27,6 +27,15 @@ Item {
     StackView {
         id: coordinatorStack
 
+//        // ===
+//        focus: true
+//        Keys.onPressed: {
+//            console.log("KEY_PRESSED")
+//        }
+
+//        Component.onCompleted: forceActiveFocus()
+//        // ===
+
         anchors.fill: parent
 
         property Component inputFoldersComponent: InputFoldersComponent {
