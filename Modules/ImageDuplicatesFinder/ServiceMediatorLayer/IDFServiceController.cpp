@@ -98,27 +98,36 @@ DuplicateItemsGroup IDFServiceController::getDuplicateItemGroup(const qint64 gro
 }
 
 bool IDFServiceController::removeDuplicateItem(const qint64 itemId) {
+    // Получаем список групп дубликатов всех изображений.
     auto duplicatesGroups = m_dataWarehouse.getModelDuplicatesGroups();
     QList<DuplicateItemsGroup> groupsList = duplicatesGroups.getGroupsList();
 
+    // Проходимся по всем группам дубликатов и ищем группу,
+    // содержащую дубликат с соответсвующим ID.
+    qint64 containingGroupId = -1;
     for (int i = 0; i < groupsList.size(); ++i) {
-        const DuplicateItemsGroup& group = groupsList.at(i);
+        DuplicateItemsGroup& group = groupsList[i];
 
+        // Удаляем дубликат с заданным ID из соответсвующей группы.
         if (group.contains(itemId)) {
-            groupsList.removeAt(i);
+            group.removeDuplicateById(itemId);
+
+            containingGroupId = group.getId();
+
             break;
         }
     }
 
-    DuplicateItemsGroups editedGroups(groupsList);
+    if (containingGroupId < 0) {
+        qDebug() << __PRETTY_FUNCTION__ << "->UNABLE_TO_REMOVE_DUPLICATE_WITH_ID: " << itemId;
+        return false;
+    }
 
-    // ===
-    qDebug() << __PRETTY_FUNCTION__ << "->SIZE: " << editedGroups.getGroupsList().size();
-    // ===
+    DuplicateItemsGroups editedGroups(groupsList);
 
     m_dataWarehouse.setModelDuplicatesGroups(editedGroups);
 
-    emit duplciateItemRemoved(itemId);
+    emit duplciateItemRemoved(containingGroupId, itemId);
 
     return true;
 }

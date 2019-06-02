@@ -9,25 +9,33 @@ DuplicateItemGroupModelManager::DuplicateItemGroupModelManager(DuplicateItemGrou
 {
     m_idfServiceController = IDFServiceController::getInstance();
 
-    connect(m_idfServiceController, SIGNAL(duplciateItemRemoved(qint64)), this, SLOT(onDuplicateItemRemoved(qint64)));
+    connect(m_idfServiceController, SIGNAL(duplciateItemRemoved(qint64, qint64)), this, SLOT(onDuplicateItemRemoved(qint64, qint64)));
 }
 
 void DuplicateItemGroupModelManager::loadDuplicateGroup(const int groupId) {
     const DuplicateItemsGroup& group = m_idfServiceController->getDuplicateItemGroup(groupId);
 
-    // ===
-    const QList<DuplicateItem>& duplicateItemsList = group.getDuplicateItemsList();
-
-    qDebug() << __PRETTY_FUNCTION__ << "->LIST_SIZE: " << duplicateItemsList.size();
-
-    for (int i = 0; i < duplicateItemsList.size(); ++i) {
-        qDebug() << __PRETTY_FUNCTION__ << "->" << duplicateItemsList.at(i).getImagePath();
-    }
-    // ===
-
     m_duplicateGroupModel->fillModel(group);
 
     disconnectFileWatcher();
+}
+
+void DuplicateItemGroupModelManager::setGeneralImageItem(const qint64 itemId) {
+    // Находим в модели элемент с заданным ID.
+    auto modelIndexesList = m_duplicateGroupModel->match(
+                                        m_duplicateGroupModel->index(0, 0),
+                                        DuplicateItemGroupModel::IDRole,
+                                        itemId);
+    if (modelIndexesList.size() <= 0) {
+        return;
+    }
+
+    const QModelIndex& matchedItemIndex = modelIndexesList.at(0);
+
+    const QString& itemPath = m_duplicateGroupModel->data(matchedItemIndex, DuplicateItemGroupModel::DuplicateImagePathRole).toString();
+
+    // Устанавливаем обощенное изображение группы дубликатов.
+    m_duplicateGroupModel->setGeneralImagePath(itemPath);
 }
 
 void DuplicateItemGroupModelManager::openItemPath(const qint64 itemId) {
@@ -91,8 +99,9 @@ void DuplicateItemGroupModelManager::onFileChanged(const QString& path) {
     }
 }
 
-void DuplicateItemGroupModelManager::onDuplicateItemRemoved(qint64 itemId) {
-    qDebug() << __PRETTY_FUNCTION__ << "->ITEM_ID: " << itemId;
+void DuplicateItemGroupModelManager::onDuplicateItemRemoved(qint64 groupId, qint64 itemId) {
+    // Удаляем соответсвующий элемент из модели.
+    m_duplicateGroupModel->removeItem(itemId);
 }
 
 void DuplicateItemGroupModelManager::disconnectFileWatcher() {

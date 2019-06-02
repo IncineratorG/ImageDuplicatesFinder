@@ -28,6 +28,8 @@ public:
     int getSize() const;
     QString getGeneralImage() const;
 
+    void setGeneralImagePath(const QString& imagePath);
+
     qint64 getItemIdByImagePath(const QString& imagePath) const;
 
     bool removeItem(const qint64 itemId);
@@ -44,6 +46,8 @@ signals:
 
 private:
     QList<DuplicateItem> modelData;
+
+    QString generalImagePath;
 
     const QString QML_FOLDER_PREFIX;
 };

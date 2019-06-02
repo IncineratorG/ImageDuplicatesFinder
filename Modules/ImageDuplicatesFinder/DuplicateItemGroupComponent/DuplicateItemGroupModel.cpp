@@ -3,12 +3,15 @@
 
 
 DuplicateItemGroupModel::DuplicateItemGroupModel()
-    : QML_FOLDER_PREFIX("file:///")
+    : generalImagePath(""),
+      QML_FOLDER_PREFIX("file:///")
 {
 
 }
 
 void DuplicateItemGroupModel::fillModel(const DuplicateItemsGroup& group) {
+    generalImagePath = "";
+
     beginResetModel();
     modelData = group.getDuplicateItemsList();
     endResetModel();
@@ -18,6 +21,8 @@ void DuplicateItemGroupModel::fillModel(const DuplicateItemsGroup& group) {
 }
 
 void DuplicateItemGroupModel::clear() {
+    generalImagePath.clear();
+
     beginResetModel();
     modelData.clear();
     endResetModel();
@@ -31,11 +36,19 @@ int DuplicateItemGroupModel::getSize() const {
 }
 
 QString DuplicateItemGroupModel::getGeneralImage() const {
-    if (modelData.size() > 0) {
+    if (!generalImagePath.isEmpty()) {
+        return QML_FOLDER_PREFIX + generalImagePath;
+    } else if (modelData.size() > 0) {
         return QML_FOLDER_PREFIX + modelData.at(0).getImagePath();
+    } else {
+        return "";
     }
+}
 
-    return "";
+void DuplicateItemGroupModel::setGeneralImagePath(const QString& imagePath) {
+    generalImagePath = imagePath;
+
+    emit generalImageChanged(getGeneralImage());
 }
 
 qint64 DuplicateItemGroupModel::getItemIdByImagePath(const QString& imagePath) const {

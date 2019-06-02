@@ -72,6 +72,8 @@ Rectangle {
 
                     onClicked: {
                         listView.currentIndex = model.index
+
+                        DuplicateGroupModelManager.setGeneralImageItem(model.itemId)
                     }
 
                     onDoubleClicked: {

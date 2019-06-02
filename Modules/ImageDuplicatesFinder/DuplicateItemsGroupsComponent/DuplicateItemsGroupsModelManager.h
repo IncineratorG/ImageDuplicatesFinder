@@ -19,6 +19,7 @@ public slots:
 
 private slots:
     void onServiceFinished();
+    void onDuplicateItemRemoved(qint64 groupId, qint64 itemId);
 
 private:
     DuplicateItemsGroupsModel* m_duplicateGroupsModel;

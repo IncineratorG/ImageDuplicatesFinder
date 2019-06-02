@@ -18,13 +18,15 @@ public:
 public slots:
     void loadDuplicateGroup(const int groupId);
 
+    void setGeneralImageItem(const qint64 itemId);
+
     void openItemPath(const qint64 itemId);
 
     void stopListenToFileChangies();
 
 private slots:
     void onFileChanged(const QString& path);
-    void onDuplicateItemRemoved(qint64 itemId);
+    void onDuplicateItemRemoved(qint64 groupId, qint64 itemId);
 
 private:
     DuplicateItemGroupModel* m_duplicateGroupModel;
