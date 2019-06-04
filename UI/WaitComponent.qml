@@ -15,7 +15,7 @@ Rectangle {
 
     color: "#cc000000"
 
-    z: 100
+//    z: 10
 
     Rectangle {
         anchors.centerIn: parent

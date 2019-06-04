@@ -15,6 +15,7 @@ Item {
         anchors.fill: parent
 
         visible: IDFServiceController.serviceStatus != "idle"
+        z: IDFServiceController.serviceStatus == "idle" ? -1 : 10
 
         progressText: IDFServiceController.currentServiceOperationName
         progressValue: IDFServiceController.currentServiceOperationProgress
@@ -64,9 +65,68 @@ Item {
 
         property Component duplicateItemGroupComponent: DuplicateItemGroupComponent {
             onToolbarLeftButtonClicked: {
+//                console.log("CLICK")
+
+//                if (loader.visible) {
+//                    loader.source = ""
+//                    loader.z = -1
+//                    loader.visible = false
+//                } else {
+//                    loader.source = "BlockingComponent.qml"
+//                    loader.z = 50
+//                    loader.visible = true
+//                }
+
+
+
+
                 coordinatorStack.pop(StackView.Immediate)
             }
         }
+
+
+
+
+
+
+
+        // ===
+//        Connections {
+//            target: IDFServiceController
+//            onServiceStatusChanged: {
+//                if (value != "idle") {
+//                    console.log("HERE_1")
+
+//                    loader.sourceComponent = coordinatorWrapper.waitComponent
+//                    loader.visible = true
+//                    loader.z = 10
+//                } else {
+//                    console.log("HERE_2")
+
+//                    loader.source = ""
+//                    loader.visible = false
+//                    loader.z = -1
+//                }
+//            }
+//        }
+
+//        Loader {
+//            id: loader
+
+//            anchors.fill: parent
+
+//            visible: false
+//        }
+
+//        property Component waitComponent: WaitComponent {
+//            progressText: IDFServiceController.currentServiceOperationName
+//            progressValue: IDFServiceController.currentServiceOperationProgress
+
+//            onCancelButtonClicked: {
+//                InputFoldersModelManager.stopProcessing()
+//            }
+//        }
+        // ===
 
 
         initialItem: inputFoldersComponent
