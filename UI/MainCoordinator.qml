@@ -9,22 +9,6 @@ import "DuplicateItemGroupComponent"
 Item {
     id: coordinatorWrapper
 
-    WaitComponent {
-        id: waitComponent
-
-        anchors.fill: parent
-
-        visible: IDFServiceController.serviceStatus != "idle"
-        z: IDFServiceController.serviceStatus == "idle" ? -1 : 10
-
-        progressText: IDFServiceController.currentServiceOperationName
-        progressValue: IDFServiceController.currentServiceOperationProgress
-
-        onCancelButtonClicked: {
-            InputFoldersModelManager.stopProcessing()
-        }
-    }
-
     StackView {
         id: coordinatorStack
 
@@ -68,16 +52,14 @@ Item {
 //                console.log("CLICK")
 
 //                if (loader.visible) {
-//                    loader.source = ""
+//                    loader.sourceComponent = undefined
 //                    loader.z = -1
 //                    loader.visible = false
 //                } else {
-//                    loader.source = "BlockingComponent.qml"
+//                    loader.sourceComponent = rect
 //                    loader.z = 50
 //                    loader.visible = true
 //                }
-
-
 
 
                 coordinatorStack.pop(StackView.Immediate)
@@ -85,50 +67,63 @@ Item {
         }
 
 
-
-
-
-
-
         // ===
-//        Connections {
-//            target: IDFServiceController
-//            onServiceStatusChanged: {
-//                if (value != "idle") {
-//                    console.log("HERE_1")
+        Connections {
+            target: IDFServiceController
+            onServiceStatusChanged: {
+                if (value != "idle") {
+                    loader.sourceComponent = coordinatorStack.waitComponent
+                    loader.visible = true
+                    loader.z = 50
+                } else {
+                    loader.sourceComponent = undefined
+                    loader.visible = false
+                    loader.z = -1
+                }
+            }
+        }
 
-//                    loader.sourceComponent = coordinatorWrapper.waitComponent
-//                    loader.visible = true
-//                    loader.z = 10
-//                } else {
-//                    console.log("HERE_2")
+        Loader {
+            id: loader
 
-//                    loader.source = ""
-//                    loader.visible = false
-//                    loader.z = -1
-//                }
-//            }
-//        }
+            anchors.fill: parent
 
-//        Loader {
-//            id: loader
+            visible: false
+        }
 
-//            anchors.fill: parent
+        property Component waitComponent: WaitComponent {
+            progressText: IDFServiceController.currentServiceOperationName
+            progressValue: IDFServiceController.currentServiceOperationProgress
 
-//            visible: false
-//        }
+            onCancelButtonClicked: {
+                InputFoldersModelManager.stopProcessing()
+            }
+        }
 
-//        property Component waitComponent: WaitComponent {
-//            progressText: IDFServiceController.currentServiceOperationName
-//            progressValue: IDFServiceController.currentServiceOperationProgress
+        property Component blockingComponent: BlockingComponent {
 
-//            onCancelButtonClicked: {
-//                InputFoldersModelManager.stopProcessing()
-//            }
-//        }
+        }
         // ===
 
 
         initialItem: inputFoldersComponent
     }
 }
+
+
+
+//    WaitComponent {
+//        id: waitComponent
+
+//        anchors.fill: parent
+
+//        visible: IDFServiceController.serviceStatus != "idle"
+//        z: IDFServiceController.serviceStatus == "idle" ? -1 : 10
+
+//        progressText: IDFServiceController.currentServiceOperationName
+//        progressValue: IDFServiceController.currentServiceOperationProgress
+
+//        onCancelButtonClicked: {
+//            InputFoldersModelManager.stopProcessing()
+//        }
+//    }
