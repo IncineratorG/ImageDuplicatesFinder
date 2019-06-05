@@ -60,6 +60,14 @@ Rectangle {
 //    // ===
 
 
+    // ===
+    property var previousItemPosition: -1
+
+    DuplicateItemMenuComponent {
+        id: itemMenuComponent
+    }
+
+
     function toggleListViewItemMenu(itemXCoord, itemYCoord, itemPosition) {
         console.log(itemXCoord + " - " + itemYCoord + " - " + itemPosition)
 
@@ -71,7 +79,16 @@ Rectangle {
         console.log("MENU_X: " + itemMenuXPosition)
         console.log("MENU_Y: " + itemMenuYPosition)
         console.log()
+
+        if (previousItemPosition == itemPosition) {
+            itemMenuComponent.hide()
+            previousItemPosition = -1
+        } else {
+            itemMenuComponent.show(itemMenuXPosition, itemMenuYPosition)
+            previousItemPosition = itemPosition
+        }
     }
+    // ===
 
 
     Rectangle {
