@@ -20,5 +20,6 @@
         <file>UI/DuplicateItemGroupComponent/TopToolBar.qml</file>
         <file>UI/DuplicateItemGroupComponent/DuplicateItemsListView.qml</file>
         <file>UI/BlockingComponent.qml</file>
+        <file>UI/DuplicateItemGroupComponent/DuplicateItemMenuComponent.qml</file>
     </qresource>
 </RCC>

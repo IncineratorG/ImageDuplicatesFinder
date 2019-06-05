@@ -11,7 +11,8 @@ Rectangle {
 
     signal duplicateItemDoubleClicked(var itemId)
 
-//    property real image
+    property var listViewItemHeight: 40
+    property var listViewItemSpacing: 4
 
     color: "#F4F8FA"
 
@@ -28,6 +29,50 @@ Rectangle {
 //            }
 //        }
 //    }
+
+
+//    // ===
+//    Rectangle {
+//        id: listViewItemMenuComponent
+
+//        width: 100
+//        height: 100
+
+//        color: "yellow"
+
+//        visible: false
+
+//        x: 490
+//        y: 4
+//        z: 10
+//    }
+
+//    function f(x, y, position) {
+//        console.log("IN_FUNCTION: " + x + " - " + y + " - " + position)
+
+//        var listViewItemHeight = 40
+//        var listViewItemSpacing = 4
+
+//        listViewItemMenuComponent.x = duplicateItemsListViewComponent.width - listViewItemMenuComponent.width
+//        listViewItemMenuComponent.y = y + (listViewItemHeight + listViewItemSpacing) * (position + 1)
+//        listViewItemMenuComponent.visible = true
+//    }
+//    // ===
+
+
+    function toggleListViewItemMenu(itemXCoord, itemYCoord, itemPosition) {
+        console.log(itemXCoord + " - " + itemYCoord + " - " + itemPosition)
+
+        var menuComponentWidth = 100
+
+        var itemMenuXPosition = duplicateItemsListViewComponent.width - menuComponentWidth
+        var itemMenuYPosition = y + (listViewItemHeight + listViewItemSpacing) * (itemPosition + 1)
+
+        console.log("MENU_X: " + itemMenuXPosition)
+        console.log("MENU_Y: " + itemMenuYPosition)
+        console.log()
+    }
+
 
     Rectangle {
         id: generalDuplicateImageWrapper
@@ -104,7 +149,7 @@ Rectangle {
 
             anchors.margins: 4
 
-            spacing: 4
+            spacing: listViewItemSpacing
 
             clip: true
 
@@ -112,36 +157,40 @@ Rectangle {
                 id: itemDelegate
 
                 width: parent.width
-                height: 40
+                height: listViewItemHeight
 
                 color: listView.currentIndex == model.index ? "#E9F4FA" : "white"
-
-                MouseArea {
-                    anchors.fill: parent
-
-                    propagateComposedEvents: true
-
-                    onClicked: {
-                        listView.currentIndex = model.index
-
-                        DuplicateGroupModelManager.setGeneralImageItem(model.itemId)
-                    }
-
-                    onDoubleClicked: {
-                        listView.currentIndex = model.index
-
-                        duplicateItemDoubleClicked(model.itemId)
-
-                        DuplicateGroupModelManager.openItemPath(model.itemId)
-                    }
-                }
 
                 Rectangle {
                     id: imagePathWrapper
 
-                    anchors.fill: parent
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    anchors.left: parent.left
+                    anchors.right: actionButtonsWrapper.left
+//                    anchors.fill: parent
 
                     color: "transparent"
+
+                    MouseArea {
+                        anchors.fill: parent
+
+                        propagateComposedEvents: true
+
+                        onClicked: {
+                            listView.currentIndex = model.index
+
+                            DuplicateGroupModelManager.setGeneralImageItem(model.itemId)
+                        }
+
+                        onDoubleClicked: {
+                            listView.currentIndex = model.index
+
+                            duplicateItemDoubleClicked(model.itemId)
+
+                            DuplicateGroupModelManager.openItemPath(model.itemId)
+                        }
+                    }
 
                     Text {
                         id: imagePathText
@@ -159,6 +208,30 @@ Rectangle {
                         font.pointSize: Style.elementTextSize + 1
 
                         color: "black"
+                    }
+                }
+
+                Rectangle {
+                    id: actionButtonsWrapper
+
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    anchors.right: parent.right
+
+                    anchors.margins: 4
+
+                    width: parent.height
+
+                    color: "grey"
+
+                    MouseArea {
+                        anchors.fill: parent
+
+                        onClicked: {
+                            listView.currentIndex = model.index
+
+                            duplicateItemsListViewComponent.toggleListViewItemMenu(actionButtonsWrapper.x, actionButtonsWrapper.y, listView.currentIndex)
+                        }
                     }
                 }
             }
