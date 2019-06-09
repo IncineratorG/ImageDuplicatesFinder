@@ -11,6 +11,9 @@
 	<file>UI/Assets/open_file.png</file>
 	<file>UI/Assets/skip.png</file>
 	<file>UI/Assets/trash.png</file>
+	<file>UI/Assets/open_image_folder.png</file>
+	<file>UI/Assets/move.png</file>
+	<file>UI/Assets/stop.png</file>
         <file>UI/MainCoordinator.qml</file>
         <file>UI/InputFoldersComponent/InputFoldersComponent.qml</file>
         <file>UI/InputFoldersComponent/InputFoldersListView.qml</file>

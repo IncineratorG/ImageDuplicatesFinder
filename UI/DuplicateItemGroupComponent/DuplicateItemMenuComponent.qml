@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import QtGraphicalEffects 1.0
 import Style 1.0
 import "../Assets"
 import "../UIKit"
@@ -11,7 +12,7 @@ Item {
     visible: false
     z: visible ? 10 : -1
 
-    width: 100
+    width: 110
     height: 80
 
     function show(x, y) {
@@ -22,6 +23,20 @@ Item {
 
     function hide() {
         menuComponent.visible = false
+    }
+
+    DropShadow {
+        anchors.fill: parent
+
+        anchors.margins: 4
+
+        horizontalOffset: 8
+        verticalOffset: 8
+//        radius: 8.0
+//        samples: 17
+//        color: "#80000000"
+        color: "grey"
+//        source: butterfly
     }
 
     MouseArea {
@@ -57,7 +72,17 @@ Item {
 
                 width: openButtonImageWrapper.height
 
-                color: "grey"
+                color: "transparent"
+
+                Image {
+                    id: openButtonImage
+
+                    anchors.fill: parent
+
+                    anchors.margins: 4
+
+                    source: "../Assets/open_image_folder.png"
+                }
             }
 
             Rectangle {
@@ -108,7 +133,17 @@ Item {
 
                 width: notDuplicateImageWrapper.height
 
-                color: "grey"
+                color: "transparent"
+
+                Image {
+                    id: notDuplicateImage
+
+                    anchors.fill: parent
+
+                    anchors.margins: 4
+
+                    source: "../Assets/stop.png"
+                }
             }
 
             Rectangle {
@@ -159,7 +194,17 @@ Item {
 
                 width: deleteButtonImageWrapper.height
 
-                color: "grey"
+                color: "transparent"
+
+                Image {
+                    id: deleteImage
+
+                    anchors.fill: parent
+
+                    anchors.margins: 4
+
+                    source: "../Assets/trash.png"
+                }
             }
 
             Rectangle {
