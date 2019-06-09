@@ -8,6 +8,9 @@
         <file>UI/Assets/right_arrow.png</file>
         <file>UI/Assets/wait.png</file>
 	<file>UI/Assets/more.png</file>
+	<file>UI/Assets/open_file.png</file>
+	<file>UI/Assets/skip.png</file>
+	<file>UI/Assets/trash.png</file>
         <file>UI/MainCoordinator.qml</file>
         <file>UI/InputFoldersComponent/InputFoldersComponent.qml</file>
         <file>UI/InputFoldersComponent/InputFoldersListView.qml</file>

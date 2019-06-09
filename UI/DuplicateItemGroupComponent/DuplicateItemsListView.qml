@@ -11,8 +11,8 @@ Rectangle {
 
     signal duplicateItemDoubleClicked(var itemId)
 
-    property var listViewItemHeight: 40
-    property var listViewItemSpacing: 4
+    property int listViewItemHeight: 40
+    property int listViewItemSpacing: 4
 
     color: "#F4F8FA"
 
