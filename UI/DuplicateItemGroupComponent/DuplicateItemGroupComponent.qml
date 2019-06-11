@@ -8,6 +8,9 @@ Item {
     id: duplicateItemGroupComponent
 
     signal toolbarLeftButtonClicked()
+    signal notDuplicateButtonClicked(var itemId)
+    signal removeItemButtonClicked(var itemId)
+
 
     MouseArea {
         anchors.fill: parent
@@ -59,6 +62,14 @@ Item {
 
         DuplicateItemsListView {
             anchors.fill: parent
+
+            onNotDuplicateButtonClicked: {
+                duplicateItemGroupComponent.notDuplicateButtonClicked(itemId)
+            }
+
+            onRemoveItemButtonClicked: {
+                duplicateItemGroupComponent.removeItemButtonClicked(itemId)
+            }
         }
     }
 }

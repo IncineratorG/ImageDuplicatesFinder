@@ -69,6 +69,14 @@ void DuplicateItemGroupModelManager::openItemPath(const qint64 itemId) {
     connect(&m_fileSystemWatcher, SIGNAL(fileChanged(const QString&)), this, SLOT(onFileChanged(const QString&)));
 }
 
+void DuplicateItemGroupModelManager::markItemAsNotDuplicate(const qint64 itemId) {
+    qDebug() << __PRETTY_FUNCTION__ << "->ITEM_ID: " << itemId;
+}
+
+void DuplicateItemGroupModelManager::removeItemFromDisk(const qint64 itemId) {
+    qDebug() << __PRETTY_FUNCTION__ << "->ITEM_ID: " << itemId;
+}
+
 void DuplicateItemGroupModelManager::stopListenToFileChangies() {
     disconnectFileWatcher();
 }

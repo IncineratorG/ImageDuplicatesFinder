@@ -1,4 +1,5 @@
 #include "SequetialInputPathsPreparator.h"
+#include <QDebug>
 
 
 
@@ -34,8 +35,19 @@ void SequetialInputPathsPreparator::doWork() {
         const QString pathString = item.getPath();
         const bool processSubpath = item.getProcessSubpath();
 
+        // ===
+//        qDebug() << __PRETTY_FUNCTION__ << "->PATH: " << pathString << " - " << processSubpath;
+        // ===
+
         if (!processSubpath) {
             m_inputPaths.appendPath(Path(pathString));
+
+            // ===
+            int progress = ((float) i / inputItemsList.size()) * 100;
+            emit publishProgress(OperationProgress(OPERATION_NAME, progress));
+            // ===
+
+            continue;
         }
 
         toPaths_r(QDir(pathString), m_inputPaths);

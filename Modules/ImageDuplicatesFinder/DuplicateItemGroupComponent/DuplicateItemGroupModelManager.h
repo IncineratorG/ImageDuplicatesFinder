@@ -22,6 +22,10 @@ public slots:
 
     void openItemPath(const qint64 itemId);
 
+    void markItemAsNotDuplicate(const qint64 itemId);
+
+    void removeItemFromDisk(const qint64 itemId);
+
     void stopListenToFileChangies();
 
 private slots:

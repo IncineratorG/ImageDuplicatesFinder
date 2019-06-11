@@ -64,6 +64,18 @@ Item {
 
                 coordinatorStack.pop(StackView.Immediate)
             }
+
+            onNotDuplicateButtonClicked: {
+//                loader.sourceComponent = coordinatorStack.notDuplicateBlockingComponent
+//                loader.visible = true
+//                loader.z = 50
+            }
+
+            onRemoveItemButtonClicked: {
+//                loader.sourceComponent = coordinatorStack.removeDuplicateImageBlockingComponent
+//                loader.visible = true
+//                loader.z = 50
+            }
         }
 
 
@@ -100,8 +112,58 @@ Item {
             }
         }
 
-        property Component blockingComponent: BlockingComponent {
+        property Component notDuplicateBlockingComponent: BlockingComponent {
+            okButtonText: "Не дубликат"
+            cancelButtonText: "Отмена"
 
+            onOkButtonClicked: {
+                console.log("NOT_DUPLICATE_CLICKED")
+
+                loader.sourceComponent = undefined
+                loader.visible = false
+                loader.z = -1
+            }
+
+            onCancelButtonClicked: {
+                console.log("CANCEL")
+
+                loader.sourceComponent = undefined
+                loader.visible = false
+                loader.z = -1
+            }
+
+            onOutOfAreaClicked: {
+                loader.sourceComponent = undefined
+                loader.visible = false
+                loader.z = -1
+            }
+        }
+
+        property Component removeDuplicateImageBlockingComponent: BlockingComponent {
+            okButtonText: "Удалить"
+            cancelButtonText: "Отмена"
+
+            onOkButtonClicked: {
+                console.log("REMOVE_CLICKED")
+
+                loader.sourceComponent = undefined
+                loader.visible = false
+                loader.z = -1
+            }
+
+            onCancelButtonClicked: {
+                console.log("CANCEL")
+
+                loader.sourceComponent = undefined
+                loader.visible = false
+                loader.z = -1
+            }
+
+            onOutOfAreaClicked: {
+                loader.sourceComponent = undefined
+                loader.visible = false
+                loader.z = -1
+            }
         }
         // ===
 

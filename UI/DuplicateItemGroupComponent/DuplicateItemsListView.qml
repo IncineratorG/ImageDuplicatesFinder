@@ -10,6 +10,8 @@ Rectangle {
     id: duplicateItemsListViewComponent
 
     signal duplicateItemDoubleClicked(var itemId)
+    signal notDuplicateButtonClicked(var itemId)
+    signal removeItemButtonClicked(var itemId)
 
     property int listViewItemHeight: 40
     property int listViewItemSpacing: 4
@@ -77,11 +79,15 @@ Rectangle {
         onNotDuplicateButtonClicked: {
             console.log("NOT_DUPLICATE: " + openedMenuItemId)
 
+            duplicateItemsListViewComponent.notDuplicateButtonClicked(openedMenuItemId)
+
             closeListViewItemMenu()
         }
 
         onRemoveButtonClicked: {
             console.log("REMOVE: " + openedMenuItemId)
+
+            duplicateItemsListViewComponent.removeItemButtonClicked(openedMenuItemId)
 
             closeListViewItemMenu()
         }
