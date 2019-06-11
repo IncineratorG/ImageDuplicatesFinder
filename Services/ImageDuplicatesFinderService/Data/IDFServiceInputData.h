@@ -21,6 +21,8 @@ public:
 
     QList<IDFServiceInputDataItem> getInputDataList() const;
 
+    bool containInputDataItem(const IDFServiceInputDataItem& item);
+
     Paths toPaths();
 
 private:

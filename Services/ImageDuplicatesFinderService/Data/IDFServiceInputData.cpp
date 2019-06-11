@@ -30,6 +30,10 @@ QList<IDFServiceInputDataItem> IDFServiceInputData::getInputDataList() const {
     return m_inputDataList;
 }
 
+bool IDFServiceInputData::containInputDataItem(const IDFServiceInputDataItem& item) {
+    return m_inputDataList.contains(item);
+}
+
 Paths IDFServiceInputData::toPaths() {
     Paths paths;
 

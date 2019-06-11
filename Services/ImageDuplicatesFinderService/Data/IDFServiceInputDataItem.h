@@ -17,6 +17,10 @@ public:
     QString getPath() const;
     bool getProcessSubpath() const;
 
+    bool operator==(const IDFServiceInputDataItem& other) {
+        return this->m_path == other.m_path && this->m_processSubpath == other.m_processSubpath;
+    }
+
 private:
     QString m_path;
     bool m_processSubpath;

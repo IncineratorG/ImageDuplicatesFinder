@@ -10,7 +10,7 @@ class Path
 public:
     Path();
     Path(const QString& path);
-    Path(const Path& othre);
+    Path(const Path& other);
 
     QString toString() const;
 

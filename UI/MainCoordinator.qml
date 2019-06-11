@@ -66,15 +66,15 @@ Item {
             }
 
             onNotDuplicateButtonClicked: {
-//                loader.sourceComponent = coordinatorStack.notDuplicateBlockingComponent
-//                loader.visible = true
-//                loader.z = 50
+                loader.sourceComponent = coordinatorStack.notDuplicateBlockingComponent
+                loader.visible = true
+                loader.z = 50
             }
 
             onRemoveItemButtonClicked: {
-//                loader.sourceComponent = coordinatorStack.removeDuplicateImageBlockingComponent
-//                loader.visible = true
-//                loader.z = 50
+                loader.sourceComponent = coordinatorStack.removeDuplicateImageBlockingComponent
+                loader.visible = true
+                loader.z = 50
             }
         }
 

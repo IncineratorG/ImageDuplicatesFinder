@@ -2,6 +2,7 @@
 #define PATHS_H
 
 #include <QList>
+#include <QSet>
 #include "Path.h"
 
 

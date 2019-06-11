@@ -36,7 +36,7 @@ public:
     IDFServiceInputData getInputData() const;
 
     // Добавить папку во входные данные сервиса.
-    void addInputFolder(const QString& folderPath, const bool processSubpath);
+    bool addInputFolder(const QString& folderPath, const bool processSubpath);
     // Обновить папку входных данных сервиса.
     bool updateInputFolder(const int folderRow, const QString& folderPath, const bool processSubpath);
     // Удалить из входных данных соответсвующую папку.

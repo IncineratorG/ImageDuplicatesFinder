@@ -45,12 +45,17 @@ IDFServiceInputData IDFServiceController::getInputData() const {
     return m_dataWarehouse.getInputData();
 }
 
-void IDFServiceController::addInputFolder(const QString& folderPath, const bool processSubpath) {
+bool IDFServiceController::addInputFolder(const QString& folderPath, const bool processSubpath) {
     IDFServiceInputData currentInputData = m_dataWarehouse.getInputData();
+    if (currentInputData.containInputDataItem(IDFServiceInputDataItem(folderPath, processSubpath))) {
+        return false;
+    }
 
     currentInputData.appendInputDataItem(IDFServiceInputDataItem(folderPath, processSubpath));
 
     m_dataWarehouse.setInputData(currentInputData);
+
+    return true;
 }
 
 bool IDFServiceController::updateInputFolder(const int folderRow, const QString& folderPath, const bool processSubpath) {

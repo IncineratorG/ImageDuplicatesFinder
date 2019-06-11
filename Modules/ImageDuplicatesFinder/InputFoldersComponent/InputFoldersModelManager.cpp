@@ -19,10 +19,12 @@ void InputFoldersModelManager::addFolder(const QString& folderPath) {
     InputFolderItem modelItem(validFolderPath, false);
 
     // Добавляем новые данные для обработки в контроллер сервиса.
-    m_idfServiceController->addInputFolder(modelItem.getPath(), modelItem.getProcessSubpath());
+    bool itemAdded = m_idfServiceController->addInputFolder(modelItem.getPath(), modelItem.getProcessSubpath());
 
     // Добавляем новые данные в модель.
-    m_inputFoldersModel->addFolder(modelItem);
+    if (itemAdded) {
+        m_inputFoldersModel->addFolder(modelItem);
+    }
 }
 
 void InputFoldersModelManager::setProcessSubfolders(const int folderRow, const bool process) {
