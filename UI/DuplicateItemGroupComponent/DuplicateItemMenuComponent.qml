@@ -15,6 +15,10 @@ Item {
     width: 110
     height: 80
 
+    signal openButtonClicked()
+    signal notDuplicateButtonClicked()
+    signal removeButtonClicked()
+
     function show(x, y) {
         menuComponent.x = x
         menuComponent.y = y
@@ -25,32 +29,36 @@ Item {
         menuComponent.visible = false
     }
 
-    DropShadow {
-        anchors.fill: parent
+//    DropShadow {
+//        anchors.fill: parent
 
-        anchors.margins: 4
+//        anchors.margins: 4
 
-        horizontalOffset: 8
-        verticalOffset: 8
-//        radius: 8.0
-//        samples: 17
-//        color: "#80000000"
-        color: "grey"
-//        source: butterfly
-    }
+//        horizontalOffset: 8
+//        verticalOffset: 8
+////        radius: 8.0
+////        samples: 17
+////        color: "#80000000"
+//        color: "grey"
+////        source: butterfly
+//    }
 
-    MouseArea {
-        anchors.fill: parent
+//    MouseArea {
+//        anchors.fill: parent
 
-        onClicked: {
-            console.log("ON_MENU_CLICKED")
-        }
-    }
+//        propagateComposedEvents: true
+
+//        onClicked: {
+//            console.log("ON_MENU_CLICKED")
+//        }
+//    }
 
     Rectangle {
         anchors.fill: parent
 
-        color: "white"
+        color: "#FAFAFA"
+
+        radius: 4
 
         Rectangle {
             id: openButtonWrapper
@@ -62,6 +70,24 @@ Item {
             height: Style.elementHeight
 
             color: "transparent"
+
+            MouseArea {
+                anchors.fill: parent
+
+                hoverEnabled: true
+
+                onEntered: {
+                    openButtonWrapper.color = "#F4F8FA"
+                }
+
+                onExited: {
+                    openButtonWrapper.color = "transparent"
+                }
+
+                onClicked: {
+                    menuComponent.openButtonClicked()
+                }
+            }
 
             Rectangle {
                 id: openButtonImageWrapper
@@ -124,6 +150,24 @@ Item {
 
             color: "transparent"
 
+            MouseArea {
+                anchors.fill: parent
+
+                hoverEnabled: true
+
+                onEntered: {
+                    notDuplicateButtonWrapper.color = "#F4F8FA"
+                }
+
+                onExited: {
+                    notDuplicateButtonWrapper.color = "transparent"
+                }
+
+                onClicked: {
+                    menuComponent.notDuplicateButtonClicked()
+                }
+            }
+
             Rectangle {
                 id: notDuplicateImageWrapper
 
@@ -184,6 +228,24 @@ Item {
             height: Style.elementHeight
 
             color: "transparent"
+
+            MouseArea {
+                anchors.fill: parent
+
+                hoverEnabled: true
+
+                onEntered: {
+                    deleteButtonWrapper.color = "#F4F8FA"
+                }
+
+                onExited: {
+                    deleteButtonWrapper.color = "transparent"
+                }
+
+                onClicked: {
+                    menuComponent.removeButtonClicked()
+                }
+            }
 
             Rectangle {
                 id: deleteButtonImageWrapper

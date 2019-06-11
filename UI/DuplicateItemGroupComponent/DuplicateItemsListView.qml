@@ -14,6 +14,8 @@ Rectangle {
     property int listViewItemHeight: 40
     property int listViewItemSpacing: 4
 
+    property var openedMenuItemId: -1
+
     color: "#F4F8FA"
 
 //    MouseArea {
@@ -65,13 +67,31 @@ Rectangle {
 
     DuplicateItemMenuComponent {
         id: itemMenuComponent
+
+        onOpenButtonClicked: {
+            DuplicateGroupModelManager.openItemPath(openedMenuItemId)
+
+            closeListViewItemMenu()
+        }
+
+        onNotDuplicateButtonClicked: {
+            console.log("NOT_DUPLICATE: " + openedMenuItemId)
+
+            closeListViewItemMenu()
+        }
+
+        onRemoveButtonClicked: {
+            console.log("REMOVE: " + openedMenuItemId)
+
+            closeListViewItemMenu()
+        }
     }
 
 
-    function toggleListViewItemMenu(itemXCoord, itemYCoord, itemPosition) {
+    function toggleListViewItemMenu(itemXCoord, itemYCoord, itemPosition, itemId) {
         console.log(itemXCoord + " - " + itemYCoord + " - " + itemPosition)
 
-        var menuComponentWidth = 110 + 20
+        var menuComponentWidth = 110 /*+ 10*/
 
         var itemMenuXPosition = duplicateItemsListViewComponent.width - menuComponentWidth
         var itemMenuYPosition = y + (listViewItemHeight + listViewItemSpacing) * (itemPosition + 1)
@@ -81,12 +101,22 @@ Rectangle {
         console.log()
 
         if (previousItemPosition == itemPosition) {
-            itemMenuComponent.hide()
-            previousItemPosition = -1
+            duplicateItemsListViewComponent.closeListViewItemMenu()
         } else {
-            itemMenuComponent.show(itemMenuXPosition, itemMenuYPosition)
-            previousItemPosition = itemPosition
+            duplicateItemsListViewComponent.openListViewItemMenu(itemMenuXPosition, itemMenuYPosition, itemPosition, itemId)
         }
+    }
+
+    function openListViewItemMenu(itemMenuXPosition, itemMenuYPosition, itemPosition, itemId) {
+        itemMenuComponent.show(itemMenuXPosition, itemMenuYPosition)
+        previousItemPosition = itemPosition
+        openedMenuItemId = itemId
+    }
+
+    function closeListViewItemMenu() {
+        itemMenuComponent.hide()
+        previousItemPosition = -1
+        openedMenuItemId = -1
     }
     // ===
 
@@ -239,15 +269,59 @@ Rectangle {
 
                     width: parent.height
 
-                    color: "grey"
+                    color: "transparent"
 
-                    MouseArea {
+//                    MouseArea {
+//                        anchors.fill: parent
+
+//                        onClicked: {
+//                            listView.currentIndex = model.index
+
+//                            duplicateItemsListViewComponent.toggleListViewItemMenu(actionButtonsWrapper.x, actionButtonsWrapper.y, listView.currentIndex)
+//                        }
+//                    }
+
+                    Rectangle {
+                        id: menuButtonWrapper
+
                         anchors.fill: parent
 
-                        onClicked: {
-                            listView.currentIndex = model.index
+                        color: "transparent"
 
-                            duplicateItemsListViewComponent.toggleListViewItemMenu(actionButtonsWrapper.x, actionButtonsWrapper.y, listView.currentIndex)
+                        radius: 10
+
+                        MouseArea {
+                            anchors.fill: parent
+
+                            onClicked: {
+                                listView.currentIndex = model.index
+
+                                duplicateItemsListViewComponent.toggleListViewItemMenu(actionButtonsWrapper.x,
+                                                                                       actionButtonsWrapper.y,
+                                                                                       listView.currentIndex,
+                                                                                       model.itemId)
+                            }
+
+                            onPressed: {
+                                menuButtonWrapper.color = "#F4F8FA"
+                            }
+
+                            onReleased: {
+                                menuButtonWrapper.color = "transparent"
+                            }
+                        }
+
+                        Image {
+                            id: menuButtonImage
+
+                            width: 32
+                            height: 32
+
+                            anchors.centerIn: parent
+
+                            rotation: 90
+
+                            source: "../Assets/more.png"
                         }
                     }
                 }
