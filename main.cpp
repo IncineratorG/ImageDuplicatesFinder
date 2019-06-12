@@ -1,5 +1,6 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QIcon>
 
 #include "Modules/ImageDuplicatesFinder/ImageDuplicatesFinderModule.h"
 #include "Services/ImageDuplicatesFinderService/Data/IDFServiceOutputData.h"
@@ -13,6 +14,10 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QGuiApplication app(argc, argv);
+//    app.setWindowIcon(QIcon("../UI/Assets/app_icon.ico"));
+
+//    QIcon icon("../UI/Assets/app_icon.ico");
+//    qDebug() << icon.isNull();
 
     QQmlApplicationEngine engine;
 
