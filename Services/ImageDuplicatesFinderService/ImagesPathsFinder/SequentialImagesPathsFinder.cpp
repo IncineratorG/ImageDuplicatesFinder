@@ -30,8 +30,9 @@ void SequentialImagesPathsFinder::run() {
         m_imagesPaths->clear();
     }
 
-    if (m_paths == nullptr)
+    if (m_paths == nullptr) {
         return;
+    }
 
     doWork();
 }

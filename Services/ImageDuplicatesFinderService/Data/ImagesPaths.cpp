@@ -19,7 +19,9 @@ ImagesPaths::ImagesPaths(const ImagesPaths& other)
 }
 
 void ImagesPaths::appendImagePath(const ImagePath& path) {
-    m_pathsList.append(path);
+    if (!m_pathsList.contains(path)) {
+        m_pathsList.append(path);
+    }
 }
 
 QList<ImagePath> ImagesPaths::getPaths() const {
@@ -28,4 +30,8 @@ QList<ImagePath> ImagesPaths::getPaths() const {
 
 void ImagesPaths::clear() {
     m_pathsList.clear();
+}
+
+bool ImagesPaths::containImagePath(const ImagePath& path) const {
+    return m_pathsList.contains(path);
 }

@@ -18,6 +18,8 @@ public:
 
     void clear();
 
+    bool containImagePath(const ImagePath& path) const;
+
 private:
     QList<ImagePath> m_pathsList;
 };

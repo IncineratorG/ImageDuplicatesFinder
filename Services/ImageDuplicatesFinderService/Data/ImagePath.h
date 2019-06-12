@@ -14,6 +14,10 @@ public:
 
     QString toString() const;
 
+    bool operator==(const ImagePath& other) {
+        return this->m_imagePath == other.m_imagePath;
+    }
+
 private:
     QString m_imagePath;
 };
