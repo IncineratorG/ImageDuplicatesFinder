@@ -45,8 +45,6 @@ Rectangle {
 
 
     function toggleListViewItemMenu(itemXCoord, itemYCoord, itemPosition, itemId) {
-        console.log(itemXCoord + " - " + itemYCoord + " - " + itemPosition)
-
         var menuComponentWidth = 110 /*+ 10*/
 
         var itemMenuXPosition = duplicateItemsListViewComponent.width - menuComponentWidth

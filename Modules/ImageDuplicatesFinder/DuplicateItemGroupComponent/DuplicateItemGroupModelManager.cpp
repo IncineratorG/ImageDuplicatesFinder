@@ -70,11 +70,36 @@ void DuplicateItemGroupModelManager::openItemPath(const qint64 itemId) {
 }
 
 void DuplicateItemGroupModelManager::markItemAsNotDuplicate(const qint64 itemId) {
-    qDebug() << __PRETTY_FUNCTION__ << "->ITEM_ID: " << itemId;
+    // Удаляем элемент из хранилища данных
+    m_idfServiceController->removeDuplicateItem(itemId);
 }
 
 void DuplicateItemGroupModelManager::removeItemFromDisk(const qint64 itemId) {
-    qDebug() << __PRETTY_FUNCTION__ << "->ITEM_ID: " << itemId;
+    // Получаем путь до соответсвующего файла с изображением.
+    const QString filePath = m_duplicateGroupModel->getItemImagePathText(itemId);
+    if (filePath.isEmpty()) {
+        qDebug() << __PRETTY_FUNCTION__ << "->NO_ITEM_WITH_ID: " << itemId;
+        return;
+    }
+
+    // Удаляем файл с диска.
+    QFile fileToRemove(filePath);
+    if (!fileToRemove.exists()) {
+        qDebug() << __PRETTY_FUNCTION__ << "->NO_SUCH_FILE: " << filePath;
+        return;
+    }
+
+    bool fileRemovedFromDisk = fileToRemove.remove();
+    if (!fileRemovedFromDisk) {
+        qDebug() << __PRETTY_FUNCTION__ << "->UNABLE_TO_REMOVE_FILE: " << filePath;
+        return;
+    }
+
+    // Удаляем элемент из хранилища данных.
+    bool itemRemovedFromWarehouse = m_idfServiceController->removeDuplicateItem(itemId);
+    if (!itemRemovedFromWarehouse) {
+        qDebug() << __PRETTY_FUNCTION__ << "->UNABLE_TO_REMOVE_ITEM_FROM_WAREHOUSE: " << itemId;
+    }
 }
 
 void DuplicateItemGroupModelManager::stopListenToFileChangies() {

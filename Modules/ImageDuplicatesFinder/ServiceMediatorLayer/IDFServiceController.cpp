@@ -105,7 +105,7 @@ DuplicateItemsGroup IDFServiceController::getDuplicateItemGroup(const qint64 gro
 bool IDFServiceController::removeDuplicateItem(const qint64 itemId) {
     // Получаем список групп дубликатов всех изображений.
     auto duplicatesGroups = m_dataWarehouse.getModelDuplicatesGroups();
-    QList<DuplicateItemsGroup> groupsList = duplicatesGroups.getGroupsList();
+    auto groupsList = duplicatesGroups.getGroupsList();
 
     // Проходимся по всем группам дубликатов и ищем группу,
     // содержащую дубликат с соответсвующим ID.
@@ -118,6 +118,12 @@ bool IDFServiceController::removeDuplicateItem(const qint64 itemId) {
             group.removeDuplicateById(itemId);
 
             containingGroupId = group.getId();
+
+            // Если в группе остался только один
+            // элемент - удаляем эту группу из списка.
+            if (group.getGroupSize() <= 1) {
+                groupsList.removeAt(i);
+            }
 
             break;
         }
@@ -136,6 +142,40 @@ bool IDFServiceController::removeDuplicateItem(const qint64 itemId) {
 
     return true;
 }
+//bool IDFServiceController::removeDuplicateItem(const qint64 itemId) {
+//    // Получаем список групп дубликатов всех изображений.
+//    auto duplicatesGroups = m_dataWarehouse.getModelDuplicatesGroups();
+//    QList<DuplicateItemsGroup> groupsList = duplicatesGroups.getGroupsList();
+
+////     Проходимся по всем группам дубликатов и ищем группу,
+////     содержащую дубликат с соответсвующим ID.
+//    qint64 containingGroupId = -1;
+//    for (int i = 0; i < groupsList.size(); ++i) {
+//        DuplicateItemsGroup& group = groupsList[i];
+
+//        // Удаляем дубликат с заданным ID из соответсвующей группы.
+//        if (group.contains(itemId)) {
+//            group.removeDuplicateById(itemId);
+
+//            containingGroupId = group.getId();
+
+//            break;
+//        }
+//    }
+
+//    if (containingGroupId < 0) {
+//        qDebug() << __PRETTY_FUNCTION__ << "->UNABLE_TO_REMOVE_DUPLICATE_WITH_ID: " << itemId;
+//        return false;
+//    }
+
+//    DuplicateItemsGroups editedGroups(groupsList);
+
+//    m_dataWarehouse.setModelDuplicatesGroups(editedGroups);
+
+//    emit duplciateItemRemoved(containingGroupId, itemId);
+
+//    return true;
+//}
 
 void IDFServiceController::onServiceStarted() {
     emit serviceStarted();

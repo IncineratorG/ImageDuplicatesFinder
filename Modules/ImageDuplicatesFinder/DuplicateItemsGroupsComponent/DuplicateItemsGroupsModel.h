@@ -28,6 +28,7 @@ public:
     int getSize() const;
 
     void updateGroup(const DuplicateItemsGroup& group);
+    void removeGroup(const qint64 groupId);
 
     // ============== Функции, наследуемые от QAbstractListModel ================
     int rowCount(const QModelIndex& parent = QModelIndex()) const;

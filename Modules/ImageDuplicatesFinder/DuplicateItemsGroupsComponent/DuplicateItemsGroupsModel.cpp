@@ -74,6 +74,18 @@ void DuplicateItemsGroupsModel::updateGroup(const DuplicateItemsGroup& group) {
     }
 }
 
+void DuplicateItemsGroupsModel::removeGroup(const qint64 groupId) {
+    for (int i = 0; i < modelData.size(); ++i) {
+        if (modelData.at(i).getId() == groupId) {
+            beginRemoveRows(QModelIndex(), i, i);
+            modelData.removeAt(i);
+            endRemoveRows();
+
+            break;
+        }
+    }
+}
+
 // ============== Функции, наследуемые от QAbstractListModel ================
 int DuplicateItemsGroupsModel::rowCount(const QModelIndex& parent) const {
     return modelData.size();

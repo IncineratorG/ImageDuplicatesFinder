@@ -20,6 +20,15 @@ void DuplicateItemsGroupsModelManager::onServiceFinished() {
 }
 
 void DuplicateItemsGroupsModelManager::onDuplicateItemRemoved(qint64 groupId, qint64 itemId) {
-    // Обновляем соответсвующую группу в модели.
-    m_duplicateGroupsModel->updateGroup(m_idfServiceController->getDuplicateItemGroup(groupId));
+    const DuplicateItemsGroup& groupWithRemovedItem = m_idfServiceController->getDuplicateItemGroup(groupId);
+
+    if (groupWithRemovedItem.isEmpty()) {
+        m_duplicateGroupsModel->removeGroup(groupId);
+    } else {
+        m_duplicateGroupsModel->updateGroup(groupWithRemovedItem);
+    }
 }
+//void DuplicateItemsGroupsModelManager::onDuplicateItemRemoved(qint64 groupId, qint64 itemId) {
+//    // Обновляем соответсвующую группу в модели.
+//    m_duplicateGroupsModel->updateGroup(m_idfServiceController->getDuplicateItemGroup(groupId));
+//}
