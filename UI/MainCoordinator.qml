@@ -49,32 +49,37 @@ Item {
 
         property Component duplicateItemGroupComponent: DuplicateItemGroupComponent {
             onToolbarLeftButtonClicked: {
-//                console.log("CLICK")
-
-//                if (loader.visible) {
-//                    loader.sourceComponent = undefined
-//                    loader.z = -1
-//                    loader.visible = false
-//                } else {
-//                    loader.sourceComponent = rect
-//                    loader.z = 50
-//                    loader.visible = true
-//                }
-
-
-                coordinatorStack.pop(StackView.Immediate)
+                if (loader.visible) {
+                    return
+                } else {
+                    coordinatorStack.pop(StackView.Immediate)
+                }
             }
 
             onNotDuplicateButtonClicked: {
+                coordinatorStack.notDuplicateComponentOkAction = function() {
+                    DuplicateGroupModelManager.markItemAsNotDuplicate(itemId)
+                }
+
                 loader.sourceComponent = coordinatorStack.notDuplicateBlockingComponent
                 loader.visible = true
                 loader.z = 50
+
+                loader.item.imagePath = DuplicateGroupModelManager.getItemImagePath(itemId)
+                loader.item.imagePathString = DuplicateGroupModelManager.getItemImagePathText(itemId)
             }
 
             onRemoveItemButtonClicked: {
+                coordinatorStack.removeDuplicateComponentOkAction = function() {
+                    DuplicateGroupModelManager.removeItemFromDisk(itemId)
+                }
+
                 loader.sourceComponent = coordinatorStack.removeDuplicateImageBlockingComponent
                 loader.visible = true
                 loader.z = 50
+
+                loader.item.imagePath = DuplicateGroupModelManager.getItemImagePath(itemId)
+                loader.item.imagePathString = DuplicateGroupModelManager.getItemImagePathText(itemId)
             }
         }
 
@@ -112,12 +117,18 @@ Item {
             }
         }
 
+        property var notDuplicateComponentOkAction: undefined
+        property var notDuplicateComponentCancelAction: undefined
         property Component notDuplicateBlockingComponent: BlockingComponent {
-            okButtonText: "Не дубликат"
+            okButtonText: "Убрать"
             cancelButtonText: "Отмена"
+            informationalTextValue: "Убрать из списка дубликатов?"
 
             onOkButtonClicked: {
-                console.log("NOT_DUPLICATE_CLICKED")
+                if (coordinatorStack.notDuplicateComponentOkAction != undefined) {
+                    coordinatorStack.notDuplicateComponentOkAction()
+                }
+                coordinatorStack.notDuplicateComponentOkAction = undefined
 
                 loader.sourceComponent = undefined
                 loader.visible = false
@@ -125,7 +136,10 @@ Item {
             }
 
             onCancelButtonClicked: {
-                console.log("CANCEL")
+                if (coordinatorStack.notDuplicateComponentCancelAction != undefined) {
+                    coordinatorStack.notDuplicateComponentCancelAction()
+                }
+                coordinatorStack.notDuplicateComponentCancelAction = undefined
 
                 loader.sourceComponent = undefined
                 loader.visible = false
@@ -139,12 +153,18 @@ Item {
             }
         }
 
+        property var removeDuplicateComponentOkAction: undefined
+        property var removeDuplicateComponentCancelAction: undefined
         property Component removeDuplicateImageBlockingComponent: BlockingComponent {
             okButtonText: "Удалить"
             cancelButtonText: "Отмена"
+            informationalTextValue: "Удалить изображение с диска?"
 
             onOkButtonClicked: {
-                console.log("REMOVE_CLICKED")
+                if (coordinatorStack.removeDuplicateComponentOkAction != undefined) {
+                    coordinatorStack.removeDuplicateComponentOkAction()
+                }
+                coordinatorStack.removeDuplicateComponentOkAction = undefined
 
                 loader.sourceComponent = undefined
                 loader.visible = false
@@ -152,7 +172,10 @@ Item {
             }
 
             onCancelButtonClicked: {
-                console.log("CANCEL")
+                if (coordinatorStack.removeDuplicateComponentCancelAction != undefined) {
+                    coordinatorStack.removeDuplicateComponentCancelAction()
+                }
+                coordinatorStack.removeDuplicateComponentCancelAction = undefined
 
                 loader.sourceComponent = undefined
                 loader.visible = false
@@ -171,21 +194,3 @@ Item {
         initialItem: inputFoldersComponent
     }
 }
-
-
-
-//    WaitComponent {
-//        id: waitComponent
-
-//        anchors.fill: parent
-
-//        visible: IDFServiceController.serviceStatus != "idle"
-//        z: IDFServiceController.serviceStatus == "idle" ? -1 : 10
-
-//        progressText: IDFServiceController.currentServiceOperationName
-//        progressValue: IDFServiceController.currentServiceOperationProgress
-
-//        onCancelButtonClicked: {
-//            InputFoldersModelManager.stopProcessing()
-//        }
-//    }

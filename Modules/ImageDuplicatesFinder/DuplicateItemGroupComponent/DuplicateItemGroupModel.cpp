@@ -75,6 +75,25 @@ qint64 DuplicateItemGroupModel::getItemIdByImagePath(const QString& imagePath) c
     return -1;
 }
 
+QString DuplicateItemGroupModel::getItemImagePath(const qint64 itemId) const {
+    QString imagePathText = getItemImagePathText(itemId);
+    if (imagePathText.isEmpty()) {
+        return "";
+    }
+
+    return QML_FOLDER_PREFIX + imagePathText;
+}
+
+QString DuplicateItemGroupModel::getItemImagePathText(const qint64 itemId) const {
+    for (int i = 0; i < modelData.size(); ++i) {
+        if (modelData.at(i).getId() == itemId) {
+            return modelData.at(i).getImagePath();
+        }
+    }
+
+    return "";
+}
+
 bool DuplicateItemGroupModel::removeItem(const qint64 itemId) {
     for (int i = 0; i < modelData.size(); ++i) {
         if (modelData.at(i).getId() == itemId) {

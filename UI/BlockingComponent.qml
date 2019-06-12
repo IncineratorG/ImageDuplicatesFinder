@@ -10,6 +10,10 @@ Rectangle {
 
     property string okButtonText: "Ok"
     property string cancelButtonText: "Cancel"
+    property string imagePath: ""
+    property string imagePathString: ""
+    property string informationalTextValue: ""
+    property var informationalTextAlignMode: Text.AlignRight
 
     signal okButtonClicked()
     signal cancelButtonClicked()
@@ -26,9 +30,11 @@ Rectangle {
     }
 
     Rectangle {
+        id: contentWrapper
+
         anchors.centerIn: parent
 
-        height: 150
+        height: (informationContentWrapper.height) + (buttonsWrapper.height + 8)
         width: 300
 
         color: "#66000000"
@@ -42,6 +48,115 @@ Rectangle {
 
             }
         }
+
+        Rectangle {
+            id: informationContentWrapper
+
+            height: informationTextWrapper.height +imageContentWrapper.height
+            width: parent.width
+
+            color: "transparent"
+
+            Rectangle {
+                id: informationTextWrapper
+
+                anchors.top: parent.top
+                anchors.left: parent.left
+                anchors.right: parent.right
+
+                height: informationalTextValue == "" ? 0 : Style.elementHeight
+
+                color: "transparent"
+
+                Text {
+                    id: informationalText
+
+                    anchors.left: parent.left
+
+                    anchors.verticalCenter: parent.verticalCenter
+
+                    anchors.leftMargin: 4
+
+                    width: parent.width - 6
+
+                    horizontalAlignment: Text.AlignHCenter
+
+                    text: informationalTextValue
+                    elide: informationalTextAlignMode
+                    font.pointSize: Style.elementTextSize - 1
+
+                    color: "white"
+                }
+            }
+
+            Rectangle {
+                id: imageContentWrapper
+
+                anchors.top: informationTextWrapper.bottom
+                anchors.left: parent.left
+                anchors.right: parent.right
+
+                height: imagePath == "" ? 0 : parent.width
+
+                color: "transparent"
+
+                Rectangle {
+                    id: imageWrapper
+
+                    anchors.top: parent.top
+                    anchors.bottom: imagePathWrapper.top
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+
+                    color: "transparent"
+
+                    Image {
+                        anchors.fill: parent
+
+                        anchors.leftMargin: 4
+                        anchors.rightMargin: 4
+
+                        source: imagePath
+
+                        sourceSize.width: imageWrapper.width
+                        sourceSize.height: imageWrapper.height
+
+                        asynchronous: true
+                    }
+                }
+
+                Rectangle {
+                    id: imagePathWrapper
+
+                    anchors.bottom: parent.bottom
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+
+                    color: "transparent"
+
+                    height: imagePath == "" ? 0 : Style.elementHeight
+
+                    Text {
+                        id: imagePathText
+
+                        anchors.left: parent.left
+
+                        anchors.verticalCenter: parent.verticalCenter
+
+                        anchors.leftMargin: 4
+
+                        width: parent.width - 6
+
+                        text: imagePathString
+                        elide: Text.ElideMiddle
+                        font.pointSize: Style.elementTextSize - 1
+
+                        color: "white"
+                    }
+                }
+            }
+        }
+
 
         Rectangle {
             id: buttonsWrapper
@@ -72,14 +187,25 @@ Rectangle {
 
                     anchors.fill: parent
 
+
                     textColorDefault: "white"
                     textColorPressed: "white"
 
-                    borderColorDefault: "#D50000"
-                    borderColorPressed: "#8cD50000"
+                    borderColorDefault: "#26A9F7"
+                    borderColorPressed: "#4FC3F7"
 
-                    backgroundColorDefault: "#D50000"
-                    backgroundColorPressed: "#E53935"
+                    backgroundColorDefault: "#26A9F7"
+                    backgroundColorPressed: "#4FC3F7"
+
+
+//                    textColorDefault: "white"
+//                    textColorPressed: "white"
+
+//                    borderColorDefault: "#D50000"
+//                    borderColorPressed: "#8cD50000"
+
+//                    backgroundColorDefault: "#D50000"
+//                    backgroundColorPressed: "#E53935"
 
                     text: okButtonText
 
@@ -106,14 +232,25 @@ Rectangle {
 
                     anchors.fill: parent
 
+
                     textColorDefault: "white"
                     textColorPressed: "white"
 
-                    borderColorDefault: "#D50000"
-                    borderColorPressed: "#8cD50000"
+                    borderColorDefault: "#26A9F7"
+                    borderColorPressed: "#4FC3F7"
 
-                    backgroundColorDefault: "#D50000"
-                    backgroundColorPressed: "#E53935"
+                    backgroundColorDefault: "#26A9F7"
+                    backgroundColorPressed: "#4FC3F7"
+
+
+//                    textColorDefault: "white"
+//                    textColorPressed: "white"
+
+//                    borderColorDefault: "#D50000"
+//                    borderColorPressed: "#8cD50000"
+
+//                    backgroundColorDefault: "#D50000"
+//                    backgroundColorPressed: "#E53935"
 
                     text: cancelButtonText
 
@@ -125,21 +262,3 @@ Rectangle {
         }
     }
 }
-
-//Item {
-//    MouseArea {
-//        anchors.fill: parent
-
-//        propagateComposedEvents: false
-
-//        onClicked: console.log("CLICKED")
-//    }
-
-//    Rectangle {
-//        anchors.fill: parent
-
-//        color: "#cc000000"
-//    }
-
-////    Component.onCompleted: console.log("BLOCKING_COMPONENT->ON_COMPLETED")
-//}

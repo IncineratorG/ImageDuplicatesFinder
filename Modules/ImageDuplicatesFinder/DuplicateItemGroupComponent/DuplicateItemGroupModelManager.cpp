@@ -81,6 +81,14 @@ void DuplicateItemGroupModelManager::stopListenToFileChangies() {
     disconnectFileWatcher();
 }
 
+QString DuplicateItemGroupModelManager::getItemImagePath(const qint64 itemId) const {
+    return m_duplicateGroupModel->getItemImagePath(itemId);
+}
+
+QString DuplicateItemGroupModelManager::getItemImagePathText(const qint64 itemId) const {
+    return m_duplicateGroupModel->getItemImagePathText(itemId);
+}
+
 void DuplicateItemGroupModelManager::onFileChanged(const QString& path) {
     QFileInfo fileInfo(path);
     if (fileInfo.exists()) {

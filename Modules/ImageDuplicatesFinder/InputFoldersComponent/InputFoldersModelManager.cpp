@@ -16,7 +16,7 @@ void InputFoldersModelManager::addFolder(const QString& folderPath) {
         validFolderPath.remove(0, QML_FOLDER_PREFIX.length());
     }
 
-    InputFolderItem modelItem(validFolderPath, false);
+    InputFolderItem modelItem(validFolderPath, true);
 
     // Добавляем новые данные для обработки в контроллер сервиса.
     bool itemAdded = m_idfServiceController->addInputFolder(modelItem.getPath(), modelItem.getProcessSubpath());

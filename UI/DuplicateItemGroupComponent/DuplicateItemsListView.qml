@@ -17,8 +17,17 @@ Rectangle {
     property int listViewItemSpacing: 4
 
     property var openedMenuItemId: -1
+    property var previousItemPosition: -1
 
     color: "#F4F8FA"
+
+    onWidthChanged: {
+        closeListViewItemMenu()
+    }
+
+    onHeightChanged: {
+        closeListViewItemMenu()
+    }
 
 //    MouseArea {
 //        anchors.fill: parent
@@ -35,65 +44,6 @@ Rectangle {
 //    }
 
 
-//    // ===
-//    Rectangle {
-//        id: listViewItemMenuComponent
-
-//        width: 100
-//        height: 100
-
-//        color: "yellow"
-
-//        visible: false
-
-//        x: 490
-//        y: 4
-//        z: 10
-//    }
-
-//    function f(x, y, position) {
-//        console.log("IN_FUNCTION: " + x + " - " + y + " - " + position)
-
-//        var listViewItemHeight = 40
-//        var listViewItemSpacing = 4
-
-//        listViewItemMenuComponent.x = duplicateItemsListViewComponent.width - listViewItemMenuComponent.width
-//        listViewItemMenuComponent.y = y + (listViewItemHeight + listViewItemSpacing) * (position + 1)
-//        listViewItemMenuComponent.visible = true
-//    }
-//    // ===
-
-
-    // ===
-    property var previousItemPosition: -1
-
-    DuplicateItemMenuComponent {
-        id: itemMenuComponent
-
-        onOpenButtonClicked: {
-            DuplicateGroupModelManager.openItemPath(openedMenuItemId)
-
-            closeListViewItemMenu()
-        }
-
-        onNotDuplicateButtonClicked: {
-            console.log("NOT_DUPLICATE: " + openedMenuItemId)
-
-            duplicateItemsListViewComponent.notDuplicateButtonClicked(openedMenuItemId)
-
-            closeListViewItemMenu()
-        }
-
-        onRemoveButtonClicked: {
-            console.log("REMOVE: " + openedMenuItemId)
-
-            duplicateItemsListViewComponent.removeItemButtonClicked(openedMenuItemId)
-
-            closeListViewItemMenu()
-        }
-    }
-
-
     function toggleListViewItemMenu(itemXCoord, itemYCoord, itemPosition, itemId) {
         console.log(itemXCoord + " - " + itemYCoord + " - " + itemPosition)
 
@@ -101,10 +51,6 @@ Rectangle {
 
         var itemMenuXPosition = duplicateItemsListViewComponent.width - menuComponentWidth
         var itemMenuYPosition = y + (listViewItemHeight + listViewItemSpacing) * (itemPosition + 1)
-
-        console.log("MENU_X: " + itemMenuXPosition)
-        console.log("MENU_Y: " + itemMenuYPosition)
-        console.log()
 
         if (previousItemPosition == itemPosition) {
             duplicateItemsListViewComponent.closeListViewItemMenu()
@@ -124,7 +70,29 @@ Rectangle {
         previousItemPosition = -1
         openedMenuItemId = -1
     }
-    // ===
+
+
+    DuplicateItemMenuComponent {
+        id: itemMenuComponent
+
+        onOpenButtonClicked: {
+            DuplicateGroupModelManager.openItemPath(openedMenuItemId)
+
+            closeListViewItemMenu()
+        }
+
+        onNotDuplicateButtonClicked: {
+            duplicateItemsListViewComponent.notDuplicateButtonClicked(openedMenuItemId)
+
+            closeListViewItemMenu()
+        }
+
+        onRemoveButtonClicked: {
+            duplicateItemsListViewComponent.removeItemButtonClicked(openedMenuItemId)
+
+            closeListViewItemMenu()
+        }
+    }
 
 
     Rectangle {

@@ -28,6 +28,9 @@ public slots:
 
     void stopListenToFileChangies();
 
+    QString getItemImagePath(const qint64 itemId) const;
+    QString getItemImagePathText(const qint64 itemId) const;
+
 private slots:
     void onFileChanged(const QString& path);
     void onDuplicateItemRemoved(qint64 groupId, qint64 itemId);

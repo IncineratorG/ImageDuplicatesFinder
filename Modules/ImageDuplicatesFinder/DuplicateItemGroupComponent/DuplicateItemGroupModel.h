@@ -33,6 +33,8 @@ public:
     void setGeneralImagePath(const QString& imagePath);
 
     qint64 getItemIdByImagePath(const QString& imagePath) const;
+    QString getItemImagePath(const qint64 itemId) const;
+    QString getItemImagePathText(const qint64 itemId) const;
 
     bool removeItem(const qint64 itemId);
 

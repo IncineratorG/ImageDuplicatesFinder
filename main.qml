@@ -15,8 +15,48 @@ ApplicationWindow {
     height: 600
     title: qsTr("Поиск дубликатов изображений")
 
+    property var closeAccepted: false
+
+    property Component closeAppBlockingComponent: BlockingComponent {
+        okButtonText: "Выйти"
+        cancelButtonText: "Отмена"
+        informationalTextValue: "Выйти из приложения?"
+
+        onOkButtonClicked: {
+            loader.sourceComponent = undefined
+            loader.visible = false
+            loader.z = -1
+
+            closeAccepted = true
+
+            mainWindow.close()
+        }
+
+        onCancelButtonClicked: {
+            loader.sourceComponent = undefined
+            loader.visible = false
+            loader.z = -1
+        }
+    }
+
+    Loader {
+        id: loader
+
+        anchors.fill: parent
+
+        visible: false
+    }
+
     MainCoordinator {
         anchors.fill: parent
+    }
+
+    onClosing: {
+        close.accepted = closeAccepted
+
+        loader.sourceComponent = closeAppBlockingComponent
+        loader.visible = true
+        loader.z = 55
     }
 }
 
