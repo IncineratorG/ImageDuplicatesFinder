@@ -26,6 +26,10 @@ public:
     void removeDuplicateImageFilePath(const QString& imageFilePath);
     bool containDuplicateImageFilePath(const QString& imageFilePath) const;
 
+    bool operator==(const FolderInfo& other) {
+        return this->m_folderPath == other.m_folderPath;
+    }
+
 private:
     QString m_folderPath;
 

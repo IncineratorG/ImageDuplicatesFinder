@@ -48,6 +48,13 @@ void SequentialHistogramsComparator::doWork() {
 
     const QList<ImageHistogram>& histogramsList = m_histograms->getHistograms();
     for (int i = 0; i < histogramsList.size(); ++i) {
+        // ===
+//        QString firstImagePath = histogramsList.at(i).getImagePath();
+//        if (firstImagePath.contains("Chrysanthemum")) {
+//            qDebug() << __PRETTY_FUNCTION__ << "->FIRST: " << firstImagePath;
+//        }
+        // ===
+
         if (QThread::currentThread()->isInterruptionRequested()) {
             break;
         }
@@ -62,14 +69,41 @@ void SequentialHistogramsComparator::doWork() {
 
         for (int j = i + 1; j < histogramsList.size(); ++j) {
             const ImageHistogram& otherHistogram = histogramsList.at(j);
+            // ===
+//            QString secondImagePath = histogramsList.at(j).getImagePath();
+//            if (firstImagePath.contains("Chrysanthemum") && secondImagePath.contains("Chrysanthemum")) {
+//                qDebug() << __PRETTY_FUNCTION__ << similarityScore;
+//            }
+
+//            if (secondImagePath.contains("Chrysanthemum")) {
+//                qDebug() << __PRETTY_FUNCTION__ << "->SECOND: " << secondImagePath;
+//            }
+            // ===
+
             if (processedImagesPathsSet.contains(otherHistogram.getImagePath())) {
                 continue;
             }
 
             float similarityScore = currentHistogram.similarityScore(otherHistogram);
+            // ===
+//            QString secondImagePath = histogramsList.at(j).getImagePath();
+//            if (firstImagePath.contains("Chrysanthemum") && secondImagePath.contains("Chrysanthemum")) {
+//                qDebug() << __PRETTY_FUNCTION__ << firstImagePath;
+//                qDebug() << __PRETTY_FUNCTION__ << secondImagePath;
+//                qDebug() << __PRETTY_FUNCTION__ << similarityScore;
+//                qDebug() << "";
+//            }
+            // ===
             if (similarityScore < currentCriticalSimilarityScore) {
                 continue;
             }
+
+            // ===
+//            qDebug() << __PRETTY_FUNCTION__ << firstImagePath;
+//            if (firstImagePath.contains("Chrysanthemum") && secondImagePath.contains("Chrysanthemum")) {
+//                qDebug() << __PRETTY_FUNCTION__ << similarityScore;
+//            }
+            // ===
 
             currentImageDuplicatesGroup.appendImage(otherHistogram.getImagePath(), similarityScore);
 

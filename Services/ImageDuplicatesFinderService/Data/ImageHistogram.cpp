@@ -66,7 +66,7 @@ float ImageHistogram::similarityScore(const ImageHistogram& histogram) const {
         }
 
         if (std::isnan(redChannleNom / redChannelDenom)) {
-            result.append(0);
+            result.append(1);
         } else {
             result.append(redChannleNom / redChannelDenom);
         }
@@ -80,7 +80,7 @@ float ImageHistogram::similarityScore(const ImageHistogram& histogram) const {
         }
 
         if (std::isnan(greenChannelNom / greenChannelDenom)) {
-            result.append(0);
+            result.append(1);
         } else {
             result.append(greenChannelNom / greenChannelDenom);
         }
@@ -94,7 +94,7 @@ float ImageHistogram::similarityScore(const ImageHistogram& histogram) const {
         }
 
         if (std::isnan(blueChannelNom / blueChannelDenom)) {
-            result.append(0);
+            result.append(1);
         } else {
             result.append(blueChannelNom / blueChannelDenom);
         }

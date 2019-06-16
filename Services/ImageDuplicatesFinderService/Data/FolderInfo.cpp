@@ -73,9 +73,9 @@ bool FolderInfo::appendDuplicateImageFilePath(const QString& imageFilePath) {
         return false;
     }
 
+    m_duplicateImagesPaths.insert(imageFilePath);
 
-
-    return false;
+    return true;
 }
 
 void FolderInfo::removeDuplicateImageFilePath(const QString& imageFilePath) {
@@ -87,5 +87,11 @@ bool FolderInfo::containDuplicateImageFilePath(const QString& imageFilePath) con
 }
 
 bool FolderInfo::isImage(const QString& filePath) const {
-    return false;
+    if (filePath.endsWith(".jpg", Qt::CaseInsensitive) ||
+        filePath.endsWith(".jpeg", Qt::CaseInsensitive))
+    {
+        return true;
+    } else {
+        return false;
+    }
 }

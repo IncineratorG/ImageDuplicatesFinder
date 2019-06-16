@@ -1,5 +1,5 @@
 #include "SequentialFoldersStatisticBuilder.h"
-#include "../Data/FolderInfo.h"
+#include "../Data/FoldersInfos.h"
 #include <QSet>
 #include <QDir>
 #include <QFile>
@@ -33,8 +33,32 @@ void SequentialFoldersStatisticBuilder::doWork() {
 
 
 
+    FoldersInfos foldersInfos;
 
-//    FolderInfo info;
+    const QList<ImageDuplicatesGroup>& duplicatesGroupsList = m_imagesDuplicatesGroups->getGroupsList();
+    for (int i = 0; i < duplicatesGroupsList.size(); ++i) {
+        const ImageDuplicatesGroup& group = duplicatesGroupsList.at(i);
+        const QList<QString>& groupImagesPathsList = group.getImagesList();
+
+        for (int j = 0; j < groupImagesPathsList.size(); ++j) {
+            const QString& imagePath = groupImagesPathsList.at(j);
+
+            foldersInfos.appendFilePath(imagePath);
+        }
+    }
+
+    qDebug() << "";
+    const QList<FolderInfo>& foldersInfosList = foldersInfos.getFoldersInfosList();
+    for (int i = 0; i < foldersInfosList.size(); ++i) {
+        const FolderInfo& folderInfo = foldersInfosList.at(i);
+
+        qDebug() << __PRETTY_FUNCTION__ << folderInfo.getFolderPath();
+        qDebug() << "TOTAL_FILES: " << folderInfo.getTotalFilesCount();
+        qDebug() << "TOTAL_IMAGES: " << folderInfo.getTotalImagesCount();
+        qDebug() << "DUPLICATE_IMAGES: " << folderInfo.getDuplicateImagesCount();
+        qDebug() << "SUBFOLDERS: " << folderInfo.getSubfoldersCount();
+        qDebug() << "";
+    }
 
 
 

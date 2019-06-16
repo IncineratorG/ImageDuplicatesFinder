@@ -1,6 +1,10 @@
 #include "InputFoldersModelManager.h"
 #include <QDebug>
 
+// ===
+//#include "../../../Services/ImageDuplicatesFinderService/Data/ImageHistogram.h"
+// ===
+
 
 
 InputFoldersModelManager::InputFoldersModelManager(InputFoldersModel* inputFoldersModel)
@@ -55,6 +59,18 @@ void InputFoldersModelManager::removeFolder(const int folderRow) {
     m_inputFoldersModel->removeFolder(folderRow);
 }
 
+//void InputFoldersModelManager::startProcessing() {
+//    qDebug() << __PRETTY_FUNCTION__;
+
+//    QString image_1 = "C:/Users/Alexander/Downloads/TEST_IMAGES/Chrysanthemum.jpg";
+//    QString image_2 = "C:/Users/Alexander/Downloads/TEST_IMAGES/IMAGES/TEST_IMAGES/Chrysanthemum.jpg";
+
+//    ImageHistogram hist_1(image_1);
+//    ImageHistogram hist_2(image_2);
+
+//    qDebug() << __PRETTY_FUNCTION__ << "->" << hist_1.similarityScore(hist_2);
+////    qDebug() << __PRETTY_FUNCTION__ << "->" << hist_2.similarityScore(hist_1);
+//}
 void InputFoldersModelManager::startProcessing() {
     qDebug() << __PRETTY_FUNCTION__;
 
