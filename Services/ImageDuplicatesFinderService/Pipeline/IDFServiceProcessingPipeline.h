@@ -11,6 +11,7 @@
 #include "../ImagesPathsFinder/AbstractImagesPathsFinder.h"
 #include "../ImagesHistogramsBuilder/AbstractImagesHistogramsBuilder.h"
 #include "../HistogramsComparator/AbstractHistogramsComparator.h"
+#include "../FoldersStatisticBuilder/AbstractFoldersStatisticBuilder.h"
 #include "AbstractOperation.h"
 #include "PipelineOperationsTransitions.h"
 
@@ -70,11 +71,14 @@ private:
     IDFServiceInputData m_inputData;
     Paths m_inputPaths;
 
+    IDFServiceOutputData m_outpuData;
+
     AbstractOperation* m_currentOperation;
     AbstractInputPathsPreparator* m_inputPathsPreparatorOperation;
     AbstractImagesPathsFinder* m_imagesPathsFinderOperation;
     AbstractImagesHistogramsBuilder* m_histogramsBuilderOperation;
     AbstractHistogramsComparator* m_histogramsComparatorOperation;
+    AbstractFoldersStatisticBuilder* m_foldersStatisticBuilder;
 
     PipelineOperationsTransitions m_operationsTransitions;
 

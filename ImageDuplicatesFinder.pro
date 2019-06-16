@@ -56,7 +56,11 @@ SOURCES += \
     Services/ImageDuplicatesFinderService/Data/OperationProgress.cpp \
     Modules/ImageDuplicatesFinder/DuplicateItemGroupComponent/DuplicateItemGroupModel.cpp \
     Modules/ImageDuplicatesFinder/DuplicateItemGroupComponent/DuplicateItemGroupModelManager.cpp \
-    Modules/ImageDuplicatesFinder/Data/IdGenerator.cpp
+    Modules/ImageDuplicatesFinder/Data/IdGenerator.cpp \
+    Services/ImageDuplicatesFinderService/FoldersStatisticBuilder/AbstractFoldersStatisticBuilder.cpp \
+    Services/ImageDuplicatesFinderService/FoldersStatisticBuilder/SequentialFoldersStatisticBuilder.cpp \
+    Services/ImageDuplicatesFinderService/Data/FolderInfo.cpp \
+    Services/ImageDuplicatesFinderService/Data/FoldersInfos.cpp
 
 RESOURCES += qml.qrc
 
@@ -112,4 +116,8 @@ HEADERS += \
     Services/ImageDuplicatesFinderService/Data/OperationProgress.h \
     Modules/ImageDuplicatesFinder/DuplicateItemGroupComponent/DuplicateItemGroupModel.h \
     Modules/ImageDuplicatesFinder/DuplicateItemGroupComponent/DuplicateItemGroupModelManager.h \
-    Modules/ImageDuplicatesFinder/Data/IdGenerator.h
+    Modules/ImageDuplicatesFinder/Data/IdGenerator.h \
+    Services/ImageDuplicatesFinderService/FoldersStatisticBuilder/AbstractFoldersStatisticBuilder.h \
+    Services/ImageDuplicatesFinderService/FoldersStatisticBuilder/SequentialFoldersStatisticBuilder.h \
+    Services/ImageDuplicatesFinderService/Data/FolderInfo.h \
+    Services/ImageDuplicatesFinderService/Data/FoldersInfos.h
