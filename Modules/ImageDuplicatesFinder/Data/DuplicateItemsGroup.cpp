@@ -4,18 +4,18 @@
 
 
 DuplicateItemsGroup::DuplicateItemsGroup() {
-    id = IdGenerator::getInstance()->getNextId();
+    m_id = IdGenerator::getInstance()->getNextId();
 }
 
 DuplicateItemsGroup::DuplicateItemsGroup(const QList<DuplicateItem>& itemsList)
     : m_duplicatesList(itemsList)
 {
-    id = IdGenerator::getInstance()->getNextId();
+    m_id = IdGenerator::getInstance()->getNextId();
 }
 
 DuplicateItemsGroup::DuplicateItemsGroup(const DuplicateItemsGroup& other)
     : m_duplicatesList(other.m_duplicatesList),
-      id(other.id)
+      m_id(other.m_id)
 {
 
 }
@@ -64,7 +64,7 @@ void DuplicateItemsGroup::removeDuplicateById(const qint64 itemId) {
 }
 
 qint64 DuplicateItemsGroup::getId() const {
-    return id;
+    return m_id;
 }
 
 int DuplicateItemsGroup::getGroupSize() const {

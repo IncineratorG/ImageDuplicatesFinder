@@ -4,6 +4,7 @@
 #include "Services/ImageDuplicatesFinderService/Data/IDFServiceInputData.h"
 #include "Services/ImageDuplicatesFinderService/Data/IDFServiceOutputData.h"
 #include "Modules/ImageDuplicatesFinder/Data/DuplicateItemsGroups.h"
+#include "Modules/ImageDuplicatesFinder/Data/FolderInfoItemsList.h"
 
 
 
@@ -23,6 +24,7 @@ public:
 private:
     IDFServiceInputData m_serviceInputData;
     IDFServiceOutputData m_serviceOutputData;
+
     DuplicateItemsGroups m_modelDuplicatesGroups;
 };
 

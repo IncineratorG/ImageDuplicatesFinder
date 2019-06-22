@@ -2,7 +2,7 @@
 #define FOLDERINFOITEM_H
 
 #include <QString>
-#include <QSet>
+#include <QMap>
 #include "DuplicateItem.h"
 
 
@@ -28,14 +28,18 @@ public:
     bool containDuplicateItemWithId(const qint64 duplicateItemId) const;
     bool containDuplicateItemWithImagePath(const QString& imagePath) const;
 
+    bool operator==(const FolderInfoItem& other) {
+        return this->m_folderPath == other.m_folderPath &&
+               this->m_duplicateItemsIdsMap.size() == other.m_duplicateItemsIdsMap.size();
+    }
+
 private:
     QString m_folderPath;
 
     qint64 m_id;
 
-    QSet<qint64> m_duplicateItemsIds;
-    QSet<QString> m_duplicateItemsPaths;
-    QList<DuplicateItem> m_duplicateItemsList;
+    QMap<qint64, DuplicateItem> m_duplicateItemsIdsMap;
+    QMap<QString, DuplicateItem> m_duplicateItemsPathsMap;
 
 
     bool isImage(const QString& filePath) const;

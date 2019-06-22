@@ -18,8 +18,8 @@ FolderInfoItem::FolderInfoItem(const QString& folderPath)
 FolderInfoItem::FolderInfoItem(const FolderInfoItem& other)
     : m_folderPath(other.m_folderPath),
       m_id(other.m_id),
-      m_duplicateItemsIds(other.m_duplicateItemsIds),
-      m_duplicateItemsPaths(other.m_duplicateItemsPaths)
+      m_duplicateItemsIdsMap(other.m_duplicateItemsIdsMap),
+      m_duplicateItemsPathsMap(other.m_duplicateItemsPathsMap)
 {
 
 }
@@ -41,20 +41,20 @@ qint64 FolderInfoItem::getTotalImagesCount() const {
 
     const QFileInfoList& directoryInfoList = currentDirectory.entryInfoList(QDir::NoDotAndDotDot | QDir::Files);
 
-    qint64 filesCount = 0;
+    qint64 imageFilesCount = 0;
 
     for (int i = 0; i < directoryInfoList.size(); ++i) {
         const QFileInfo& fileInfo = directoryInfoList.at(i);
         if (isImage(fileInfo.absoluteFilePath())) {
-            ++filesCount;
+            ++imageFilesCount;
         }
     }
 
-    return filesCount;
+    return imageFilesCount;
 }
 
 qint64 FolderInfoItem::getDuplicateImagesCount() const {
-    return m_duplicateItemsIds.size();
+    return m_duplicateItemsIdsMap.size();
 }
 
 qint64 FolderInfoItem::getSubfoldersCount() const {
@@ -66,39 +66,33 @@ qint64 FolderInfoItem::getSubfoldersCount() const {
 }
 
 bool FolderInfoItem::appendDuplicateItem(const DuplicateItem& duplicateItem) {
-    if (m_duplicateItemsIds.contains(duplicateItem.getId())) {
+    if (m_duplicateItemsIdsMap.contains(duplicateItem.getId())) {
         return false;
     }
 
-    m_duplicateItemsIds.insert(duplicateItem.getId());
-    m_duplicateItemsPaths.insert(duplicateItem.getImagePath());
-    m_duplicateItemsList.append(duplicateItem);
+    m_duplicateItemsIdsMap.insert(duplicateItem.getId(), duplicateItem);
+    m_duplicateItemsPathsMap.insert(duplicateItem.getImagePath(), duplicateItem);
 
     return true;
 }
 
 bool FolderInfoItem::removeDuplicateItem(const qint64 duplicateItemId) {
-    if (m_duplicateItemsIds.contains(duplicateItemId)) {
+    if (!m_duplicateItemsIdsMap.contains(duplicateItemId)) {
         return false;
     }
 
-    for (int i = 0; i < m_duplicateItemsList.size(); ++i) {
-        const DuplicateItem& duplicateItem = m_duplicateItemsList.at(i);
-
-        if (duplicateItem.getId() == duplicateItemId) {
-
-        }
-    }
+    const DuplicateItem duplicateItem = m_duplicateItemsIdsMap.take(duplicateItemId);
+    m_duplicateItemsPathsMap.remove(duplicateItem.getImagePath());
 
     return false;
 }
 
 bool FolderInfoItem::containDuplicateItemWithId(const qint64 duplicateItemId) const {
-    return false;
+    return m_duplicateItemsIdsMap.contains(duplicateItemId);
 }
 
 bool FolderInfoItem::containDuplicateItemWithImagePath(const QString& imagePath) const {
-    return false;
+    return m_duplicateItemsPathsMap.contains(imagePath);
 }
 
 bool FolderInfoItem::isImage(const QString& filePath) const {

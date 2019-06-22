@@ -33,7 +33,7 @@ public:
 private:
     QList<DuplicateItem> m_duplicatesList;
 
-    qint64 id;
+    qint64 m_id;
 };
 
 #endif // DUPLICATEITEMSGROUP_H
