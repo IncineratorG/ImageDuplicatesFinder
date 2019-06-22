@@ -2,6 +2,7 @@
 #define IDFSERVICEDATACONVERTOR_H
 
 #include <QList>
+#include "IDFServiceDataWarehouse.h"
 #include "Services/ImageDuplicatesFinderService/Data/IDFServiceOutputData.h"
 #include "Modules/ImageDuplicatesFinder/Data/DuplicateItemsGroups.h"
 #include "../Data/IdGenerator.h"
@@ -13,10 +14,13 @@ class IDFServiceDataConvertor
 public:
     IDFServiceDataConvertor();
 
-    DuplicateItemsGroups toDuplicateItemsGroups(const IDFServiceOutputData& serviceOutput) const;
+    void convertAndSave(const IDFServiceOutputData& serviceOutputData,
+                        IDFServiceDataWarehouse* dataWarehouse) const;
 
 private:
     IdGenerator* m_idGenerator;
+
+    DuplicateItemsGroups getDuplicateItemsGroups(const IDFServiceOutputData& serviceOutputData) const;
 };
 
 #endif // IDFSERVICEDATACONVERTOR_H

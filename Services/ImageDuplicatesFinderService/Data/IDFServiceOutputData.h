@@ -2,6 +2,7 @@
 #define IDFSERVICEOUTPUTDATA_H
 
 #include "ImagesDuplicatesGroups.h"
+#include "FoldersInfos.h"
 #include <memory>
 
 
@@ -16,8 +17,12 @@ public:
     void setDuplicatesGroups(std::shared_ptr<ImagesDuplicatesGroups> groups);
     std::shared_ptr<ImagesDuplicatesGroups> getDuplicatesGroups();
 
+    void setFoldersInfos(std::shared_ptr<FoldersInfos> foldersInfos);
+    std::shared_ptr<FoldersInfos> getFoldersInfos();
+
 private:
     std::shared_ptr<ImagesDuplicatesGroups> m_duplicatesGroups;
+    std::shared_ptr<FoldersInfos> m_folders_infos;
 };
 
 

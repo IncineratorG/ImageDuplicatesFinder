@@ -20,6 +20,7 @@ Rectangle {
     signal outOfAreaClicked()
 
     color: "#cc000000"
+//    color: "black"
 
     MouseArea {
         anchors.fill: parent
@@ -37,7 +38,8 @@ Rectangle {
         height: (informationContentWrapper.height) + (buttonsWrapper.height + 8)
         width: 300
 
-        color: "#66000000"
+        color: "black"
+//        color: "#66000000"
 
         radius: 4
 

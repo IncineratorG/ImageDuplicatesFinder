@@ -60,7 +60,9 @@ SOURCES += \
     Services/ImageDuplicatesFinderService/FoldersStatisticBuilder/AbstractFoldersStatisticBuilder.cpp \
     Services/ImageDuplicatesFinderService/FoldersStatisticBuilder/SequentialFoldersStatisticBuilder.cpp \
     Services/ImageDuplicatesFinderService/Data/FolderInfo.cpp \
-    Services/ImageDuplicatesFinderService/Data/FoldersInfos.cpp
+    Services/ImageDuplicatesFinderService/Data/FoldersInfos.cpp \
+    Modules/ImageDuplicatesFinder/Data/FolderInfoItem.cpp \
+    Modules/ImageDuplicatesFinder/Data/FolderInfoItemsList.cpp
 
 RESOURCES += qml.qrc
 
@@ -120,4 +122,6 @@ HEADERS += \
     Services/ImageDuplicatesFinderService/FoldersStatisticBuilder/AbstractFoldersStatisticBuilder.h \
     Services/ImageDuplicatesFinderService/FoldersStatisticBuilder/SequentialFoldersStatisticBuilder.h \
     Services/ImageDuplicatesFinderService/Data/FolderInfo.h \
-    Services/ImageDuplicatesFinderService/Data/FoldersInfos.h
+    Services/ImageDuplicatesFinderService/Data/FoldersInfos.h \
+    Modules/ImageDuplicatesFinder/Data/FolderInfoItem.h \
+    Modules/ImageDuplicatesFinder/Data/FolderInfoItemsList.h

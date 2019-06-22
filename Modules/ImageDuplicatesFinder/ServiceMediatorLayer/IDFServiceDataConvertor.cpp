@@ -1,4 +1,5 @@
 #include "IDFServiceDataConvertor.h"
+#include <QDebug>
 
 
 
@@ -6,8 +7,19 @@ IDFServiceDataConvertor::IDFServiceDataConvertor() {
     m_idGenerator = IdGenerator::getInstance();
 }
 
-DuplicateItemsGroups IDFServiceDataConvertor::toDuplicateItemsGroups(const IDFServiceOutputData& serviceOutput) const {
-    auto mutableServiceOutputData = serviceOutput;
+void IDFServiceDataConvertor::convertAndSave(const IDFServiceOutputData& serviceOutputData,
+                                             IDFServiceDataWarehouse* dataWarehouse) const
+{
+    if (dataWarehouse == nullptr) {
+        qDebug() << __PRETTY_FUNCTION__ << "->DATA_WAREHOUSE_IS_NULL";
+        return;
+    }
+
+    dataWarehouse->setModelDuplicatesGroups(getDuplicateItemsGroups(serviceOutputData));
+}
+
+DuplicateItemsGroups IDFServiceDataConvertor::getDuplicateItemsGroups(const IDFServiceOutputData& serviceOutputData) const {
+    auto mutableServiceOutputData = serviceOutputData;
     auto serviceDuplicatesGroupList = mutableServiceOutputData.getDuplicatesGroups()->getGroupsList();
 
     QList<DuplicateItemsGroup> modelDuplicateItemsGroupsList;

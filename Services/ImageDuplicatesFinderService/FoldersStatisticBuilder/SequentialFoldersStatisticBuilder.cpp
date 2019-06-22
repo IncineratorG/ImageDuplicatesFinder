@@ -1,5 +1,4 @@
 #include "SequentialFoldersStatisticBuilder.h"
-#include "../Data/FoldersInfos.h"
 #include <QSet>
 #include <QDir>
 #include <QFile>
@@ -18,7 +17,21 @@ void SequentialFoldersStatisticBuilder::setImagesDuplicatesGroups(std::shared_pt
     m_imagesDuplicatesGroups = imagesDuplicatesGroups;
 }
 
+std::shared_ptr<FoldersInfos> SequentialFoldersStatisticBuilder::getFoldersInfos() {
+    if (m_foldersInfos == nullptr) {
+        m_foldersInfos = std::shared_ptr<FoldersInfos>(new FoldersInfos());
+    }
+
+    return m_foldersInfos;
+}
+
 void SequentialFoldersStatisticBuilder::run() {
+    if (m_foldersInfos == nullptr) {
+        m_foldersInfos = std::shared_ptr<FoldersInfos>(new FoldersInfos());
+    } else {
+        m_foldersInfos->clear();
+    }
+
     if (m_imagesDuplicatesGroups == nullptr) {
         return;
     }
@@ -32,9 +45,6 @@ void SequentialFoldersStatisticBuilder::doWork() {
     // ===
 
 
-
-    FoldersInfos foldersInfos;
-
     const QList<ImageDuplicatesGroup>& duplicatesGroupsList = m_imagesDuplicatesGroups->getGroupsList();
     for (int i = 0; i < duplicatesGroupsList.size(); ++i) {
         const ImageDuplicatesGroup& group = duplicatesGroupsList.at(i);
@@ -43,22 +53,22 @@ void SequentialFoldersStatisticBuilder::doWork() {
         for (int j = 0; j < groupImagesPathsList.size(); ++j) {
             const QString& imagePath = groupImagesPathsList.at(j);
 
-            foldersInfos.appendFilePath(imagePath);
+            m_foldersInfos->appendFilePath(imagePath);
         }
     }
 
-    qDebug() << "";
-    const QList<FolderInfo>& foldersInfosList = foldersInfos.getFoldersInfosList();
-    for (int i = 0; i < foldersInfosList.size(); ++i) {
-        const FolderInfo& folderInfo = foldersInfosList.at(i);
+//    qDebug() << "";
+//    const QList<FolderInfo>& foldersInfosList = m_foldersInfos->getFoldersInfosList();
+//    for (int i = 0; i < foldersInfosList.size(); ++i) {
+//        const FolderInfo& folderInfo = foldersInfosList.at(i);
 
-        qDebug() << __PRETTY_FUNCTION__ << folderInfo.getFolderPath();
-        qDebug() << "TOTAL_FILES: " << folderInfo.getTotalFilesCount();
-        qDebug() << "TOTAL_IMAGES: " << folderInfo.getTotalImagesCount();
-        qDebug() << "DUPLICATE_IMAGES: " << folderInfo.getDuplicateImagesCount();
-        qDebug() << "SUBFOLDERS: " << folderInfo.getSubfoldersCount();
-        qDebug() << "";
-    }
+//        qDebug() << __PRETTY_FUNCTION__ << folderInfo.getFolderPath();
+//        qDebug() << "TOTAL_FILES: " << folderInfo.getTotalFilesCount();
+//        qDebug() << "TOTAL_IMAGES: " << folderInfo.getTotalImagesCount();
+//        qDebug() << "DUPLICATE_IMAGES: " << folderInfo.getDuplicateImagesCount();
+//        qDebug() << "SUBFOLDERS: " << folderInfo.getSubfoldersCount();
+//        qDebug() << "";
+//    }
 
 
 

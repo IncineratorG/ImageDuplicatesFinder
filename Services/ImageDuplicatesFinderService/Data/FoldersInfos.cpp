@@ -7,6 +7,10 @@ FoldersInfos::FoldersInfos() {
 
 }
 
+void FoldersInfos::clear() {
+    m_folderInfosList.clear();
+}
+
 void FoldersInfos::appendFilePath(const QString& filePath) {
     QFileInfo fileInfo(filePath);
     const QString& fileFolder = fileInfo.absolutePath();

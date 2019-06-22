@@ -15,7 +15,8 @@ FolderInfo::FolderInfo(const QString& folderPath)
 }
 
 FolderInfo::FolderInfo(const FolderInfo& other)
-    : m_folderPath(other.m_folderPath)
+    : m_folderPath(other.m_folderPath),
+      m_duplicateImagesPaths(other.m_duplicateImagesPaths)
 {
 
 }

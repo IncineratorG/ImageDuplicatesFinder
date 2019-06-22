@@ -294,9 +294,9 @@ void IDFServiceProcessingPipeline::setOperationsTransitions() {
         disconnect(m_currentOperation, nullptr, nullptr, nullptr);
         disconnect(this, nullptr, m_currentOperation, nullptr);
 
+        std::shared_ptr<FoldersInfos> foldersInfos = m_foldersStatisticBuilder->getFoldersInfos();
 
-
-
+        m_outpuData.setFoldersInfos(foldersInfos);
 
         m_currentOperation = nullptr;
 

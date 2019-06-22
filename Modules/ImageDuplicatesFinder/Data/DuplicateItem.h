@@ -22,7 +22,7 @@ public:
 private:
     QString m_imagePath;
 
-    qint64 id;
+    qint64 m_id;
 };
 
 #endif // DUPLICATEITEM_H

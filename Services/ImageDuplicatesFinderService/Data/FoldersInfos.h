@@ -11,6 +11,8 @@ class FoldersInfos
 public:
     FoldersInfos();
 
+    void clear();
+
     void appendFilePath(const QString& filePath);
 
     QList<FolderInfo> getFoldersInfosList() const;

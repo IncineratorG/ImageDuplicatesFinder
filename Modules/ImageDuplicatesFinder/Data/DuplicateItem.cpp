@@ -6,24 +6,24 @@
 DuplicateItem::DuplicateItem()
     : m_imagePath("")
 {
-    id = IdGenerator::getInstance()->getNextId();
+    m_id = IdGenerator::getInstance()->getNextId();
 }
 
 DuplicateItem::DuplicateItem(const QString& imagePath)
     : m_imagePath(imagePath)
 {
-    id = IdGenerator::getInstance()->getNextId();
+    m_id = IdGenerator::getInstance()->getNextId();
 }
 
 DuplicateItem::DuplicateItem(const DuplicateItem& other)
     : m_imagePath(other.m_imagePath),
-      id(other.id)
+      m_id(other.m_id)
 {
 
 }
 
 qint64 DuplicateItem::getId() const {
-    return id;
+    return m_id;
 }
 
 QString DuplicateItem::getImagePath() const {

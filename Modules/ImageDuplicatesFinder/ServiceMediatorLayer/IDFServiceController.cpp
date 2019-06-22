@@ -186,12 +186,18 @@ void IDFServiceController::onServiceInterrupted() {
 }
 
 void IDFServiceController::onServiceFinished() {
-    auto modelDuplicatesGroups = m_dataConvertor.toDuplicateItemsGroups(m_idfService.getOutputData());
-
-    m_dataWarehouse.setModelDuplicatesGroups(modelDuplicatesGroups);
+    m_dataConvertor.convertAndSave(m_idfService.getOutputData(), &m_dataWarehouse);
 
     emit serviceFinished();
 }
+//void IDFServiceController::onServiceFinished() {
+//    auto modelDuplicatesGroups = m_dataConvertor.toDuplicateItemsGroups(m_idfService.getOutputData());
+//    m_dataConvertor.toFoldersInfos(m_idfService.getOutputData());
+
+//    m_dataWarehouse.setModelDuplicatesGroups(modelDuplicatesGroups);
+
+//    emit serviceFinished();
+//}
 
 void IDFServiceController::onPublishProgress(OperationProgress value) {
     m_currentOperationProgress = value;
