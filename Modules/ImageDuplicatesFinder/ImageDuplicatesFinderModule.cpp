@@ -6,11 +6,15 @@
 #include "DuplicateItemGroupComponent/DuplicateItemGroupModel.h"
 #include "DuplicateItemGroupComponent/DuplicateItemGroupModelManager.h"
 #include "ServiceMediatorLayer/IDFServiceController.h"
+#include "Modules/ImageDuplicatesFinder/Data/ResultViewTypesModel.h"
 
 
 
 void ImageDuplicatesFinderModule::init(QQmlContext* ctxt) {
     ctxt->setContextProperty("IDFServiceController", IDFServiceController::getInstance());
+
+    auto resultViewTypesModel = new ResultViewTypesModel();
+    ctxt->setContextProperty("ResultViewTypesModel", resultViewTypesModel);
 
 
     auto inputFoldersModel = new InputFoldersModel();

@@ -58,7 +58,8 @@ SOURCES += \
     Modules/ImageDuplicatesFinder/DuplicateItemGroupComponent/DuplicateItemGroupModelManager.cpp \
     Modules/ImageDuplicatesFinder/Data/IdGenerator.cpp \
     Modules/ImageDuplicatesFinder/Data/FolderInfoItem.cpp \
-    Modules/ImageDuplicatesFinder/Data/FolderInfoItemsList.cpp
+    Modules/ImageDuplicatesFinder/Data/FolderInfoItemsList.cpp \
+    Modules/ImageDuplicatesFinder/Data/ResultViewTypesModel.cpp
 
 RESOURCES += qml.qrc
 
@@ -116,4 +117,5 @@ HEADERS += \
     Modules/ImageDuplicatesFinder/DuplicateItemGroupComponent/DuplicateItemGroupModelManager.h \
     Modules/ImageDuplicatesFinder/Data/IdGenerator.h \
     Modules/ImageDuplicatesFinder/Data/FolderInfoItem.h \
-    Modules/ImageDuplicatesFinder/Data/FolderInfoItemsList.h
+    Modules/ImageDuplicatesFinder/Data/FolderInfoItemsList.h \
+    Modules/ImageDuplicatesFinder/Data/ResultViewTypesModel.h
