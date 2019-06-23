@@ -57,10 +57,6 @@ SOURCES += \
     Modules/ImageDuplicatesFinder/DuplicateItemGroupComponent/DuplicateItemGroupModel.cpp \
     Modules/ImageDuplicatesFinder/DuplicateItemGroupComponent/DuplicateItemGroupModelManager.cpp \
     Modules/ImageDuplicatesFinder/Data/IdGenerator.cpp \
-    Services/ImageDuplicatesFinderService/FoldersStatisticBuilder/AbstractFoldersStatisticBuilder.cpp \
-    Services/ImageDuplicatesFinderService/FoldersStatisticBuilder/SequentialFoldersStatisticBuilder.cpp \
-    Services/ImageDuplicatesFinderService/Data/FolderInfo.cpp \
-    Services/ImageDuplicatesFinderService/Data/FoldersInfos.cpp \
     Modules/ImageDuplicatesFinder/Data/FolderInfoItem.cpp \
     Modules/ImageDuplicatesFinder/Data/FolderInfoItemsList.cpp
 
@@ -119,9 +115,5 @@ HEADERS += \
     Modules/ImageDuplicatesFinder/DuplicateItemGroupComponent/DuplicateItemGroupModel.h \
     Modules/ImageDuplicatesFinder/DuplicateItemGroupComponent/DuplicateItemGroupModelManager.h \
     Modules/ImageDuplicatesFinder/Data/IdGenerator.h \
-    Services/ImageDuplicatesFinderService/FoldersStatisticBuilder/AbstractFoldersStatisticBuilder.h \
-    Services/ImageDuplicatesFinderService/FoldersStatisticBuilder/SequentialFoldersStatisticBuilder.h \
-    Services/ImageDuplicatesFinderService/Data/FolderInfo.h \
-    Services/ImageDuplicatesFinderService/Data/FoldersInfos.h \
     Modules/ImageDuplicatesFinder/Data/FolderInfoItem.h \
     Modules/ImageDuplicatesFinder/Data/FolderInfoItemsList.h

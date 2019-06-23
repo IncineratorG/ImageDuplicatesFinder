@@ -15,6 +15,14 @@ IDFServiceInputData IDFServiceDataWarehouse::getInputData() const {
     return m_serviceInputData;
 }
 
+void IDFServiceDataWarehouse::setOutputData(const IDFServiceOutputData& outputData) {
+    m_serviceOutputData = outputData;
+}
+
+IDFServiceOutputData IDFServiceDataWarehouse::getOutputData() const {
+    return m_serviceOutputData;
+}
+
 void IDFServiceDataWarehouse::setModelDuplicatesGroups(const DuplicateItemsGroups& modelDuplicatesGroups) {
     m_modelDuplicatesGroups = modelDuplicatesGroups;
 }
@@ -34,4 +42,12 @@ DuplicateItemsGroup IDFServiceDataWarehouse::getModelDuplicateItemGroup(const qi
     }
 
     return DuplicateItemsGroup();
+}
+
+void IDFServiceDataWarehouse::setModelFolderInfoItemsList(const FolderInfoItemsList& modelFolderInfoItemsList) {
+    m_modelFolderInfoItemsList = modelFolderInfoItemsList;
+}
+
+FolderInfoItemsList IDFServiceDataWarehouse::getModelFolderInfoItemsList() const {
+    return m_modelFolderInfoItemsList;
 }

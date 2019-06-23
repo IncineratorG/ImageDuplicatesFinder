@@ -16,16 +16,22 @@ public:
     void setInputData(const IDFServiceInputData& inputData);
     IDFServiceInputData getInputData() const;
 
+    void setOutputData(const IDFServiceOutputData& outputData);
+    IDFServiceOutputData getOutputData() const;
+
     void setModelDuplicatesGroups(const DuplicateItemsGroups& modelDuplicatesGroups);
     DuplicateItemsGroups getModelDuplicatesGroups() const;
-
     DuplicateItemsGroup getModelDuplicateItemGroup(const qint64 groupId) const;
+
+    void setModelFolderInfoItemsList(const FolderInfoItemsList& modelFolderInfoItemsList);
+    FolderInfoItemsList getModelFolderInfoItemsList() const;
 
 private:
     IDFServiceInputData m_serviceInputData;
     IDFServiceOutputData m_serviceOutputData;
 
     DuplicateItemsGroups m_modelDuplicatesGroups;
+    FolderInfoItemsList m_modelFolderInfoItemsList;
 };
 
 #endif // IDFSERVICEDATAWAREHOUSE_H

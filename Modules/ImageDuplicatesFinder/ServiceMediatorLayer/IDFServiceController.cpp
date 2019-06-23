@@ -205,25 +205,3 @@ void IDFServiceController::onPublishProgress(OperationProgress value) {
     emit currentServiceOperationNameChanged(getCurrentServiceOperationName());
     emit currentServiceOperationProgressChanged(getCurrentServiceOperationProgress());
 }
-
-//void IDFServiceController::onServiceFinished() {
-//    auto modelDuplicatesGroups = m_dataConvertor.toDuplicateItemsGroups(m_idfService.getOutputData());
-//    auto modelDuplicatesGroupsList = modelDuplicatesGroups.getGroupsList();
-
-//    for (int i = 0; i < modelDuplicatesGroupsList.size(); ++i) {
-//        auto group = modelDuplicatesGroupsList.at(i);
-//        auto groupDuplicatesList = group.getDuplicateItemsList();
-
-//        for (int j = 0; j < groupDuplicatesList.size(); ++j) {
-//            auto duplicate = groupDuplicatesList.at(j);
-
-//            qDebug() << duplicate.getImagePath();
-//        }
-
-//        qDebug() << "";
-//    }
-
-//    m_dataWarehouse.setModelDuplicatesGroups(modelDuplicatesGroups);
-
-//    emit serviceFinished();
-//}

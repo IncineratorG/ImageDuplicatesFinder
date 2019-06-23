@@ -21,6 +21,7 @@ private:
     IdGenerator* m_idGenerator;
 
     DuplicateItemsGroups getDuplicateItemsGroups(const IDFServiceOutputData& serviceOutputData) const;
+    FolderInfoItemsList getFolderInfoItemsList(const DuplicateItemsGroups& duplicateItemsGroups) const;
 };
 
 #endif // IDFSERVICEDATACONVERTOR_H

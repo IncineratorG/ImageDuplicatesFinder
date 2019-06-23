@@ -11,7 +11,6 @@
 #include "../ImagesPathsFinder/AbstractImagesPathsFinder.h"
 #include "../ImagesHistogramsBuilder/AbstractImagesHistogramsBuilder.h"
 #include "../HistogramsComparator/AbstractHistogramsComparator.h"
-#include "../FoldersStatisticBuilder/AbstractFoldersStatisticBuilder.h"
 #include "AbstractOperation.h"
 #include "PipelineOperationsTransitions.h"
 
@@ -21,7 +20,7 @@ class IDFServiceProcessingPipeline : public QObject
 {
     Q_OBJECT
 
-    Q_PROPERTY(QString status               READ getStatus               WRITE setStatus               NOTIFY statusChanged)
+    Q_PROPERTY(QString status READ getStatus WRITE setStatus NOTIFY statusChanged)
 
 public:
     enum Status {
@@ -78,7 +77,6 @@ private:
     AbstractImagesPathsFinder* m_imagesPathsFinderOperation;
     AbstractImagesHistogramsBuilder* m_histogramsBuilderOperation;
     AbstractHistogramsComparator* m_histogramsComparatorOperation;
-    AbstractFoldersStatisticBuilder* m_foldersStatisticBuilder;
 
     PipelineOperationsTransitions m_operationsTransitions;
 

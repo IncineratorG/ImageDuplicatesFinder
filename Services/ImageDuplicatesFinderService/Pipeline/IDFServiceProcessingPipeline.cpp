@@ -3,7 +3,6 @@
 #include "../ImagesPathsFinder/SequentialImagesPathsFinder.h"
 #include "../ImagesHistogramsBuilder/SequentialImagesHistogramsBuilder.h"
 #include "../HistogramsComparator/SequentialHistogramsComparator.h"
-#include "../FoldersStatisticBuilder/SequentialFoldersStatisticBuilder.h"
 #include <QDir>
 #include <QDebug>
 
@@ -24,14 +23,12 @@ IDFServiceProcessingPipeline::IDFServiceProcessingPipeline()
     m_imagesPathsFinderOperation = new SequentialImagesPathsFinder();
     m_histogramsBuilderOperation = new SequentialImagesHistogramsBuilder();
     m_histogramsComparatorOperation = new SequentialHistogramsComparator();
-    m_foldersStatisticBuilder = new SequentialFoldersStatisticBuilder();
 
     // Создаём последовательность операций.
     m_inputPathsPreparatorOperation->setNextOperation(m_imagesPathsFinderOperation);
     m_imagesPathsFinderOperation->setNextOperation(m_histogramsBuilderOperation);
     m_histogramsBuilderOperation->setNextOperation(m_histogramsComparatorOperation);
-    m_histogramsComparatorOperation->setNextOperation(m_foldersStatisticBuilder);
-    m_foldersStatisticBuilder->setNextOperation(nullptr);
+    m_histogramsComparatorOperation->setNextOperation(nullptr);
 
     // Устанавливаем действия, которые необходимо
     // выполнять при переходе от одной операции к другой.
@@ -266,37 +263,14 @@ void IDFServiceProcessingPipeline::setOperationsTransitions() {
     m_operationsTransitions.setTransition(histogramsComparatorSeq, histogramsComparatorSeqTransition);
 
 
-    OperationSequence foldersStatisticSeq(m_histogramsComparatorOperation, m_foldersStatisticBuilder);
-    OperationTransition foldersStatisticSeqTransition([this] () {
-        disconnect(m_currentOperation, nullptr, nullptr, nullptr);
-        disconnect(this, nullptr, m_currentOperation, nullptr);
-
-        std::shared_ptr<ImagesDuplicatesGroups> imagesDuplicatesGroups = m_histogramsComparatorOperation->getImagesDuplicates();
-        m_foldersStatisticBuilder->setImagesDuplicatesGroups(imagesDuplicatesGroups);
-
-        m_outpuData.setDuplicatesGroups(imagesDuplicatesGroups);
-
-        m_currentOperation = m_foldersStatisticBuilder;
-
-        connect(m_currentOperation, SIGNAL(finished()), this, SLOT(onOperationFinished()));
-        connect(m_currentOperation, SIGNAL(publishProgress(OperationProgress)), this, SIGNAL(publishProgress(OperationProgress)));
-
-        // ===
-        qDebug() << "IDFServiceProcessingPipeline::setOperationsTransitions() -> GATHERING_FOLDERS_STATISTIC";
-        // ===
-    });
-
-    m_operationsTransitions.setTransition(foldersStatisticSeq, foldersStatisticSeqTransition);
-
-
-    OperationSequence finishSeq(m_foldersStatisticBuilder, nullptr);
+    OperationSequence finishSeq(m_histogramsComparatorOperation, nullptr);
     OperationTransition finishSeqTransition([this] () {
         disconnect(m_currentOperation, nullptr, nullptr, nullptr);
         disconnect(this, nullptr, m_currentOperation, nullptr);
 
-        std::shared_ptr<FoldersInfos> foldersInfos = m_foldersStatisticBuilder->getFoldersInfos();
+        std::shared_ptr<ImagesDuplicatesGroups> imagesDuplicatesGroups = m_histogramsComparatorOperation->getImagesDuplicates();
 
-        m_outpuData.setFoldersInfos(foldersInfos);
+        m_outpuData.setDuplicatesGroups(imagesDuplicatesGroups);;
 
         m_currentOperation = nullptr;
 
@@ -306,22 +280,4 @@ void IDFServiceProcessingPipeline::setOperationsTransitions() {
     });
 
     m_operationsTransitions.setTransition(finishSeq, finishSeqTransition);
-
-
-
-//    OperationSequence finishSeq(m_histogramsComparatorOperation, nullptr);
-//    OperationTransition finishSeqTransition([this] () {
-//        disconnect(m_currentOperation, nullptr, nullptr, nullptr);
-//        disconnect(this, nullptr, m_currentOperation, nullptr);
-
-//        IDFServiceOutputData pipelineOutputData(m_histogramsComparatorOperation->getImagesDuplicates());
-
-//        m_currentOperation = nullptr;
-
-//        emit pipelineFinished(pipelineOutputData);
-
-//        setStatus(IDLE);
-//    });
-
-//    m_operationsTransitions.setTransition(finishSeq, finishSeqTransition);
 }
