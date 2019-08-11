@@ -51,13 +51,13 @@ ApplicationWindow {
         anchors.fill: parent
     }
 
-    onClosing: {
-        close.accepted = closeAccepted
+//    onClosing: {
+//        close.accepted = closeAccepted
 
-        loader.sourceComponent = closeAppBlockingComponent
-        loader.visible = true
-        loader.z = 55
-    }
+//        loader.sourceComponent = closeAppBlockingComponent
+//        loader.visible = true
+//        loader.z = 55
+//    }
 }
 
 

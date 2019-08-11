@@ -3,6 +3,8 @@
 
 // ===
 //#include "../../../Services/ImageDuplicatesFinderService/Data/ImageHistogram.h"
+#include "Storages/StoragesManager.h"
+#include "Storages/ImageDuplicatesFinder/Actions/StartService.h"
 // ===
 
 
@@ -82,3 +84,15 @@ void InputFoldersModelManager::stopProcessing() {
 
     m_idfServiceController->stopService();
 }
+
+
+// ===
+void InputFoldersModelManager::test() {
+    qDebug() << __PRETTY_FUNCTION__;
+
+    AbstractStorage* idfStorage = StoragesManager::getInstance()->getStorage(StoragesManager::StorageType::ImageDuplicatesFinder);
+
+    std::shared_ptr<AbstractAction> startServiceAction(new StartService());
+    idfStorage->executeAction(startServiceAction);
+}
+// ===

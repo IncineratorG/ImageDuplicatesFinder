@@ -22,6 +22,10 @@ public slots:
     void startProcessing();
     void stopProcessing();
 
+    // ===
+    void test();
+    // ===
+
 private:
     InputFoldersModel* m_inputFoldersModel;
     IDFServiceController* m_idfServiceController;

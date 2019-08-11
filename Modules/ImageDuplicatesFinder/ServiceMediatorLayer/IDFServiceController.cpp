@@ -186,8 +186,6 @@ void IDFServiceController::onServiceInterrupted() {
 }
 
 void IDFServiceController::onServiceFinished() {
-    int a = 1 + 2;
-
     m_dataConvertor.convertAndSave(m_idfService.getOutputData(), &m_dataWarehouse);
 
     emit serviceFinished();

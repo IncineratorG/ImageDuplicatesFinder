@@ -59,7 +59,17 @@ SOURCES += \
     Modules/ImageDuplicatesFinder/Data/IdGenerator.cpp \
     Modules/ImageDuplicatesFinder/Data/FolderInfoItem.cpp \
     Modules/ImageDuplicatesFinder/Data/FolderInfoItemsList.cpp \
-    Modules/ImageDuplicatesFinder/Data/ResultViewTypesModel.cpp
+    Modules/ImageDuplicatesFinder/Data/ResultViewTypesModel.cpp \
+    Storages/Abstract/AbstractStorage.cpp \
+    Storages/Abstract/AbstractAction.cpp \
+    Storages/Abstract/AbstractStore.cpp \
+    Storages/ImageDuplicatesFinder/IDFStorage.cpp \
+    Storages/ImageDuplicatesFinder/IDFStore.cpp \
+    Storages/ImageDuplicatesFinder/Actions/StartService.cpp \
+    Storages/ImageDuplicatesFinder/Actions/StopService.cpp \
+    Storages/StoragesManager.cpp \
+    Services/ImageDuplicatesFinderService/Abstract/AbstractService.cpp \
+    Services/ServicesManager.cpp
 
 RESOURCES += qml.qrc
 
@@ -118,4 +128,14 @@ HEADERS += \
     Modules/ImageDuplicatesFinder/Data/IdGenerator.h \
     Modules/ImageDuplicatesFinder/Data/FolderInfoItem.h \
     Modules/ImageDuplicatesFinder/Data/FolderInfoItemsList.h \
-    Modules/ImageDuplicatesFinder/Data/ResultViewTypesModel.h
+    Modules/ImageDuplicatesFinder/Data/ResultViewTypesModel.h \
+    Storages/Abstract/AbstractStorage.h \
+    Storages/Abstract/AbstractAction.h \
+    Storages/Abstract/AbstractStore.h \
+    Storages/ImageDuplicatesFinder/IDFStorage.h \
+    Storages/ImageDuplicatesFinder/IDFStore.h \
+    Storages/ImageDuplicatesFinder/Actions/StartService.h \
+    Storages/ImageDuplicatesFinder/Actions/StopService.h \
+    Storages/StoragesManager.h \
+    Services/ImageDuplicatesFinderService/Abstract/AbstractService.h \
+    Services/ServicesManager.h

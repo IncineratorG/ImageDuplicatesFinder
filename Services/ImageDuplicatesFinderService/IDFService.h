@@ -6,11 +6,12 @@
 #include "Data/IDFServiceInputData.h"
 #include "Data/IDFServiceOutputData.h"
 #include "Pipeline/IDFServiceProcessingPipeline.h"
+#include "Abstract/AbstractService.h"
 #include <memory>
 
 
 
-class IDFService : public QObject
+class IDFService : public QObject, public AbstractService
 {
     Q_OBJECT
 

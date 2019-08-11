@@ -84,10 +84,13 @@ Item {
             visible: InputFoldersModel.size <= 0
 
             onAddFolderButtonClicked: {
-                fileDialog.open()
-
-                inputFoldersComponent.addFolderButtonClicked()
+                InputFoldersModelManager.test()
             }
+//            onAddFolderButtonClicked: {
+//                fileDialog.open()
+
+//                inputFoldersComponent.addFolderButtonClicked()
+//            }
         }
     }
 
