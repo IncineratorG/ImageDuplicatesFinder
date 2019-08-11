@@ -29,7 +29,7 @@ Item {
             }
 
             onRemoveFolderButtonClicked: {
-
+                console.log("onRemoveFolderButtonClicked")
             }
 
             onStartButtonClicked: {
